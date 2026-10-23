@@ -243,7 +243,7 @@
             <div class="relative bg-white rounded-lg border border-slate-700 overflow-hidden h-24">
               <canvas id="canvas-sig-op" class="w-full h-full cursor-crosshair"></canvas>
             </div>
-            <input type="text" id="input-op-name" value="" placeholder="Họ tên KTV" class="w-full mt-1.5 bg-slate-900 border border-slate-700 rounded-md px-2.5 py-1 text-slate-100 text-xs">
+            <input type="text" id="input-op-name" value="" placeholder="Nhập họ tên KTV..." class="w-full mt-1.5 bg-slate-900 border border-slate-700 rounded-md px-2.5 py-1 text-slate-100 text-xs">
           </div>
 
           <!-- Supervisor Sign -->
@@ -255,7 +255,7 @@
             <div class="relative bg-white rounded-lg border border-slate-700 overflow-hidden h-24">
               <canvas id="canvas-sig-sup" class="w-full h-full cursor-crosshair"></canvas>
             </div>
-            <input type="text" id="input-sup-name" value="" placeholder="Họ tên người duyệt" class="w-full mt-1.5 bg-slate-900 border border-slate-700 rounded-md px-2.5 py-1 text-slate-100 text-xs">
+            <input type="text" id="input-sup-name" value="" placeholder="Nhập họ tên người duyệt..." class="w-full mt-1.5 bg-slate-900 border border-slate-700 rounded-md px-2.5 py-1 text-slate-100 text-xs">
           </div>
         </div>
       </div>
@@ -358,7 +358,7 @@
                 <div class="h-20 flex items-center justify-center my-1">
                   <img id="cert-sig-op-img" src="" alt="Chữ ký KTV" class="max-h-16 max-w-full object-contain hidden">
                 </div>
-                <p id="cert-op-name" class="font-bold text-slate-900 border-t border-dotted border-slate-300 pt-1 mx-4">Phạm Thanh Hùng</p>
+                <p id="cert-op-name" class="font-bold text-slate-900 border-t border-dotted border-slate-300 pt-1 mx-4">....................................</p>
               </div>
 
               <div>
@@ -367,7 +367,7 @@
                 <div class="h-20 flex items-center justify-center my-1">
                   <img id="cert-sig-sup-img" src="" alt="Chữ ký Phụ Trách" class="max-h-16 max-w-full object-contain hidden">
                 </div>
-                <p id="cert-sup-name" class="font-bold text-slate-900 border-t border-dotted border-slate-300 pt-1 mx-4">M. Thuận</p>
+                <p id="cert-sup-name" class="font-bold text-slate-900 border-t border-dotted border-slate-300 pt-1 mx-4">....................................</p>
               </div>
             </div>
 
@@ -556,8 +556,10 @@
 
         certLot.innerText = inputLotNo.value.trim() || '---';
         certExp.innerText = inputExpDate.value.trim() || '---';
-        certOpName.innerText = inputOpName.value.trim() || 'Kỹ thuật viên';
-        certSupName.innerText = inputSupName.value.trim() || 'Phụ trách duyệt';
+        
+        // Cập nhật họ tên KTV & Người duyệt (để chấm nếu rỗng)
+        certOpName.innerText = inputOpName.value.trim() || '....................................';
+        certSupName.innerText = inputSupName.value.trim() || '....................................';
 
         // Result radio
         const selectedRadio = document.querySelector('input[name="evaluation-result"]:checked');
