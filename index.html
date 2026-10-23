@@ -471,38 +471,21 @@
         }
       });
 
-      // BẢO MẬT 2: Fetch Internet Time (Chống KTV chỉnh lùi giờ trên máy)
       let verifiedTimestamp = '';
-      async function fetchRealTime() {
+      function initSystemTime() {
         const timeBadge = document.getElementById('cert-print-timestamp');
-        try {
-          const res = await fetch('https://worldtimeapi.org/api/timezone/Asia/Ho_Chi_Minh');
-          const data = await res.json();
-          const dateObj = new Date(data.datetime);
-          const dd = String(dateObj.getDate()).padStart(2, '0');
-          const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
-          const yyyy = dateObj.getFullYear();
-          const hh = String(dateObj.getHours()).padStart(2, '0');
-          const mins = String(dateObj.getMinutes()).padStart(2, '0');
-          verifiedTimestamp = `${dd}/${mm}/${yyyy} ${hh}:${mins}`;
-          timeBadge.innerText = `Lập phiếu: ${verifiedTimestamp} (Chuẩn VN)`;
-          timeBadge.classList.replace('text-blue-700', 'text-emerald-700');
-          timeBadge.classList.replace('bg-blue-50', 'bg-emerald-50');
-        } catch (e) {
-          const today = new Date();
-          const dd = String(today.getDate()).padStart(2, '0');
-          const mm = String(today.getMonth() + 1).padStart(2, '0');
-          const yyyy = today.getFullYear();
-          const hh = String(today.getHours()).padStart(2, '0');
-          const mins = String(today.getMinutes()).padStart(2, '0');
-          verifiedTimestamp = `${dd}/${mm}/${yyyy} ${hh}:${mins}`;
-          timeBadge.innerText = `Lập phiếu: ${verifiedTimestamp} (Cục bộ)`;
-          timeBadge.classList.replace('text-blue-700', 'text-amber-700');
-          timeBadge.classList.replace('bg-blue-50', 'bg-amber-50');
-        }
-        syncFormToCert(); // Update QR with new time
+        const now = new Date();
+        const dd = String(now.getDate()).padStart(2, '0');
+        const mm = String(now.getMonth() + 1).padStart(2, '0');
+        const yyyy = now.getFullYear();
+        const hh = String(now.getHours()).padStart(2, '0');
+        const mins = String(now.getMinutes()).padStart(2, '0');
+        verifiedTimestamp = `${dd}/${mm}/${yyyy} ${hh}:${mins}`;
+        timeBadge.innerText = `Lập phiếu: ${verifiedTimestamp}`;
+        timeBadge.className = 'mono-font text-slate-700 font-semibold bg-slate-100 px-1 py-0.5 rounded leading-tight mt-0.5';
+        syncFormToCert();
       }
-      fetchRealTime();
+      initSystemTime();
 
       const btnExportPdf = document.getElementById('btn-export-pdf');
       const btnLoadDemo = document.getElementById('btn-load-demo');
