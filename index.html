@@ -146,6 +146,20 @@
             <input type="file" id="file-input" accept="image/*" class="hidden">
           </label>
         </div>
+
+        <!-- AI Auto Evaluation Feedback Banner -->
+        <div id="ai-feedback-banner" class="hidden mt-3 p-3 rounded-xl border text-xs transition">
+          <div class="flex items-start gap-2.5">
+            <div id="ai-feedback-icon" class="mt-0.5"></div>
+            <div class="flex-1">
+              <div class="flex items-center justify-between">
+                <span id="ai-feedback-title" class="font-bold uppercase tracking-wider text-[11px]"></span>
+                <span id="ai-feedback-metrics" class="mono-font text-[10px] text-slate-400"></span>
+              </div>
+              <p id="ai-feedback-desc" class="text-[11px] text-slate-300 mt-0.5 leading-snug"></p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- STEP 2: METADATA FORM -->
@@ -192,7 +206,7 @@
 
         <!-- Result evaluation radio cards -->
         <div>
-          <label class="block text-slate-400 mb-1.5 text-xs font-medium">Kết Luận Đánh Giá Tờ Test:</label>
+          <label class="block text-slate-400 mb-1.5 text-xs font-medium">Kết Luận Đánh Giá Tờ Test (Tự động hoặc chỉnh tay):</label>
           <div class="grid grid-cols-2 gap-3">
             <label class="relative flex items-center p-3 rounded-xl border border-slate-700 bg-slate-900 cursor-pointer has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-500/10 transition">
               <input type="radio" name="evaluation-result" value="PASS" checked class="w-4 h-4 text-emerald-500 focus:ring-emerald-400">
@@ -394,7 +408,7 @@
     <div class="relative flex-1 my-2 flex items-center justify-center overflow-hidden rounded-2xl bg-black border border-slate-800">
       <video id="webcam-video" autoplay playsinline class="w-full h-full object-cover"></video>
 
-      <!-- The 4-BOX GUIDE OVERLAY (Mimics user's real-world composite layout) -->
+      <!-- The 4-BOX GUIDE OVERLAY -->
       <div id="camera-overlay-boxes" class="absolute inset-0 pointer-events-none p-3 sm:p-6 flex items-center justify-center">
         <div class="w-full max-w-xl aspect-[3/4] sm:aspect-[4/3] border-2 border-white/20 rounded-xl relative grid grid-cols-12 grid-rows-12 gap-2 p-2 bg-black/10 backdrop-blur-[1px]">
           
@@ -478,6 +492,13 @@
       const btnToggleContrast = document.getElementById('btn-toggle-contrast');
       const btnDeleteImg = document.getElementById('btn-delete-img');
 
+      // AI Feedback Elements
+      const aiFeedbackBanner = document.getElementById('ai-feedback-banner');
+      const aiFeedbackIcon = document.getElementById('ai-feedback-icon');
+      const aiFeedbackTitle = document.getElementById('ai-feedback-title');
+      const aiFeedbackMetrics = document.getElementById('ai-feedback-metrics');
+      const aiFeedbackDesc = document.getElementById('ai-feedback-desc');
+
       // Certificate Target Preview Elements
       const certHospital = document.getElementById('cert-hospital');
       const certDepartment = document.getElementById('cert-department');
@@ -517,7 +538,6 @@
       certPrintTimestamp.innerText = `Ngày in: ${dd}/${mm}/${yyyy}`;
 
       let currentImageDataUrl = '';
-      let currentRotation = 0;
       let hasHighContrast = false;
 
       // Synchronize Form to Certificate Preview
@@ -560,6 +580,126 @@
       evaluationRadios.forEach(r => r.addEventListener('change', syncFormToCert));
       syncFormToCert();
 
+      // ==========================================
+      // THUẬT TOÁN TỰ ĐỘNG PHÂN TÍCH TỜ BOWIE-DICK
+      // ==========================================
+      function analyzeBowieDickSheet(sourceImage, bdRectNorm = { x: 0.03, y: 0.03, w: 0.60, h: 0.60 }) {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d', { willReadFrequently: true });
+
+        const imgW = sourceImage.naturalWidth || sourceImage.width;
+        const imgH = sourceImage.naturalHeight || sourceImage.height;
+
+        const cropX = Math.round(bdRectNorm.x * imgW);
+        const cropY = Math.round(bdRectNorm.y * imgH);
+        const cropW = Math.round(bdRectNorm.w * imgW);
+        const cropH = Math.round(bdRectNorm.h * imgH);
+
+        canvas.width = cropW;
+        canvas.height = cropH;
+        ctx.drawImage(sourceImage, cropX, cropY, cropW, cropH, 0, 0, cropW, cropH);
+
+        const imgData = ctx.getImageData(0, 0, cropW, cropH);
+        const data = imgData.data;
+
+        const centerX = cropW / 2;
+        const centerY = cropH / 2;
+        const centerRadius = Math.min(cropW, cropH) * 0.18;
+        const innerRadius = Math.min(cropW, cropH) * 0.25;
+        const outerRadius = Math.min(cropW, cropH) * 0.42;
+
+        let centerLumaSum = 0, centerCount = 0;
+        let periLumaSum = 0, periCount = 0;
+
+        for (let y = 0; y < cropH; y++) {
+          for (let x = 0; x < cropW; x++) {
+            const idx = (y * cropW + x) * 4;
+            const r = data[idx];
+            const g = data[idx + 1];
+            const b = data[idx + 2];
+
+            // Chuẩn ITU-R BT.601 Luma
+            const luma = 0.299 * r + 0.587 * g + 0.114 * b;
+            const dist = Math.hypot(x - centerX, y - centerY);
+
+            if (dist <= centerRadius) {
+              centerLumaSum += luma;
+              centerCount++;
+            } else if (dist >= innerRadius && dist <= outerRadius) {
+              periLumaSum += luma;
+              periCount++;
+            }
+          }
+        }
+
+        const avgCenterLuma = centerCount > 0 ? centerLumaSum / centerCount : 0;
+        const avgPeriLuma = periCount > 0 ? periLumaSum / periCount : 0;
+        const deltaLuma = avgCenterLuma - avgPeriLuma;
+        const THRESHOLD = 18.0;
+
+        let isPass = false;
+        let verdictReason = '';
+
+        if (deltaLuma > THRESHOLD) {
+          isPass = false;
+          verdictReason = `Phát hiện tâm sáng hơn viền (+${deltaLuma.toFixed(1)} > Ngưỡng ${THRESHOLD}). Nghi ngờ có bọt khí/sót khí (Air Pocket).`;
+        } else if (avgCenterLuma > 145 && avgPeriLuma > 145) {
+          isPass = false;
+          verdictReason = `Toàn bộ tờ test chưa chuyển sẫm màu hoàn chỉnh (Độ sáng TB: ${avgCenterLuma.toFixed(1)}). Mẻ tiệt khuẩn chưa đủ nhiệt/thời gian.`;
+        } else {
+          isPass = true;
+          verdictReason = `Biến màu đen đồng nhất. Không phát hiện sót khí ở tâm mẻ test.`;
+        }
+
+        return {
+          result: isPass ? 'PASS' : 'FAIL',
+          avgCenterLuma: Math.round(avgCenterLuma),
+          avgPeriLuma: Math.round(avgPeriLuma),
+          deltaLuma: parseFloat(deltaLuma.toFixed(1)),
+          threshold: THRESHOLD,
+          message: verdictReason
+        };
+      }
+
+      function applyAutoEvaluation(dataUrl) {
+        if (!dataUrl) {
+          aiFeedbackBanner.classList.add('hidden');
+          return;
+        }
+
+        const testImg = new Image();
+        testImg.onload = () => {
+          const evalRes = analyzeBowieDickSheet(testImg);
+
+          // Tự động tick chọn nút Radio
+          const radioPass = document.querySelector('input[name="evaluation-result"][value="PASS"]');
+          const radioFail = document.querySelector('input[name="evaluation-result"][value="FAIL"]');
+
+          if (evalRes.result === 'PASS') {
+            radioPass.checked = true;
+            aiFeedbackBanner.className = 'mt-3 p-3 rounded-xl border text-xs transition bg-emerald-500/10 border-emerald-500/40 text-emerald-200';
+            aiFeedbackIcon.innerHTML = `<i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>`;
+            aiFeedbackTitle.innerText = 'AI ĐÁNH GIÁ: ĐẠT (PASS)';
+            aiFeedbackTitle.className = 'font-bold uppercase tracking-wider text-[11px] text-emerald-400';
+          } else {
+            radioFail.checked = true;
+            aiFeedbackBanner.className = 'mt-3 p-3 rounded-xl border text-xs transition bg-rose-500/10 border-rose-500/40 text-rose-200';
+            aiFeedbackIcon.innerHTML = `<i data-lucide="alert-triangle" class="w-4 h-4 text-rose-400"></i>`;
+            aiFeedbackTitle.innerText = 'AI CẢNH BÁO: KHÔNG ĐẠT (FAIL)';
+            aiFeedbackTitle.className = 'font-bold uppercase tracking-wider text-[11px] text-rose-400';
+          }
+
+          aiFeedbackMetrics.innerText = `ΔLuma: ${evalRes.deltaLuma > 0 ? '+' : ''}${evalRes.deltaLuma} | Tâm: ${evalRes.avgCenterLuma} | Rìa: ${evalRes.avgPeriLuma}`;
+          aiFeedbackDesc.innerText = evalRes.message;
+          aiFeedbackBanner.classList.remove('hidden');
+          lucide.createIcons();
+
+          // Cập nhật lại bản in A4
+          syncFormToCert();
+        };
+        testImg.src = dataUrl;
+      }
+
       // Display Image on Preview and Certificate
       function updateImageDisplay(dataUrl) {
         currentImageDataUrl = dataUrl;
@@ -572,6 +712,9 @@
           certImagePreview.src = dataUrl;
           certImagePreview.classList.remove('hidden');
           certImagePlaceholder.classList.add('hidden');
+
+          // Chạy tự động đánh giá ảnh
+          applyAutoEvaluation(dataUrl);
         } else {
           capturedImageTag.src = '';
           capturedImageTag.classList.add('hidden');
@@ -581,6 +724,8 @@
           certImagePreview.src = '';
           certImagePreview.classList.add('hidden');
           certImagePlaceholder.classList.remove('hidden');
+
+          aiFeedbackBanner.classList.add('hidden');
         }
       }
 
@@ -639,7 +784,7 @@
           canvas.width = rect.width * 2;
           canvas.height = rect.height * 2;
           ctx.scale(2, 2);
-          ctx.strokeStyle = '#0284c7'; // Medical Blue ink
+          ctx.strokeStyle = '#0284c7';
           ctx.lineWidth = 2.5;
           ctx.lineCap = 'round';
           ctx.lineJoin = 'round';
@@ -777,7 +922,7 @@
         }
       });
 
-      // Take photo from video stream
+      // Chụp ảnh từ camera
       camShutterBtn.addEventListener('click', () => {
         if (!webcamVideo.videoWidth) return;
         cameraCaptureCanvas.width = webcamVideo.videoWidth;
@@ -789,30 +934,27 @@
         stopCamera();
       });
 
-      // LOAD DEMO SAMPLE (Simulates exact 4-part arrangement procedurally)
+      // LOAD DEMO SAMPLE
       btnLoadDemo.addEventListener('click', () => {
         const demoCanvas = document.createElement('canvas');
         demoCanvas.width = 1200;
         demoCanvas.height = 900;
         const ctx = demoCanvas.getContext('2d');
 
-        // Background desk / white card
         ctx.fillStyle = '#f1f5f9';
         ctx.fillRect(0, 0, demoCanvas.width, demoCanvas.height);
 
-        // 1. Bowie Dick Sheet (Top-Left)
+        // 1. Bowie Dick Sheet
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(40, 40, 680, 500);
         ctx.strokeStyle = '#cbd5e1';
         ctx.lineWidth = 2;
         ctx.strokeRect(40, 40, 680, 500);
 
-        // Header text on sheet
         ctx.fillStyle = '#1e3a8a';
         ctx.font = 'bold 24px sans-serif';
         ctx.fillText('3M Comply™ 1233LF Bowie-Dick Type Test Pack', 60, 80);
 
-        // Grid of dark brown/black bars (Uniform Pass)
         ctx.fillStyle = '#1e293b';
         const startX = 60, startY = 110, barW = 45, barH = 14, gapX = 12, gapY = 10;
         for (let row = 0; row < 18; row++) {
@@ -822,12 +964,11 @@
             ctx.fill();
           }
         }
-        // Handwritten text on sheet
         ctx.fillStyle = '#1e3a8a';
         ctx.font = 'bold 20px cursive';
         ctx.fillText('Date: 22/10/26    Sterilizer No: I    Initials: Đạt / M. Thuận', 60, 520);
 
-        // 2. LOT Label (Bottom Left)
+        // 2. LOT Label
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(40, 560, 320, 300);
         ctx.strokeStyle = '#93c5fd';
@@ -848,12 +989,11 @@
         ctx.fillText('EXP: 2028-03-17', 60, 720);
         ctx.fillText('REF: 1233LF  (Lead Free)', 60, 750);
 
-        // 3. Type 5 Strip (Bottom Center)
+        // 3. Type 5 Strip
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(380, 630, 340, 90);
         ctx.strokeStyle = '#cbd5e1';
         ctx.strokeRect(380, 630, 340, 90);
-        // Bar Reject/Accept
         ctx.fillStyle = '#ef4444';
         ctx.fillRect(460, 645, 110, 60);
         ctx.fillStyle = '#22c55e';
@@ -866,7 +1006,7 @@
         ctx.font = 'bold 11px sans-serif';
         ctx.fillText('3M Type 5 Integrator (Passed)', 390, 710);
 
-        // 4. Thermal Printer Receipt (Full Right Column)
+        // 4. Thermal Printer Receipt
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(750, 40, 410, 820);
         ctx.strokeStyle = '#e2e8f0';
@@ -904,7 +1044,7 @@
         ];
         billLines.forEach((txt, i) => {
           if (txt.includes("CORRECTLY")) {
-            ctx.fillStyle = '#ec4899'; // Highlight marker
+            ctx.fillStyle = '#ec4899';
             ctx.fillRect(755, 120 + i * 22 - 14, 395, 20);
             ctx.fillStyle = '#ffffff';
           } else {
@@ -916,7 +1056,6 @@
         const demoDataUrl = demoCanvas.toDataURL('image/jpeg', 0.95);
         updateImageDisplay(demoDataUrl);
 
-        // Pre-fill fields matching demo
         inputHospital.value = "BỆNH VIỆN PHƯƠNG CHÂU SG";
         inputSterilizerId.value = "NỒI HẤP I (6-6-6 VS2)";
         inputCycleNo.value = "004243";
@@ -928,7 +1067,6 @@
         inputSupName.value = "M. Thuận";
         syncFormToCert();
 
-        // Also draw signatures on preview
         const sigOpCanvas = document.getElementById('canvas-sig-op');
         const sctx = sigOpCanvas.getContext('2d');
         sctx.strokeStyle = '#0284c7';
@@ -956,7 +1094,6 @@
       btnExportPdf.addEventListener('click', async () => {
         const certElement = document.getElementById('certificate-container');
 
-        // Visual loading state
         const originalText = btnExportPdf.innerHTML;
         btnExportPdf.innerHTML = `
           <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -968,7 +1105,6 @@
         btnExportPdf.disabled = true;
 
         try {
-          // Render HTML to Canvas at 2x scale for sharp printing
           const canvas = await html2canvas(certElement, {
             scale: 2,
             useCORS: true,
@@ -978,14 +1114,12 @@
 
           const imgData = canvas.toDataURL('image/jpeg', 0.98);
           const { jsPDF } = window.jspdf;
-          // Standard A4 portrait: 210 x 297 mm
           const pdf = new jsPDF('p', 'mm', 'a4');
           const pdfWidth = pdf.internal.pageSize.getWidth();
           const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
 
           pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
 
-          // File name formatted according to hospital standard
           const cycleStr = inputCycleNo.value.trim() || 'Cycle';
           const dateStr = inputTestDate.value.replace(/-/g, '') || 'Date';
           const sterilizerStr = (inputSterilizerId.value.trim() || 'NoiHap').replace(/\s+/g, '_');
