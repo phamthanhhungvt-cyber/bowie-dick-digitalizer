@@ -1,0 +1,1196 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 880" width="100%" height="100%" style="background:#ffffff; font-family: 'Segoe UI', Arial, sans-serif;">
+  <defs>
+    <!-- Hiệu ứng đổ bóng mờ chuẩn chuyên nghiệp -->
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- ================= HEADER \\\& TIÊU ĐỀ ================= -->
+  <text x="600" y="40" fill="#1C385B" font-size="24" font-weight="bold" text-anchor="middle" letter-spacing="1">SƠ ĐỒ TỔ CHỨC</text>
+  <text x="600" y="65" fill="#397282" font-size="14" font-weight="bold" text-anchor="middle">CENTER OF EXCELLENCE – KIỂM SOÁT NHIỄM KHUẨN (CoE KSNK) | TẬP ĐOÀN Y TẾ PHƯƠNG CHÂU</text>
+
+  <!-- ================= CỘT NHÃN PHÂN TẦNG ================= -->
+  <!-- TẦNG 1 -->
+  <rect x="20" y="100" width="100" height="50" rx="6" fill="#397282" filter="url(#shadow)"/>
+  <text x="70" y="120" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">TẦNG 1</text>
+  <text x="70" y="136" fill="#D1E6EB" font-size="10" text-anchor="middle">ĐỊNH HƯỚNG &amp; QUẢN TRỊ</text>
+
+  <!-- TẦNG 2 -->
+  <rect x="20" y="190" width="100" height="90" rx="6" fill="#397282" filter="url(#shadow)"/>
+  <text x="70" y="230" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">TẦNG 2</text>
+  <text x="70" y="248" fill="#D1E6EB" font-size="10" text-anchor="middle">ĐIỀU HÀNH (CoE)</text>
+
+  <!-- TẦNG 3 -->
+  <rect x="20" y="300" width="100" height="420" rx="6" fill="#397282" filter="url(#shadow)"/>
+  <text x="70" y="490" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">TẦNG 3</text>
+  <text x="70" y="510" fill="#D1E6EB" font-size="10" text-anchor="middle">CÁC NHÓM</text>
+  <text x="70" y="525" fill="#D1E6EB" font-size="10" text-anchor="middle">CHUYÊN TRÁCH</text>
+
+  <!-- TẦNG 4 -->
+  <rect x="20" y="750" width="100" height="100" rx="6" fill="#1C385B" filter="url(#shadow)"/>
+  <text x="70" y="795" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">TẦNG 4</text>
+  <text x="70" y="813" fill="#D1E6EB" font-size="10" text-anchor="middle">THỰC THI TẠI BV</text>
+
+
+  <!-- ================= TẦNG 1: ĐỊNH HƯỚNG ================= -->
+  <rect x="350" y="100" width="120" height="50" rx="6" fill="#397282" filter="url(#shadow)"/>
+  <text x="410" y="130" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">CEO</text>
+
+  <line x1="470" y1="125" x2="520" y2="125" stroke="#397282" stroke-width="2"/>
+  <polygon points="520,121 528,125 520,129" fill="#397282"/>
+
+  <rect x="530" y="100" width="380" height="50" rx="6" fill="#D1E6EB" filter="url(#shadow)"/>
+  <text x="720" y="130" fill="#1C385B" font-size="13" font-weight="bold" text-anchor="middle">Ban Quản trị CoE – Ban Giám đốc Tập đoàn</text>
+
+  <!-- Đường nối T1 xuống T2 -->
+  <line x1="600" y1="150" x2="600" y2="190" stroke="#1C385B" stroke-width="2"/>
+  <polygon points="596,182 600,190 604,182" fill="#1C385B"/>
+
+
+  <!-- ================= TẦNG 2: ĐIỀU HÀNH ================= -->
+  <rect x="450" y="190" width="300" height="46" rx="6" fill="#1C385B" filter="url(#shadow)"/>
+  <text x="600" y="209" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Trưởng CoE</text>
+  <text x="600" y="226" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">ThS. Nguyễn Nghinh Lương</text>
+
+  <!-- Nhánh Phó \\\& Thư ký -->
+  <line x1="600" y1="236" x2="600" y2="252" stroke="#1C385B" stroke-width="2"/>
+  <line x1="380" y1="252" x2="820" y2="252" stroke="#1C385B" stroke-width="2"/>
+  <line x1="380" y1="252" x2="380" y2="260" stroke="#1C385B" stroke-width="2"/>
+  <line x1="820" y1="252" x2="820" y2="260" stroke="#1C385B" stroke-width="2"/>
+ 
+  <rect x="250" y="260" width="260" height="35" rx="6" fill="#D1E6EB" filter="url(#shadow)"/>
+  <text x="380" y="282" fill="#1C385B" font-size="12" font-weight="bold" text-anchor="middle">Phó CoE: <tspan font-weight="normal">ThS. Lê Bích Tuyền</tspan></text>
+
+  <rect x="690" y="260" width="260" height="35" rx="6" fill="#D1E6EB" filter="url(#shadow)"/>
+  <text x="820" y="282" fill="#1C385B" font-size="12" font-weight="bold" text-anchor="middle">Thư ký CoE: <tspan font-weight="normal">CN. Thái Huỳnh Anh</tspan></text>
+
+  <!-- Trục nhánh nối xuống T3 -->
+  <line x1="600" y1="252" x2="600" y2="285" stroke="#1C385B" stroke-width="2"/>
+  <line x1="232.5" y1="285" x2="1072.5" y2="285" stroke="#1C385B" stroke-width="2"/>
+  <line x1="232.5" y1="285" x2="232.5" y2="297" stroke="#1C385B" stroke-width="2"/><polygon points="229,293 232.5,300 236,293" fill="#1C385B"/>
+  <line x1="442.5" y1="285" x2="442.5" y2="297" stroke="#1C385B" stroke-width="2"/><polygon points="439,293 442.5,300 446,293" fill="#1C385B"/>
+  <line x1="652.5" y1="285" x2="652.5" y2="297" stroke="#1C385B" stroke-width="2"/><polygon points="649,293 652.5,300 656,293" fill="#1C385B"/>
+  <line x1="862.5" y1="285" x2="862.5" y2="297" stroke="#1C385B" stroke-width="2"/><polygon points="859,293 862.5,300 866,293" fill="#1C385B"/>
+  <line x1="1072.5" y1="285" x2="1072.5" y2="297" stroke="#1C385B" stroke-width="2"/><polygon points="1069,293 1072.5,300 1076,293" fill="#1C385B"/>
+
+
+  <!-- ================= TẦNG 3: CÁC NHÓM CHUYÊN TRÁCH ================= -->
+  <!-- Cột 1: Giám sát -->
+  <rect x="135" y="300" width="195" height="45" rx="6" fill="#397282" filter="url(#shadow)"/>
+  <text x="232.5" y="318" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Nhóm giám sát – Audit</text>
+  <text x="232.5" y="334" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">– Tracer</text>
+  <rect x="135" y="350" width="195" height="150" rx="6" fill="#F2F7F9" stroke="#397282" stroke-width="1"/>
+  <text x="232.5" y="375" fill="#000000" font-size="11.5" text-anchor="middle">BS. Phan Lê Công</text>
+  <text x="232.5" y="397" fill="#000000" font-size="11.5" text-anchor="middle">BS. Vũ Lê Hà Giang</text>
+  <text x="232.5" y="419" fill="#000000" font-size="11.5" text-anchor="middle">BS. Phan Quốc Thịnh</text>
+  <text x="232.5" y="441" fill="#000000" font-size="11.5" text-anchor="middle">BS. Dương Tuấn Hòa</text>
+  <rect x="135" y="505" width="195" height="215" rx="6" fill="#397282" filter="url(#shadow)"/>
+  <text x="232.5" y="525" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Đơn vị phối hợp</text>
+  <text x="150" y="555" fill="#ffffff" font-size="11" text-anchor="start">• Khoa lâm sàng</text>
+  <text x="150" y="575" fill="#ffffff" font-size="11" text-anchor="start">• Xét nghiệm</text>
+  <text x="150" y="595" fill="#ffffff" font-size="11" text-anchor="start">• Dược – Ban QLKS</text>
+  <text x="150" y="615" fill="#ffffff" font-size="11" text-anchor="start">• P. QLCL</text>
+  <text x="150" y="635" fill="#ffffff" font-size="11" text-anchor="start">• P. Điều dưỡng</text>
+
+  <!-- Cột 2: CSSD -->
+  <rect x="345" y="300" width="195" height="45" rx="6" fill="#397282" filter="url(#shadow)"/>
+  <text x="442.5" y="326" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Nhóm CSSD</text>
+  <rect x="345" y="350" width="195" height="150" rx="6" fill="#F2F7F9" stroke="#397282" stroke-width="1"/>
+  <text x="442.5" y="375" fill="#000000" font-size="11.5" text-anchor="middle">CN. Phạm Thanh Hùng</text>
+  <text x="442.5" y="397" fill="#000000" font-size="11.5" text-anchor="middle">CN. Trần Đức Tài</text>
+  <text x="442.5" y="419" fill="#000000" font-size="11.5" text-anchor="middle">ĐD. Lý Yến Mai</text>
+  <text x="442.5" y="441" fill="#000000" font-size="11.5" text-anchor="middle">YS. Huỳnh Thị Bích Mơ</text>
+  <rect x="345" y="505" width="195" height="215" rx="6" fill="#397282" filter="url(#shadow)"/>
+  <text x="442.5" y="525" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Đơn vị phối hợp</text>
+  <text x="360" y="555" fill="#ffffff" font-size="11" text-anchor="start">• Khoa Gây mê hồi sức</text>
+  <text x="360" y="575" fill="#ffffff" font-size="11" text-anchor="start">• Khoa lâm sàng</text>
+  <text x="360" y="595" fill="#ffffff" font-size="11" text-anchor="start">• Khoa Dược</text>
+  <text x="360" y="615" fill="#ffffff" font-size="11" text-anchor="start">• Phòng VTTB</text>
+
+  <!-- Cột 3: Vệ sinh MT -->
+  <rect x="555" y="300" width="195" height="45" rx="6" fill="#397282" filter="url(#shadow)"/>
+  <text x="652.5" y="318" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Nhóm vệ sinh môi trường</text>
+  <text x="652.5" y="334" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">– Đồ vải</text>
+  <rect x="555" y="350" width="195" height="150" rx="6" fill="#F2F7F9" stroke="#397282" stroke-width="1"/>
+  <text x="652.5" y="365" fill="#000000" font-size="10.5" text-anchor="middle">CN. Trần Đức Hoàng</text>
+  <text x="652.5" y="384" fill="#000000" font-size="10.5" text-anchor="middle">CN. Nguyễn Thanh Phong</text>
+  <text x="652.5" y="403" fill="#000000" font-size="10.5" text-anchor="middle">CN. Trần Ngọc Thảo Nguyên</text>
+  <text x="652.5" y="422" fill="#000000" font-size="10.5" text-anchor="middle">CN. Nguyễn Quỳnh Mỹ Quyên</text>
+  <text x="652.5" y="441" fill="#000000" font-size="10.5" text-anchor="middle">CN. Thái Huỳnh Anh</text>
+  <text x="652.5" y="460" fill="#000000" font-size="10.5" text-anchor="middle">CN. Nguyễn Minh Thuận</text>
+  <rect x="555" y="505" width="195" height="215" rx="6" fill="#397282" filter="url(#shadow)"/>
+  <text x="652.5" y="525" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Đơn vị phối hợp</text>
+  <text x="570" y="555" fill="#ffffff" font-size="11" text-anchor="start">• Khoa lâm sàng</text>
+  <text x="570" y="575" fill="#ffffff" font-size="11" text-anchor="start">• P. CSKH – Buồng phòng</text>
+  <text x="570" y="595" fill="#ffffff" font-size="11" text-anchor="start">• P. HCQT</text>
+  <text x="570" y="615" fill="#ffffff" font-size="11" text-anchor="start">• P. Điều dưỡng</text>
+
+  <!-- Cột 4: Đào tạo \\\& NCKH -->
+  <rect x="765" y="300" width="195" height="45" rx="6" fill="#397282" filter="url(#shadow)"/>
+  <text x="862.5" y="318" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Nhóm đào tạo –</text>
+  <text x="862.5" y="334" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Nghiên cứu – Đổi mới</text>
+  <rect x="765" y="350" width="195" height="150" rx="6" fill="#F2F7F9" stroke="#397282" stroke-width="1"/>
+  <text x="862.5" y="375" fill="#000000" font-size="11.5" text-anchor="middle">ThS. Nguyễn Nghinh Lương</text>
+  <text x="862.5" y="397" fill="#000000" font-size="11.5" text-anchor="middle">ThS. Lê Bích Tuyền</text>
+  <text x="862.5" y="419" fill="#000000" font-size="11.5" text-anchor="middle">BS. Vũ Lê Hà Giang</text>
+  <text x="862.5" y="441" fill="#000000" font-size="11.5" text-anchor="middle">BS. Phan Lê Công</text>
+  <rect x="765" y="505" width="195" height="215" rx="6" fill="#397282" filter="url(#shadow)"/>
+  <text x="862.5" y="525" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Đơn vị phối hợp</text>
+  <text x="780" y="555" fill="#ffffff" font-size="11" text-anchor="start">• Phòng Nhân sự đào tạo</text>
+  <text x="780" y="575" fill="#ffffff" font-size="11" text-anchor="start">• Trung tâm đào tạo</text>
+  <text x="780" y="595" fill="#ffffff" font-size="11" text-anchor="start">• P. KHTH</text>
+
+  <!-- Cột 5: Dữ liệu \\\& Công nghệ số -->
+  <rect x="975" y="300" width="195" height="45" rx="6" fill="#397282" filter="url(#shadow)"/>
+  <text x="1072.5" y="318" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Nhóm dữ liệu</text>
+  <text x="1072.5" y="334" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">và công nghệ số</text>
+  <rect x="975" y="350" width="195" height="150" rx="6" fill="#F2F7F9" stroke="#397282" stroke-width="1"/>
+  <text x="1072.5" y="370" fill="#000000" font-size="11.5" text-anchor="middle">BS. Vũ Lê Hà Giang</text>
+  <text x="1072.5" y="390" fill="#000000" font-size="11.5" text-anchor="middle">BS. Phan Lê Công</text>
+  <text x="1072.5" y="410" fill="#000000" font-size="11.5" text-anchor="middle">BS. Phan Quốc Thịnh</text>
+  <text x="1072.5" y="430" fill="#000000" font-size="11.5" text-anchor="middle">BS. Dương Tuấn Hòa</text>
+  <text x="1072.5" y="450" fill="#000000" font-size="11.5" text-anchor="middle">CN. Phạm Thanh Hùng</text>
+  <rect x="975" y="505" width="195" height="215" rx="6" fill="#397282" filter="url(#shadow)"/>
+  <text x="1072.5" y="525" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Đơn vị phối hợp</text>
+  <text x="990" y="555" fill="#ffffff" font-size="11" text-anchor="start">• Phòng CNTT</text>
+  <text x="990" y="575" fill="#ffffff" font-size="11" text-anchor="start">• P. QLCL</text>
+
+  <!-- ================= KẾT NỐI T3 XUỐNG T4 ================= -->
+  <line x1="600" y1="720" x2="600" y2="732" stroke="#1C385B" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <line x1="257.5" y1="732" x2="1052.5" y2="732" stroke="#1C385B" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <line x1="257.5" y1="732" x2="257.5" y2="745" stroke="#1C385B" stroke-width="1.5" stroke-dasharray="5,4"/><polygon points="254,741 257.5,748 261,741" fill="#1C385B"/>
+  <line x1="522.5" y1="732" x2="522.5" y2="745" stroke="#1C385B" stroke-width="1.5" stroke-dasharray="5,4"/><polygon points="519,741 522.5,748 526,741" fill="#1C385B"/>
+  <line x1="787.5" y1="732" x2="787.5" y2="745" stroke="#1C385B" stroke-width="1.5" stroke-dasharray="5,4"/><!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>CSSD Bowie-Dick Test Digitalizer</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- html2canvas \& jsPDF for 100% Client-Side PDF Generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+ 
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0f172a;
+      color: #f8fafc;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .mono-font {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Print & Certificate Layout styling */
+    #certificate-container {
+      background: white;
+      color: #0f172a;
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+    }
+
+    @media print {
+      body {
+        background: white !important;
+        padding: 0 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      #certificate-container {
+        width: 100% !important;
+        min-height: 100% !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+    }
+
+    /* Guide overlay on live camera */
+    .viewfinder-grid {
+      background-size: 20px 20px;
+      background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-16">
+
+  <!-- TOP HEADER -->
+  <header class="no-print sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-4 py-3">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-teal-500/20 text-teal-400 border border-teal-500/30 flex items-center justify-center font-bold text-lg shadow-sm">
+          <i data-lucide="shield-check" class="w-6 h-6">
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold text-slate-100 flex items-center gap-2">
+            CSSD Bowie-Dick Digitalizer
+            <span class="text-\[10px] bg-teal-500/20 text-teal-300 border border-teal-500/30 px-2 py-0.5 rounded-full font-semibold uppercase tracking-wider">Free Pro</span>
+          </h1>
+          <p class="text-xs text-slate-400 hidden sm:block">Số hóa hồ sơ kiểm định nồi hấp tiệt khuẩn chuẩn ISO 11140-5</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="btn-load-demo" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-teal-300 hover:text-teal-200 border border-slate-700 rounded-lg text-xs font-medium flex items-center gap-1.5 transition shadow-sm">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5">
+          <span>Nạp Mẫu Demo</span>
+        </button>
+        <button id="btn-export-pdf" class="px-3 py-1.5 bg-teal-600 hover:bg-teal-500 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 transition shadow-md shadow-teal-600/30">
+          <i data-lucide="file-down" class="w-4 h-4">
+          <span>Xuất PDF</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN APP CONTAINER -->
+  <main class="max-w-6xl mx-auto px-4 pt-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+    <!-- LEFT COLUMN: CONTROLS \& INPUT FORM -->
+    <div class="no-print lg:col-span-5 space-y-6">
+
+      <!-- STEP 1: CAPTURE AREA -->
+      <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-4 sm:p-5 shadow-lg backdrop-blur">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-sm font-bold uppercase tracking-wider text-teal-400 flex items-center gap-2">
+            <i data-lucide="camera" class="w-4 h-4">
+            1. Chụp / Tải Ảnh Tổ Hợp Test
+          </h2>
+          <span class="text-\[11px] text-slate-400">Khung chuẩn 4 vùng</span>
+        </div>
+
+        <!-- Image Preview / Empty Box -->
+        <div id="image-preview-wrapper" class="relative w-full aspect-\[4/3] rounded-xl overflow-hidden bg-slate-900 border-2 border-dashed border-slate-700 flex flex-col items-center justify-center p-3 text-center group transition">
+          <div id="empty-state-content" class="space-y-2 pointer-events-none">
+            <div class="w-12 h-12 rounded-full bg-slate-800 border border-slate-700 text-slate-400 flex items-center justify-center mx-auto">
+              <i data-lucide="image-plus" class="w-6 h-6">
+            </div>
+            <p class="text-xs text-slate-300 font-medium">Chưa có ảnh chụp mẻ test</p>
+            <p class="text-\[11px] text-slate-500 max-w-\[240px]">Chụp theo khung 4 phần: Tờ test, Nhãn LOT, Chỉ thị Type 5, Bill in máy</p>
+          </div>
+          <img id="captured-image-tag" src="" alt="Captured Bowie-Dick" class="hidden absolute inset-0 w-full h-full object-contain bg-black/40">
+
+          <!-- Image quick action toolbar -->
+          <div id="image-action-bar" class="hidden absolute top-2 right-2 flex items-center gap-1.5 bg-slate-900/90 border border-slate-700 p-1 rounded-lg backdrop-blur shadow-md">
+            <button id="btn-rotate-img" title="Xoay 90 độ" class="p-1.5 text-slate-300 hover:text-white rounded hover:bg-slate-800 transition">
+              <i data-lucide="rotate-cw" class="w-4 h-4">
+            </button>
+            <button id="btn-toggle-contrast" title="Tăng tương phản mực in" class="p-1.5 text-slate-300 hover:text-teal-400 rounded hover:bg-slate-800 transition">
+              <i data-lucide="contrast" class="w-4 h-4">
+            </button>
+            <button id="btn-delete-img" title="Xóa ảnh" class="p-1.5 text-rose-400 hover:text-rose-300 rounded hover:bg-rose-500/20 transition">
+              <i data-lucide="trash-2" class="w-4 h-4">
+            </button>
+          </div>
+        </div>
+
+        <!-- Buttons to trigger Live Camera or File Upload -->
+        <div class="grid grid-cols-2 gap-2.5 mt-3">
+          <button id="btn-open-live-cam" class="w-full py-2.5 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-500 hover:to-emerald-500 text-white rounded-xl text-xs font-semibold flex items-center justify-center gap-2 shadow-md transition active:scale-\[0.99]">
+            <i data-lucide="camera" class="w-4 h-4">
+            <span>Mở Camera Căn Khung</span>
+          </button>
+          <label class="w-full py-2.5 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded-xl text-xs font-medium flex items-center justify-center gap-2 cursor-pointer transition">
+            <i data-lucide="upload" class="w-4 h-4">
+            <span>Chọn Từ Thiết Bị</span>
+            <input type="file" id="file-input" accept="image/\*" class="hidden">
+          </label>
+        </div>
+      </div>
+
+      <!-- STEP 2: METADATA FORM -->
+      <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-4 sm:p-5 shadow-lg backdrop-blur space-y-4">
+        <h2 class="text-sm font-bold uppercase tracking-wider text-teal-400 flex items-center gap-2">
+          <i data-lucide="clipboard-list" class="w-4 h-4">
+          2. Thông Tin Hồ Sơ Kiểm Định
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+          <div>
+            <label class="block text-slate-400 mb-1 font-medium">Bệnh viện / Cơ sở CSSD</label>
+            <input type="text" id="input-hospital" value="BỆNH VIỆN PHƯƠNG CHÂU" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-teal-500 transition">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1 font-medium">Khoa / Bộ phận</label>
+            <input type="text" id="input-department" value="Đơn Vị Tiệt Trùng Trung Tâm (CSSD)" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-teal-500 transition">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1 font-medium">Mã / Số Máy Hấp</label>
+            <input type="text" id="input-sterilizer-id" value="NỒI HẤP I (6-6-6 VS2)" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-teal-500 transition">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1 font-medium">Số Mẻ Hấp (Cycle No.)</label>
+            <input type="text" id="input-cycle-no" value="004243" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-teal-500 transition mono-font">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1 font-medium">Ngày thực hiện test</label>
+            <input type="date" id="input-test-date" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-teal-500 transition">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1 font-medium">Giờ chạy chu trình</label>
+            <input type="time" id="input-test-time" value="08:02" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-teal-500 transition">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1 font-medium">Số Lô (LOT No.)</label>
+            <input type="text" id="input-lot-no" value="202803CV" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-teal-500 transition mono-font">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1 font-medium">Hạn Dùng Test Pack (EXP)</label>
+            <input type="text" id="input-exp-date" value="2028-03-17" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-teal-500 transition mono-font">
+          </div>
+        </div>
+
+        <!-- Result evaluation radio cards -->
+        <div>
+          <label class="block text-slate-400 mb-1.5 text-xs font-medium">Kết Luận Đánh Giá Tờ Test:</label>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="relative flex items-center p-3 rounded-xl border border-slate-700 bg-slate-900 cursor-pointer has-\[:checked]:border-emerald-500 has-\[:checked]:bg-emerald-500/10 transition">
+              <input type="radio" name="evaluation-result" value="PASS" checked class="w-4 h-4 text-emerald-500 focus:ring-emerald-400">
+              <div class="ml-2.5">
+                <span class="block text-xs font-bold text-emerald-400">ĐẠT (PASS)</span>
+                <span class="block text-\[10px] text-slate-400">Chuyển màu đen đồng nhất</span>
+              </div>
+            </label>
+            <label class="relative flex items-center p-3 rounded-xl border border-slate-700 bg-slate-900 cursor-pointer has-\[:checked]:border-rose-500 has-\[:checked]:bg-rose-500/10 transition">
+              <input type="radio" name="evaluation-result" value="FAIL" class="w-4 h-4 text-rose-500 focus:ring-rose-400">
+              <div class="ml-2.5">
+                <span class="block text-xs font-bold text-rose-400">KHÔNG ĐẠT (FAIL)</span>
+                <span class="block text-\[10px] text-slate-400">Khí sót / Màu loang lổ</span>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3: DUAL SIGNATURE PADS -->
+      <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-4 sm:p-5 shadow-lg backdrop-blur space-y-4">
+        <h2 class="text-sm font-bold uppercase tracking-wider text-teal-400 flex items-center gap-2">
+          <i data-lucide="pen-tool" class="w-4 h-4">
+          3. Ký Duyệt Trực Tuyến (Cảm Ứng)
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+          <!-- Operator Sign -->
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <label class="text-slate-300 font-medium">KTV Vận Hành:</label>
+              <button id="clear-sig-op" class="text-\[11px] text-slate-400 hover:text-rose-400 transition">Ký lại</button>
+            </div>
+            <div class="relative bg-white rounded-lg border border-slate-700 overflow-hidden h-24">
+              <canvas id="canvas-sig-op" class="w-full h-full cursor-crosshair"></canvas>
+            </div>
+            <input type="text" id="input-op-name" value="Phạm Thanh Hùng" placeholder="Họ tên KTV" class="w-full mt-1.5 bg-slate-900 border border-slate-700 rounded-md px-2.5 py-1 text-slate-100 text-xs">
+          </div>
+
+          <!-- Supervisor Sign -->
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <label class="text-slate-300 font-medium">ĐD Trưởng / KSNK:</label>
+              <button id="clear-sig-sup" class="text-\[11px] text-slate-400 hover:text-rose-400 transition">Ký lại</button>
+            </div>
+            <div class="relative bg-white rounded-lg border border-slate-700 overflow-hidden h-24">
+              <canvas id="canvas-sig-sup" class="w-full h-full cursor-crosshair"></canvas>
+            </div>
+            <input type="text" id="input-sup-name" value="M. Thuận" placeholder="Họ tên người duyệt" class="w-full mt-1.5 bg-slate-900 border border-slate-700 rounded-md px-2.5 py-1 text-slate-100 text-xs">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN: LIVE A4 CERTIFICATE PREVIEW -->
+    <div class="lg:col-span-7 flex flex-col items-center">
+      <div class="w-full flex items-center justify-between mb-3 text-xs text-slate-400 px-2 no-print">
+        <span class="flex items-center gap-1.5">
+          <i data-lucide="eye" class="w-4 h-4 text-teal-400">
+          Xem trước trang in Khổ Chuẩn A4
+        </span>
+        <span class="mono-font">210mm x 297mm</span>
+      </div>
+
+      <!-- SCROLLABLE CONTAINER FOR A4 CERTIFICATE -->
+      <div class="w-full overflow-x-auto pb-4 flex justify-center">
+        <!-- ACTUAL PRINTABLE SHEET (210mm x 297mm) -->
+        <div id="certificate-container" class="p-8 sm:p-10 flex flex-col justify-between text-slate-900">
+ 
+          <!-- TOP HEADER SECTION -->
+          <div>
+            <div class="flex items-center justify-between border-b-2 border-slate-900 pb-4">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-lg bg-teal-800 text-white flex items-center justify-center font-black text-xl">
+                  PC
+                </div>
+                <div>
+                  <h3 id="cert-hospital" class="font-bold text-sm tracking-wide uppercase text-slate-900">BỆNH VIỆN PHƯƠNG CHÂU</h3>
+                  <p id="cert-department" class="text-xs text-slate-600 font-medium">Đơn Vị Tiệt Trùng Trung Tâm (CSSD)</p>
+                </div>
+              </div>
+              <div class="text-right text-\[11px] text-slate-500 space-y-0.5">
+                <div class="font-bold text-slate-800">MÃ BIỂU MẪU: BM-CSSD-BD01</div>
+                <div>Tiêu chuẩn: ISO 11140-5:2014 Type 2</div>
+                <div class="mono-font" id="cert-print-timestamp">Ngày in: 22/10/2026</div>
+              </div>
+            </div>
+
+            <!-- TITLE \& BADGE -->
+            <div class="text-center my-4">
+              <h1 class="text-lg sm:text-xl font-extrabold uppercase tracking-tight text-slate-900">
+                PHIẾU KIỂM TRA ĐỘ THẢI KHÍ & XÂM NHẬP HƠI NƯỚC
+              </h1>
+              <p class="text-xs font-semibold text-slate-600 uppercase tracking-widest mt-0.5">(BOWIE-DICK TEST REPORT)</p>
+            </div>
+
+            <!-- METADATA TABLE -->
+            <div class="border border-slate-300 rounded-lg overflow-hidden text-xs mb-4">
+              <div class="grid grid-cols-4 bg-slate-100 font-semibold border-b border-slate-300 text-slate-700 py-1.5 px-3">
+                <div>Thiết bị hấp</div>
+                <div>Số mẻ (Cycle)</div>
+                <div>Ngày - Giờ test</div>
+                <div>Loại gói thử (Test Pack)</div>
+              </div>
+              <div class="grid grid-cols-4 py-2 px-3 text-slate-800 border-b border-slate-200">
+                <div id="cert-sterilizer" class="font-bold">NỒI HẤP I</div>
+                <div id="cert-cycle" class="mono-font font-bold">004243</div>
+                <div id="cert-datetime" class="mono-font">22/10/2026 08:02</div>
+                <div>3M™ Comply™ 1233LF</div>
+              </div>
+              <div class="grid grid-cols-4 bg-slate-50 font-semibold border-b border-slate-300 text-slate-700 py-1.5 px-3">
+                <div>Số Lô (LOT)</div>
+                <div>Hạn dùng (EXP)</div>
+                <div>Chương trình (Program)</div>
+                <div>Kết quả đánh giá</div>
+              </div>
+              <div class="grid grid-cols-4 py-2 px-3 text-slate-800 items-center">
+                <div id="cert-lot" class="mono-font font-medium">202803CV</div>
+                <div id="cert-exp" class="mono-font font-medium">2028-03-17</div>
+                <div class="mono-font text-\[11px]">5: Bowie-Dick-Test 134°C</div>
+                <div id="cert-status-badge">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-\[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+                    ✓ ĐẠT (PASS)
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- COMPOSITE IMAGE SECTION (Centerpiece) -->
+            <div class="border-2 border-slate-300 rounded-xl p-2 bg-slate-50/50 mb-4">
+              <div class="text-\[11px] font-semibold text-slate-500 mb-1 flex items-center justify-between">
+                <span>ẢNH CHỤP MINH CHỨNG THỰC TẾ (BOWIE-DICK SHEET + BILL + LOT + TYPE 5)</span>
+                <span class="text-\[10px] text-slate-400">Ảnh gốc không qua chỉnh sửa cấu trúc</span>
+              </div>
+              <div class="w-full aspect-\[4/3] rounded-lg overflow-hidden bg-slate-200 border border-slate-300 flex items-center justify-center relative">
+                <img id="cert-image-preview" src="" alt="Bowie-Dick Test Proof" class="w-full h-full object-contain">
+                <span id="cert-image-placeholder" class="text-xs text-slate-400">Hình ảnh kiểm định sẽ xuất hiện tại đây</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- BOTTOM AUDIT \& SIGNATURES SECTION -->
+          <div class="pt-2 border-t border-slate-200">
+            <div class="grid grid-cols-2 gap-8 text-center text-xs">
+              <div>
+                <p class="font-bold text-slate-800 uppercase tracking-wide">KỸ THUẬT VIÊN VẬN HÀNH</p>
+                <p class="text-\[10px] text-slate-500 italic mt-0.5">(Ký và ghi rõ họ tên)</p>
+                <div class="h-20 flex items-center justify-center my-1">
+                  <img id="cert-sig-op-img" src="" alt="Chữ ký KTV" class="max-h-16 max-w-full object-contain hidden">
+                </div>
+                <p id="cert-op-name" class="font-bold text-slate-900 border-t border-dotted border-slate-300 pt-1 mx-4">Phạm Thanh Hùng</p>
+              </div>
+
+              <div>
+                <p class="font-bold text-slate-800 uppercase tracking-wide">ĐIỀU DƯỠNG TRƯỞNG / KSNK DUYỆT</p>
+                <p class="text-\[10px] text-slate-500 italic mt-0.5">(Ký và xác nhận chất lượng)</p>
+                <div class="h-20 flex items-center justify-center my-1">
+                  <img id="cert-sig-sup-img" src="" alt="Chữ ký Phụ Trách" class="max-h-16 max-w-full object-contain hidden">
+                </div>
+                <p id="cert-sup-name" class="font-bold text-slate-900 border-t border-dotted border-slate-300 pt-1 mx-4">M. Thuận</p>
+              </div>
+            </div>
+
+            <div class="text-\[9px] text-slate-400 text-center mt-6 border-t border-slate-100 pt-2 flex items-center justify-between">
+              <span>Hệ thống số hóa hồ sơ kiểm định CSSD - Tiêu chuẩn vô khuẩn bệnh viện</span>
+              <span class="mono-font" id="cert-hash-footer">Bản lưu trữ điện tử</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- LIVE CAMERA MODAL WITH 4-BOX GUIDE OVERLAY -->
+  <div id="live-cam-modal" class="fixed inset-0 z-50 bg-black/95 hidden flex flex-col justify-between p-3 sm:p-5 select-none no-print">
+    <!-- Camera Top Bar -->
+    <div class="flex items-center justify-between text-white px-2 py-1 z-10">
+      <div class="flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-rose-500 animate-pulse"></span>
+        <span class="text-xs sm:text-sm font-bold tracking-wider">CĂN KHUNG HÌNH 4 VÙNG CSSD</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="cam-toggle-grid" class="p-2 bg-slate-800/80 rounded-full text-teal-400 hover:bg-slate-700 transition" title="Ẩn/Hiện Lưới">
+          <i data-lucide="grid" class="w-4 h-4">
+        </button>
+        <button id="cam-switch-facing" class="p-2 bg-slate-800/80 rounded-full text-slate-200 hover:bg-slate-700 transition" title="Đổi camera Trước/Sau">
+          <i data-lucide="refresh-cw" class="w-4 h-4">
+        </button>
+        <button id="cam-close-btn" class="p-2 bg-slate-800/80 rounded-full text-slate-300 hover:text-rose-400 hover:bg-slate-700 transition" title="Đóng">
+          <i data-lucide="x" class="w-5 h-5">
+        </button>
+      </div>
+    </div>
+
+    <!-- Live Video Viewport with the 4-BOX OVERLAY -->
+    <div class="relative flex-1 my-2 flex items-center justify-center overflow-hidden rounded-2xl bg-black border border-slate-800">
+      <video id="webcam-video" autoplay playsinline class="w-full h-full object-cover"></video>
+
+      <!-- The 4-BOX GUIDE OVERLAY (Mimics user's real-world composite layout) -->
+      <div id="camera-overlay-boxes" class="absolute inset-0 pointer-events-none p-3 sm:p-6 flex items-center justify-center">
+        <div class="w-full max-w-xl aspect-\[3/4] sm:aspect-\[4/3] border-2 border-white/20 rounded-xl relative grid grid-cols-12 grid-rows-12 gap-2 p-2 bg-black/10 backdrop-blur-\[1px]">
+ 
+          <!-- Box 1: Bowie-Dick Main Sheet (Top Left) -->
+          <div class="col-span-8 row-span-8 border-2 border-dashed border-teal-400/90 rounded-lg bg-teal-500/10 flex flex-col justify-between p-2">
+            <span class="text-\[10px] sm:text-xs font-bold text-teal-300 bg-slate-900/80 px-2 py-0.5 rounded w-max border border-teal-500/30">
+              ① Tờ Test Bowie-Dick (1233LF)
+            </span>
+            <div class="text-\[9px] text-teal-200/60 text-center uppercase tracking-wider">
+              Kiểm tra biến màu đen đồng nhất
+            </div>
+          </div>
+
+          <!-- Box 4: Thermal Receipt (Entire Right Column) -->
+          <div class="col-span-4 row-span-12 border-2 border-dashed border-amber-400/90 rounded-lg bg-amber-500/10 flex flex-col justify-between p-2">
+            <span class="text-\[10px] sm:text-xs font-bold text-amber-300 bg-slate-900/80 px-2 py-0.5 rounded w-max border border-amber-500/30">
+              ④ Bill Máy Hấp
+            </span>
+            <div class="text-\[9px] text-amber-200/70 text-center space-y-1">
+              <p>Chu kỳ & F0</p>
+              <p>Nhiệt độ / Áp suất</p>
+              <p>Chữ ký người chạy</p>
+            </div>
+            <div class="text-\[8px] text-amber-300/50 text-center">Khớp ngày & mẻ</div>
+          </div>
+
+          <!-- Box 2: LOT Label (Bottom Left) -->
+          <div class="col-span-4 row-span-4 border-2 border-dashed border-sky-400/90 rounded-lg bg-sky-500/10 flex flex-col justify-between p-1.5">
+            <span class="text-\[9px] sm:text-\[11px] font-bold text-sky-300 bg-slate-900/80 px-1.5 py-0.5 rounded w-max border border-sky-500/30">
+              ② Nhãn LOT & Hạn
+            </span>
+            <div class="text-\[8px] text-sky-200/60 text-center">LOT / Date</div>
+          </div>
+
+          <!-- Box 3: Type 5 Strip (Bottom Middle) -->
+          <div class="col-span-4 row-span-4 border-2 border-dashed border-emerald-400/90 rounded-lg bg-emerald-500/10 flex flex-col justify-between p-1.5">
+            <span class="text-\[9px] sm:text-\[11px] font-bold text-emerald-300 bg-slate-900/80 px-1.5 py-0.5 rounded w-max border border-emerald-500/30">
+              ③ Tích phân Type 5
+            </span>
+            <div class="text-\[8px] text-emerald-200/70 text-center font-bold">REJECT ➔ ACCEPT</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Canvas buffer for capturing frame -->
+      <canvas id="camera-capture-canvas" class="hidden"></canvas>
+    </div>
+
+    <!-- Camera Bottom Controls -->
+    <div class="flex items-center justify-around py-3 px-4 z-10">
+      <button id="cam-torch-btn" class="p-3 bg-slate-800 text-slate-300 hover:text-amber-400 rounded-full transition" title="Bật/Tắt Đèn pin">
+        <i data-lucide="zap" class="w-5 h-5">
+      </button>
+
+      <!-- Big Capture Shutter Button -->
+      <button id="cam-shutter-btn" class="w-18 h-18 p-1 rounded-full border-4 border-white flex items-center justify-center transition active:scale-95 shadow-xl hover:border-teal-400 group">
+        <div class="w-14 h-14 rounded-full bg-white group-hover:bg-teal-400 transition"></div>
+      </button>
+
+      <button id="cam-cancel-btn" class="p-3 bg-slate-800 text-slate-300 hover:text-white rounded-full transition" title="Hủy">
+        <i data-lucide="corner-down-left" class="w-5 h-5">
+      </button>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT APPLICATION LOGIC -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+
+      // DOM Elements
+      const btnExportPdf = document.getElementById('btn-export-pdf');
+      const btnLoadDemo = document.getElementById('btn-load-demo');
+      const btnOpenLiveCam = document.getElementById('btn-open-live-cam');
+      const fileInput = document.getElementById('file-input');
+      const capturedImageTag = document.getElementById('captured-image-tag');
+      const emptyStateContent = document.getElementById('empty-state-content');
+      const imageActionBar = document.getElementById('image-action-bar');
+      const btnRotateImg = document.getElementById('btn-rotate-img');
+      const btnToggleContrast = document.getElementById('btn-toggle-contrast');
+      const btnDeleteImg = document.getElementById('btn-delete-img');
+
+      // Certificate Target Preview Elements
+      const certHospital = document.getElementById('cert-hospital');
+      const certDepartment = document.getElementById('cert-department');
+      const certSterilizer = document.getElementById('cert-sterilizer');
+      const certCycle = document.getElementById('cert-cycle');
+      const certDatetime = document.getElementById('cert-datetime');
+      const certLot = document.getElementById('cert-lot');
+      const certExp = document.getElementById('cert-exp');
+      const certStatusBadge = document.getElementById('cert-status-badge');
+      const certImagePreview = document.getElementById('cert-image-preview');
+      const certImagePlaceholder = document.getElementById('cert-image-placeholder');
+      const certOpName = document.getElementById('cert-op-name');
+      const certSupName = document.getElementById('cert-sup-name');
+      const certSigOpImg = document.getElementById('cert-sig-op-img');
+      const certSigSupImg = document.getElementById('cert-sig-sup-img');
+      const certPrintTimestamp = document.getElementById('cert-print-timestamp');
+
+      // Inputs
+      const inputHospital = document.getElementById('input-hospital');
+      const inputDepartment = document.getElementById('input-department');
+      const inputSterilizerId = document.getElementById('input-sterilizer-id');
+      const inputCycleNo = document.getElementById('input-cycle-no');
+      const inputTestDate = document.getElementById('input-test-date');
+      const inputTestTime = document.getElementById('input-test-time');
+      const inputLotNo = document.getElementById('input-lot-no');
+      const inputExpDate = document.getElementById('input-exp-date');
+      const inputOpName = document.getElementById('input-op-name');
+      const inputSupName = document.getElementById('input-sup-name');
+      const evaluationRadios = document.querySelectorAll('input[name="evaluation-result"]');
+
+      // Set today's date in picker
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      inputTestDate.value = `${yyyy}-${mm}-${dd}`;
+      certPrintTimestamp.innerText = `Ngày in: ${dd}/${mm}/${yyyy}`;
+
+      let currentImageDataUrl = '';
+      let currentRotation = 0;
+      let hasHighContrast = false;
+
+      // Synchronize Form to Certificate Preview
+      function syncFormToCert() {
+        certHospital.innerText = inputHospital.value.trim() || 'BỆNH VIỆN PHƯƠNG CHÂU';
+        certDepartment.innerText = inputDepartment.value.trim() || 'KHOA CSSD';
+        certSterilizer.innerText = inputSterilizerId.value.trim() || 'NỒI HẤP I';
+        certCycle.innerText = inputCycleNo.value.trim() || '---';
+
+        const dVal = inputTestDate.value;
+        const tVal = inputTestTime.value;
+        if (dVal) {
+          const parts = dVal.split('-');
+          certDatetime.innerText = `${parts\[2]}/${parts\[1]}/${parts\[0]} ${tVal}`;
+        }
+
+        certLot.innerText = inputLotNo.value.trim() || '---';
+        certExp.innerText = inputExpDate.value.trim() || '---';
+        certOpName.innerText = inputOpName.value.trim() || 'Kỹ thuật viên';
+        certSupName.innerText = inputSupName.value.trim() || 'Phụ trách duyệt';
+
+        // Result radio
+        const selectedRadio = document.querySelector('input[name="evaluation-result"]:checked');
+        if (selectedRadio && selectedRadio.value === 'PASS') {
+          certStatusBadge.innerHTML = `
+            <span class="inline-flex items-center px-2 py-0.5 rounded text-\[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+              ✓ ĐẠT (PASS)
+            </span>`;
+        } else {
+          certStatusBadge.innerHTML = `
+            <span class="inline-flex items-center px-2 py-0.5 rounded text-\[11px] font-bold bg-rose-100 text-rose-800 border border-rose-300">
+              ✕ KHÔNG ĐẠT (FAIL)
+            </span>`;
+        }
+      }
+
+      [inputHospital, inputDepartment, inputSterilizerId, inputCycleNo, inputTestDate, inputTestTime, inputLotNo, inputExpDate, inputOpName, inputSupName].forEach(el => {
+        el.addEventListener('input', syncFormToCert);
+      });
+      evaluationRadios.forEach(r => r.addEventListener('change', syncFormToCert));
+      syncFormToCert();
+
+      // Display Image on Preview and Certificate
+      function updateImageDisplay(dataUrl) {
+        currentImageDataUrl = dataUrl;
+        if (dataUrl) {
+          capturedImageTag.src = dataUrl;
+          capturedImageTag.classList.remove('hidden');
+          emptyStateContent.classList.add('hidden');
+          imageActionBar.classList.remove('hidden');
+
+          certImagePreview.src = dataUrl;
+          certImagePreview.classList.remove('hidden');
+          certImagePlaceholder.classList.add('hidden');
+        } else {
+          capturedImageTag.src = '';
+          capturedImageTag.classList.add('hidden');
+          emptyStateContent.classList.remove('hidden');
+          imageActionBar.classList.add('hidden');
+
+          certImagePreview.src = '';
+          certImagePreview.classList.add('hidden');
+          certImagePlaceholder.classList.remove('hidden');
+        }
+      }
+
+      // Handle Device File Upload
+      fileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            updateImageDisplay(event.target.result);
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      // Rotate image 90 deg via temporary canvas
+      btnRotateImg.addEventListener('click', () => {
+        if (!currentImageDataUrl) return;
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = img.height;
+          canvas.height = img.width;
+          const ctx = canvas.getContext('2d');
+          ctx.translate(canvas.width / 2, canvas.height / 2);
+          ctx.rotate((90 * Math.PI) / 180);
+          ctx.drawImage(img, -img.width / 2, -img.height / 2);
+          updateImageDisplay(canvas.toDataURL('image/jpeg', 0.95));
+        };
+        img.src = currentImageDataUrl;
+      });
+
+      // Toggle contrast for receipts
+      btnToggleContrast.addEventListener('click', () => {
+        if (!currentImageDataUrl) return;
+        hasHighContrast = !hasHighContrast;
+        capturedImageTag.style.filter = hasHighContrast ? 'contrast(135%) brightness(95%)' : 'none';
+        certImagePreview.style.filter = hasHighContrast ? 'contrast(135%) brightness(95%)' : 'none';
+      });
+
+      // Delete image
+      btnDeleteImg.addEventListener('click', () => {
+        updateImageDisplay('');
+        fileInput.value = '';
+      });
+
+      // SIGNATURE PADS LOGIC
+      function initSigPad(canvasId, clearBtnId, previewImgId) {
+        const canvas = document.getElementById(canvasId);
+        const clearBtn = document.getElementById(clearBtnId);
+        const previewImg = document.getElementById(previewImgId);
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+          const rect = canvas.getBoundingClientRect();
+          canvas.width = rect.width * 2;
+          canvas.height = rect.height * 2;
+          ctx.scale(2, 2);
+          ctx.strokeStyle = '#0284c7'; // Medical Blue ink
+          ctx.lineWidth = 2.5;
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        let drawing = false;
+
+        function getPos(e) {
+          const rect = canvas.getBoundingClientRect();
+          const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+          const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+          return {
+            x: clientX - rect.left,
+            y: clientY - rect.top
+          };
+        }
+
+        function start(e) {
+          drawing = true;
+          const pos = getPos(e);
+          ctx.beginPath();
+          ctx.moveTo(pos.x, pos.y);
+          e.preventDefault();
+        }
+
+        function move(e) {
+          if (!drawing) return;
+          const pos = getPos(e);
+          ctx.lineTo(pos.x, pos.y);
+          ctx.stroke();
+          e.preventDefault();
+        }
+
+        function end() {
+          if (!drawing) return;
+          drawing = false;
+          const dataUrl = canvas.toDataURL('image/png');
+          previewImg.src = dataUrl;
+          previewImg.classList.remove('hidden');
+        }
+
+        canvas.addEventListener('mousedown', start);
+        canvas.addEventListener('mousemove', move);
+        window.addEventListener('mouseup', end);
+
+        canvas.addEventListener('touchstart', start, { passive: false });
+        canvas.addEventListener('touchmove', move, { passive: false });
+        window.addEventListener('touchend', end);
+
+        clearBtn.addEventListener('click', () => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          previewImg.src = '';
+          previewImg.classList.add('hidden');
+        });
+      }
+
+      initSigPad('canvas-sig-op', 'clear-sig-op', 'cert-sig-op-img');
+      initSigPad('canvas-sig-sup', 'clear-sig-sup', 'cert-sig-sup-img');
+
+      // LIVE CAMERA MODAL HANDLING
+      const liveCamModal = document.getElementById('live-cam-modal');
+      const webcamVideo = document.getElementById('webcam-video');
+      const camCloseBtn = document.getElementById('cam-close-btn');
+      const camCancelBtn = document.getElementById('cam-cancel-btn');
+      const camShutterBtn = document.getElementById('cam-shutter-btn');
+      const camSwitchFacing = document.getElementById('cam-switch-facing');
+      const camToggleGrid = document.getElementById('cam-toggle-grid');
+      const camTorchBtn = document.getElementById('cam-torch-btn');
+      const cameraOverlayBoxes = document.getElementById('camera-overlay-boxes');
+      const cameraCaptureCanvas = document.getElementById('camera-capture-canvas');
+
+      let currentStream = null;
+      let facingMode = 'environment';
+      let torchActive = false;
+
+      async function startCamera() {
+        if (currentStream) {
+          currentStream.getTracks().forEach(t => t.stop());
+        }
+        try {
+          const constraints = {
+            video: {
+              facingMode: { ideal: facingMode },
+              width: { ideal: 1920 },
+              height: { ideal: 1080 }
+            },
+            audio: false
+          };
+          currentStream = await navigator.mediaDevices.getUserMedia(constraints);
+          webcamVideo.srcObject = currentStream;
+          liveCamModal.classList.remove('hidden');
+        } catch (err) {
+          console.error('Camera access error:', err);
+          alert('Không thể mở Camera trực tiếp. Vui lòng kiểm tra quyền truy cập Camera trên trình duyệt hoặc sử dụng nút "Chọn Từ Thiết Bị".');
+        }
+      }
+
+      function stopCamera() {
+        if (currentStream) {
+          currentStream.getTracks().forEach(t => t.stop());
+          currentStream = null;
+        }
+        liveCamModal.classList.add('hidden');
+      }
+
+      btnOpenLiveCam.addEventListener('click', startCamera);
+      camCloseBtn.addEventListener('click', stopCamera);
+      camCancelBtn.addEventListener('click', stopCamera);
+
+      camSwitchFacing.addEventListener('click', () => {
+        facingMode = facingMode === 'environment' ? 'user' : 'environment';
+        startCamera();
+      });
+
+      camToggleGrid.addEventListener('click', () => {
+        cameraOverlayBoxes.classList.toggle('hidden');
+      });
+
+      camTorchBtn.addEventListener('click', async () => {
+        if (!currentStream) return;
+        const track = currentStream.getVideoTracks()[0];
+        const capabilities = track.getCapabilities ? track.getCapabilities() : {};
+        if (capabilities.torch) {
+          torchActive = !torchActive;
+          try {
+            await track.applyConstraints({ advanced: [{ torch: torchActive }] });
+            camTorchBtn.classList.toggle('text-amber-400', torchActive);
+          } catch (e) {
+            console.warn('Torch not supported', e);
+          }
+        } else {
+          alert('Thiết bị này không hỗ trợ điều khiển đèn flash từ trình duyệt.');
+        }
+      });
+
+      // Take photo from video stream
+      camShutterBtn.addEventListener('click', () => {
+        if (!webcamVideo.videoWidth) return;
+        cameraCaptureCanvas.width = webcamVideo.videoWidth;
+        cameraCaptureCanvas.height = webcamVideo.videoHeight;
+        const ctx = cameraCaptureCanvas.getContext('2d');
+        ctx.drawImage(webcamVideo, 0, 0, cameraCaptureCanvas.width, cameraCaptureCanvas.height);
+        const dataUrl = cameraCaptureCanvas.toDataURL('image/jpeg', 0.92);
+        updateImageDisplay(dataUrl);
+        stopCamera();
+      });
+
+      // LOAD DEMO SAMPLE (Simulates exact 4-part arrangement procedurally)
+      btnLoadDemo.addEventListener('click', () => {
+        const demoCanvas = document.createElement('canvas');
+        demoCanvas.width = 1200;
+        demoCanvas.height = 900;
+        const ctx = demoCanvas.getContext('2d');
+
+        // Background desk / white card
+        ctx.fillStyle = '#f1f5f9';
+        ctx.fillRect(0, 0, demoCanvas.width, demoCanvas.height);
+
+        // 1. Bowie Dick Sheet (Top-Left)
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(40, 40, 680, 500);
+        ctx.strokeStyle = '#cbd5e1';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(40, 40, 680, 500);
+
+        // Header text on sheet
+        ctx.fillStyle = '#1e3a8a';
+        ctx.font = 'bold 24px sans-serif';
+        ctx.fillText('3M Comply™ 1233LF Bowie-Dick Type Test Pack', 60, 80);
+
+        // Grid of dark brown/black bars (Uniform Pass)
+        ctx.fillStyle = '#1e293b';
+        const startX = 60, startY = 110, barW = 45, barH = 14, gapX = 12, gapY = 10;
+        for (let row = 0; row < 18; row++) {
+          for (let col = 0; col < 10; col++) {
+            ctx.beginPath();
+            ctx.roundRect(startX + col * (barW + gapX), startY + row * (barH + gapY), barW, barH, 4);
+            ctx.fill();
+          }
+        }
+        // Handwritten text on sheet
+        ctx.fillStyle = '#1e3a8a';
+        ctx.font = 'bold 20px cursive';
+        ctx.fillText('Date: 22/10/26    Sterilizer No: I    Initials: Đạt / M. Thuận', 60, 520);
+
+        // 2. LOT Label (Bottom Left)
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(40, 560, 320, 300);
+        ctx.strokeStyle = '#93c5fd';
+        ctx.lineWidth = 3;
+        ctx.strokeRect(40, 560, 320, 300);
+
+        ctx.fillStyle = '#dc2626';
+        ctx.font = 'bold 36px sans-serif';
+        ctx.fillText('3M', 60, 610);
+        ctx.fillStyle = '#0f172a';
+        ctx.font = 'bold 20px sans-serif';
+        ctx.fillText('Comply™', 120, 608);
+
+        ctx.font = '14px sans-serif';
+        ctx.fillText('Type 2: Meets ISO 11140-5:2014', 60, 650);
+        ctx.font = 'bold 16px monospace';
+        ctx.fillText('LOT: 202803CV', 60, 690);
+        ctx.fillText('EXP: 2028-03-17', 60, 720);
+        ctx.fillText('REF: 1233LF  (Lead Free)', 60, 750);
+
+        // 3. Type 5 Strip (Bottom Center)
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(380, 630, 340, 90);
+        ctx.strokeStyle = '#cbd5e1';
+        ctx.strokeRect(380, 630, 340, 90);
+        // Bar Reject/Accept
+        ctx.fillStyle = '#ef4444';
+        ctx.fillRect(460, 645, 110, 60);
+        ctx.fillStyle = '#22c55e';
+        ctx.fillRect(570, 645, 130, 60);
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 12px sans-serif';
+        ctx.fillText('REJECT', 490, 680);
+        ctx.fillText('ACCEPT', 600, 680);
+        ctx.fillStyle = '#0f172a';
+        ctx.font = 'bold 11px sans-serif';
+        ctx.fillText('3M Type 5 Integrator (Passed)', 390, 710);
+
+        // 4. Thermal Printer Receipt (Full Right Column)
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(750, 40, 410, 820);
+        ctx.strokeStyle = '#e2e8f0';
+        ctx.strokeRect(750, 40, 410, 820);
+
+        ctx.fillStyle = '#0f172a';
+        ctx.font = '13px monospace';
+        const billLines = [
+          "--------------------------------",
+          "        BỆNH VIỆN PHƯƠNG CHÂU SG",
+          "           KHOA CSSD TIỆT TRÙNG",
+          "--------------------------------",
+          "Program start: 22.10.2026 / 08:02",
+          "Program      : 5: Bowie-Dick-Test",
+          "Current no.  : 004243",
+          "Machine type : 6-6-6 VS2   No:2012508",
+          "Department   : CSSD",
+          "Operat. comp.: PhuongChauSG",
+          "--------------------------------",
+          "Sterilizing temp.: 134.0 °C",
+          "Sterilizing time : 3.4 min",
+          "Drying time      : 3.0 min",
+          "Max chamber temp : 134.5 °C",
+          "Min chamber temp : 134.4 °C",
+          "F0 value         : 86.6 min",
+          "--------------------------------",
+          "24:03 End of program   970 mbar",
+          "22:56 Aeration          28 mbar",
+          "19:55 Drying           111 mbar",
+          "13:07 Sterilization   3080 mbar",
+          "--------------------------------",
+          "*** PROGRAM FINISHED CORRECTLY ***",
+          "Cycle approved: Y",
+          "Operator Sign : M. Thuận"
+        ];
+        billLines.forEach((txt, i) => {
+          if (txt.includes("CORRECTLY")) {
+            ctx.fillStyle = '#ec4899'; // Highlight marker
+            ctx.fillRect(755, 120 + i * 22 - 14, 395, 20);
+            ctx.fillStyle = '#ffffff';
+          } else {
+            ctx.fillStyle = '#1e293b';
+          }
+          ctx.fillText(txt, 765, 120 + i * 22);
+        });
+
+        const demoDataUrl = demoCanvas.toDataURL('image/jpeg', 0.95);
+        updateImageDisplay(demoDataUrl);
+
+        // Pre-fill fields matching demo
+        inputHospital.value = "BỆNH VIỆN PHƯƠNG CHÂU SG";
+        inputSterilizerId.value = "NỒI HẤP I (6-6-6 VS2)";
+        inputCycleNo.value = "004243";
+        inputTestDate.value = "2026-10-22";
+        inputTestTime.value = "08:02";
+        inputLotNo.value = "202803CV";
+        inputExpDate.value = "2028-03-17";
+        inputOpName.value = "Phạm Thanh Hùng";
+        inputSupName.value = "M. Thuận";
+        syncFormToCert();
+
+        // Also draw signatures on preview
+        const sigOpCanvas = document.getElementById('canvas-sig-op');
+        const sctx = sigOpCanvas.getContext('2d');
+        sctx.strokeStyle = '#0284c7';
+        sctx.lineWidth = 2.5;
+        sctx.beginPath();
+        sctx.moveTo(30, 40);
+        sctx.bezierCurveTo(70, 10, 90, 80, 140, 30);
+        sctx.stroke();
+        certSigOpImg.src = sigOpCanvas.toDataURL();
+        certSigOpImg.classList.remove('hidden');
+
+        const sigSupCanvas = document.getElementById('canvas-sig-sup');
+        const supctx = sigSupCanvas.getContext('2d');
+        supctx.strokeStyle = '#0284c7';
+        supctx.lineWidth = 2.5;
+        supctx.beginPath();
+        supctx.moveTo(30, 50);
+        supctx.bezierCurveTo(60, 20, 100, 30, 150, 45);
+        supctx.stroke();
+        certSigSupImg.src = sigSupCanvas.toDataURL();
+        certSigSupImg.classList.remove('hidden');
+      });
+
+      // INSTANT CLIENT-SIDE PDF GENERATION
+      btnExportPdf.addEventListener('click', async () => {
+        const certElement = document.getElementById('certificate-container');
+
+        // Visual loading state
+        const originalText = btnExportPdf.innerHTML;
+        btnExportPdf.innerHTML = `
+          <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+          </svg>
+          <span>Đang tạo PDF...</span>
+        `;
+        btnExportPdf.disabled = true;
+
+        try {
+          // Render HTML to Canvas at 2x scale for sharp printing
+          const canvas = await html2canvas(certElement, {
+            scale: 2,
+            useCORS: true,
+            allowTaint: true,
+            backgroundColor: '#ffffff'
+          });
+
+          const imgData = canvas.toDataURL('image/jpeg', 0.98);
+          const { jsPDF } = window.jspdf;
+          // Standard A4 portrait: 210 x 297 mm
+          const pdf = new jsPDF('p', 'mm', 'a4');
+          const pdfWidth = pdf.internal.pageSize.getWidth();
+          const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+          pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+
+          // File name formatted according to hospital standard
+          const cycleStr = inputCycleNo.value.trim() || 'Cycle';
+          const dateStr = inputTestDate.value.replace(/-/g, '') || 'Date';
+          const sterilizerStr = (inputSterilizerId.value.trim() || 'NoiHap').replace(/\s+/g, '_');
+          const fileName = `BowieDick\_${sterilizerStr}\_Me${cycleStr}\_${dateStr}.pdf`;
+
+          pdf.save(fileName);
+        } catch (error) {
+          console.error('PDF Export Error:', error);
+          alert('Có lỗi xảy ra khi tạo PDF. Bạn có thể dùng tính năng Print (Ctrl+P / In) trên trình duyệt.');
+        } finally {
+          btnExportPdf.innerHTML = originalText;
+          btnExportPdf.disabled = false;
+        }
+      });
+    });
+  </script>
+</body>
+</html><polygon points="784,741 787.5,748 791,741" fill="#1C385B"/>
+  <line x1="1052.5" y1="732" x2="1052.5" y2="745" stroke="#1C385B" stroke-width="1.5" stroke-dasharray="5,4"/><polygon points="1049,741 1052.5,748 1056,741" fill="#1C385B"/>
+
+  <!-- ================= TẦNG 4: THỰC THI BỆNH VIỆN ================= -->
+  <rect x="135" y="750" width="245" height="35" rx="6" fill="#1C385B" filter="url(#shadow)"/>
+  <text x="257.5" y="773" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">BVQT Phương Châu Cần Thơ</text>
+  <rect x="135" y="790" width="245" height="60" rx="6" fill="#D1E6EB" filter="url(#shadow)"/>
+  <text x="257.5" y="812" fill="#000000" font-size="12" text-anchor="middle">Khoa KSNK</text>
+  <text x="257.5" y="832" fill="#1C385B" font-size="12" font-weight="bold" text-anchor="middle">ThS. Nguyễn Nghinh Lương</text>
+
+  <rect x="400" y="750" width="245" height="35" rx="6" fill="#1C385B" filter="url(#shadow)"/>
+  <text x="522.5" y="773" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">BVQT Phương Châu Sa Đéc</text>
+  <rect x="400" y="790" width="245" height="60" rx="6" fill="#D1E6EB" filter="url(#shadow)"/>
+  <text x="522.5" y="812" fill="#000000" font-size="12" text-anchor="middle">Khoa KSNK</text>
+  <text x="522.5" y="832" fill="#1C385B" font-size="12" font-weight="bold" text-anchor="middle">BS. Dương Tuấn Hòa</text>
+
+  <rect x="665" y="750" width="245" height="35" rx="6" fill="#1C385B" filter="url(#shadow)"/>
+  <text x="787.5" y="773" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">BVQT Phương Châu Sóc Trăng</text>
+  <rect x="665" y="790" width="245" height="60" rx="6" fill="#D1E6EB" filter="url(#shadow)"/>
+  <text x="787.5" y="812" fill="#000000" font-size="12" text-anchor="middle">Khoa KSNK</text>
+  <text x="787.5" y="832" fill="#1C385B" font-size="12" font-weight="bold" text-anchor="middle">BS. Phan Quốc Thịnh</text>
+
+  <rect x="930" y="750" width="245" height="35" rx="6" fill="#1C385B" filter="url(#shadow)"/>
+  <text x="1052.5" y="773" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">BVQT Phương Nam</text>
+  <rect x="930" y="790" width="245" height="60" rx="6" fill="#D1E6EB" filter="url(#shadow)"/>
+  <text x="1052.5" y="812" fill="#000000" font-size="12" text-anchor="middle">Khoa KSNK</text>
+  <text x="1052.5" y="832" fill="#1C385B" font-size="12" font-weight="bold" text-anchor="middle">ThS. Lê Bích Tuyền</text>
+</svg>
