@@ -1,167 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 880" width="100%" height="100%" style="background:#ffffff; font-family: 'Segoe UI', Arial, sans-serif;">
-  <defs>
-    <!-- Hiệu ứng đổ bóng mờ chuẩn chuyên nghiệp -->
-    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.12"/>
-    </filter>
-  </defs>
-
-  <!-- ================= HEADER \\\& TIÊU ĐỀ ================= -->
-  <text x="600" y="40" fill="#1C385B" font-size="24" font-weight="bold" text-anchor="middle" letter-spacing="1">SƠ ĐỒ TỔ CHỨC</text>
-  <text x="600" y="65" fill="#397282" font-size="14" font-weight="bold" text-anchor="middle">CENTER OF EXCELLENCE – KIỂM SOÁT NHIỄM KHUẨN (CoE KSNK) | TẬP ĐOÀN Y TẾ PHƯƠNG CHÂU</text>
-
-  <!-- ================= CỘT NHÃN PHÂN TẦNG ================= -->
-  <!-- TẦNG 1 -->
-  <rect x="20" y="100" width="100" height="50" rx="6" fill="#397282" filter="url(#shadow)"/>
-  <text x="70" y="120" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">TẦNG 1</text>
-  <text x="70" y="136" fill="#D1E6EB" font-size="10" text-anchor="middle">ĐỊNH HƯỚNG &amp; QUẢN TRỊ</text>
-
-  <!-- TẦNG 2 -->
-  <rect x="20" y="190" width="100" height="90" rx="6" fill="#397282" filter="url(#shadow)"/>
-  <text x="70" y="230" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">TẦNG 2</text>
-  <text x="70" y="248" fill="#D1E6EB" font-size="10" text-anchor="middle">ĐIỀU HÀNH (CoE)</text>
-
-  <!-- TẦNG 3 -->
-  <rect x="20" y="300" width="100" height="420" rx="6" fill="#397282" filter="url(#shadow)"/>
-  <text x="70" y="490" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">TẦNG 3</text>
-  <text x="70" y="510" fill="#D1E6EB" font-size="10" text-anchor="middle">CÁC NHÓM</text>
-  <text x="70" y="525" fill="#D1E6EB" font-size="10" text-anchor="middle">CHUYÊN TRÁCH</text>
-
-  <!-- TẦNG 4 -->
-  <rect x="20" y="750" width="100" height="100" rx="6" fill="#1C385B" filter="url(#shadow)"/>
-  <text x="70" y="795" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">TẦNG 4</text>
-  <text x="70" y="813" fill="#D1E6EB" font-size="10" text-anchor="middle">THỰC THI TẠI BV</text>
-
-
-  <!-- ================= TẦNG 1: ĐỊNH HƯỚNG ================= -->
-  <rect x="350" y="100" width="120" height="50" rx="6" fill="#397282" filter="url(#shadow)"/>
-  <text x="410" y="130" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">CEO</text>
-
-  <line x1="470" y1="125" x2="520" y2="125" stroke="#397282" stroke-width="2"/>
-  <polygon points="520,121 528,125 520,129" fill="#397282"/>
-
-  <rect x="530" y="100" width="380" height="50" rx="6" fill="#D1E6EB" filter="url(#shadow)"/>
-  <text x="720" y="130" fill="#1C385B" font-size="13" font-weight="bold" text-anchor="middle">Ban Quản trị CoE – Ban Giám đốc Tập đoàn</text>
-
-  <!-- Đường nối T1 xuống T2 -->
-  <line x1="600" y1="150" x2="600" y2="190" stroke="#1C385B" stroke-width="2"/>
-  <polygon points="596,182 600,190 604,182" fill="#1C385B"/>
-
-
-  <!-- ================= TẦNG 2: ĐIỀU HÀNH ================= -->
-  <rect x="450" y="190" width="300" height="46" rx="6" fill="#1C385B" filter="url(#shadow)"/>
-  <text x="600" y="209" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Trưởng CoE</text>
-  <text x="600" y="226" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">ThS. Nguyễn Nghinh Lương</text>
-
-  <!-- Nhánh Phó \\\& Thư ký -->
-  <line x1="600" y1="236" x2="600" y2="252" stroke="#1C385B" stroke-width="2"/>
-  <line x1="380" y1="252" x2="820" y2="252" stroke="#1C385B" stroke-width="2"/>
-  <line x1="380" y1="252" x2="380" y2="260" stroke="#1C385B" stroke-width="2"/>
-  <line x1="820" y1="252" x2="820" y2="260" stroke="#1C385B" stroke-width="2"/>
- 
-  <rect x="250" y="260" width="260" height="35" rx="6" fill="#D1E6EB" filter="url(#shadow)"/>
-  <text x="380" y="282" fill="#1C385B" font-size="12" font-weight="bold" text-anchor="middle">Phó CoE: <tspan font-weight="normal">ThS. Lê Bích Tuyền</tspan></text>
-
-  <rect x="690" y="260" width="260" height="35" rx="6" fill="#D1E6EB" filter="url(#shadow)"/>
-  <text x="820" y="282" fill="#1C385B" font-size="12" font-weight="bold" text-anchor="middle">Thư ký CoE: <tspan font-weight="normal">CN. Thái Huỳnh Anh</tspan></text>
-
-  <!-- Trục nhánh nối xuống T3 -->
-  <line x1="600" y1="252" x2="600" y2="285" stroke="#1C385B" stroke-width="2"/>
-  <line x1="232.5" y1="285" x2="1072.5" y2="285" stroke="#1C385B" stroke-width="2"/>
-  <line x1="232.5" y1="285" x2="232.5" y2="297" stroke="#1C385B" stroke-width="2"/><polygon points="229,293 232.5,300 236,293" fill="#1C385B"/>
-  <line x1="442.5" y1="285" x2="442.5" y2="297" stroke="#1C385B" stroke-width="2"/><polygon points="439,293 442.5,300 446,293" fill="#1C385B"/>
-  <line x1="652.5" y1="285" x2="652.5" y2="297" stroke="#1C385B" stroke-width="2"/><polygon points="649,293 652.5,300 656,293" fill="#1C385B"/>
-  <line x1="862.5" y1="285" x2="862.5" y2="297" stroke="#1C385B" stroke-width="2"/><polygon points="859,293 862.5,300 866,293" fill="#1C385B"/>
-  <line x1="1072.5" y1="285" x2="1072.5" y2="297" stroke="#1C385B" stroke-width="2"/><polygon points="1069,293 1072.5,300 1076,293" fill="#1C385B"/>
-
-
-  <!-- ================= TẦNG 3: CÁC NHÓM CHUYÊN TRÁCH ================= -->
-  <!-- Cột 1: Giám sát -->
-  <rect x="135" y="300" width="195" height="45" rx="6" fill="#397282" filter="url(#shadow)"/>
-  <text x="232.5" y="318" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Nhóm giám sát – Audit</text>
-  <text x="232.5" y="334" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">– Tracer</text>
-  <rect x="135" y="350" width="195" height="150" rx="6" fill="#F2F7F9" stroke="#397282" stroke-width="1"/>
-  <text x="232.5" y="375" fill="#000000" font-size="11.5" text-anchor="middle">BS. Phan Lê Công</text>
-  <text x="232.5" y="397" fill="#000000" font-size="11.5" text-anchor="middle">BS. Vũ Lê Hà Giang</text>
-  <text x="232.5" y="419" fill="#000000" font-size="11.5" text-anchor="middle">BS. Phan Quốc Thịnh</text>
-  <text x="232.5" y="441" fill="#000000" font-size="11.5" text-anchor="middle">BS. Dương Tuấn Hòa</text>
-  <rect x="135" y="505" width="195" height="215" rx="6" fill="#397282" filter="url(#shadow)"/>
-  <text x="232.5" y="525" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Đơn vị phối hợp</text>
-  <text x="150" y="555" fill="#ffffff" font-size="11" text-anchor="start">• Khoa lâm sàng</text>
-  <text x="150" y="575" fill="#ffffff" font-size="11" text-anchor="start">• Xét nghiệm</text>
-  <text x="150" y="595" fill="#ffffff" font-size="11" text-anchor="start">• Dược – Ban QLKS</text>
-  <text x="150" y="615" fill="#ffffff" font-size="11" text-anchor="start">• P. QLCL</text>
-  <text x="150" y="635" fill="#ffffff" font-size="11" text-anchor="start">• P. Điều dưỡng</text>
-
-  <!-- Cột 2: CSSD -->
-  <rect x="345" y="300" width="195" height="45" rx="6" fill="#397282" filter="url(#shadow)"/>
-  <text x="442.5" y="326" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Nhóm CSSD</text>
-  <rect x="345" y="350" width="195" height="150" rx="6" fill="#F2F7F9" stroke="#397282" stroke-width="1"/>
-  <text x="442.5" y="375" fill="#000000" font-size="11.5" text-anchor="middle">CN. Phạm Thanh Hùng</text>
-  <text x="442.5" y="397" fill="#000000" font-size="11.5" text-anchor="middle">CN. Trần Đức Tài</text>
-  <text x="442.5" y="419" fill="#000000" font-size="11.5" text-anchor="middle">ĐD. Lý Yến Mai</text>
-  <text x="442.5" y="441" fill="#000000" font-size="11.5" text-anchor="middle">YS. Huỳnh Thị Bích Mơ</text>
-  <rect x="345" y="505" width="195" height="215" rx="6" fill="#397282" filter="url(#shadow)"/>
-  <text x="442.5" y="525" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Đơn vị phối hợp</text>
-  <text x="360" y="555" fill="#ffffff" font-size="11" text-anchor="start">• Khoa Gây mê hồi sức</text>
-  <text x="360" y="575" fill="#ffffff" font-size="11" text-anchor="start">• Khoa lâm sàng</text>
-  <text x="360" y="595" fill="#ffffff" font-size="11" text-anchor="start">• Khoa Dược</text>
-  <text x="360" y="615" fill="#ffffff" font-size="11" text-anchor="start">• Phòng VTTB</text>
-
-  <!-- Cột 3: Vệ sinh MT -->
-  <rect x="555" y="300" width="195" height="45" rx="6" fill="#397282" filter="url(#shadow)"/>
-  <text x="652.5" y="318" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Nhóm vệ sinh môi trường</text>
-  <text x="652.5" y="334" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">– Đồ vải</text>
-  <rect x="555" y="350" width="195" height="150" rx="6" fill="#F2F7F9" stroke="#397282" stroke-width="1"/>
-  <text x="652.5" y="365" fill="#000000" font-size="10.5" text-anchor="middle">CN. Trần Đức Hoàng</text>
-  <text x="652.5" y="384" fill="#000000" font-size="10.5" text-anchor="middle">CN. Nguyễn Thanh Phong</text>
-  <text x="652.5" y="403" fill="#000000" font-size="10.5" text-anchor="middle">CN. Trần Ngọc Thảo Nguyên</text>
-  <text x="652.5" y="422" fill="#000000" font-size="10.5" text-anchor="middle">CN. Nguyễn Quỳnh Mỹ Quyên</text>
-  <text x="652.5" y="441" fill="#000000" font-size="10.5" text-anchor="middle">CN. Thái Huỳnh Anh</text>
-  <text x="652.5" y="460" fill="#000000" font-size="10.5" text-anchor="middle">CN. Nguyễn Minh Thuận</text>
-  <rect x="555" y="505" width="195" height="215" rx="6" fill="#397282" filter="url(#shadow)"/>
-  <text x="652.5" y="525" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Đơn vị phối hợp</text>
-  <text x="570" y="555" fill="#ffffff" font-size="11" text-anchor="start">• Khoa lâm sàng</text>
-  <text x="570" y="575" fill="#ffffff" font-size="11" text-anchor="start">• P. CSKH – Buồng phòng</text>
-  <text x="570" y="595" fill="#ffffff" font-size="11" text-anchor="start">• P. HCQT</text>
-  <text x="570" y="615" fill="#ffffff" font-size="11" text-anchor="start">• P. Điều dưỡng</text>
-
-  <!-- Cột 4: Đào tạo \\\& NCKH -->
-  <rect x="765" y="300" width="195" height="45" rx="6" fill="#397282" filter="url(#shadow)"/>
-  <text x="862.5" y="318" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Nhóm đào tạo –</text>
-  <text x="862.5" y="334" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Nghiên cứu – Đổi mới</text>
-  <rect x="765" y="350" width="195" height="150" rx="6" fill="#F2F7F9" stroke="#397282" stroke-width="1"/>
-  <text x="862.5" y="375" fill="#000000" font-size="11.5" text-anchor="middle">ThS. Nguyễn Nghinh Lương</text>
-  <text x="862.5" y="397" fill="#000000" font-size="11.5" text-anchor="middle">ThS. Lê Bích Tuyền</text>
-  <text x="862.5" y="419" fill="#000000" font-size="11.5" text-anchor="middle">BS. Vũ Lê Hà Giang</text>
-  <text x="862.5" y="441" fill="#000000" font-size="11.5" text-anchor="middle">BS. Phan Lê Công</text>
-  <rect x="765" y="505" width="195" height="215" rx="6" fill="#397282" filter="url(#shadow)"/>
-  <text x="862.5" y="525" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Đơn vị phối hợp</text>
-  <text x="780" y="555" fill="#ffffff" font-size="11" text-anchor="start">• Phòng Nhân sự đào tạo</text>
-  <text x="780" y="575" fill="#ffffff" font-size="11" text-anchor="start">• Trung tâm đào tạo</text>
-  <text x="780" y="595" fill="#ffffff" font-size="11" text-anchor="start">• P. KHTH</text>
-
-  <!-- Cột 5: Dữ liệu \\\& Công nghệ số -->
-  <rect x="975" y="300" width="195" height="45" rx="6" fill="#397282" filter="url(#shadow)"/>
-  <text x="1072.5" y="318" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Nhóm dữ liệu</text>
-  <text x="1072.5" y="334" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">và công nghệ số</text>
-  <rect x="975" y="350" width="195" height="150" rx="6" fill="#F2F7F9" stroke="#397282" stroke-width="1"/>
-  <text x="1072.5" y="370" fill="#000000" font-size="11.5" text-anchor="middle">BS. Vũ Lê Hà Giang</text>
-  <text x="1072.5" y="390" fill="#000000" font-size="11.5" text-anchor="middle">BS. Phan Lê Công</text>
-  <text x="1072.5" y="410" fill="#000000" font-size="11.5" text-anchor="middle">BS. Phan Quốc Thịnh</text>
-  <text x="1072.5" y="430" fill="#000000" font-size="11.5" text-anchor="middle">BS. Dương Tuấn Hòa</text>
-  <text x="1072.5" y="450" fill="#000000" font-size="11.5" text-anchor="middle">CN. Phạm Thanh Hùng</text>
-  <rect x="975" y="505" width="195" height="215" rx="6" fill="#397282" filter="url(#shadow)"/>
-  <text x="1072.5" y="525" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Đơn vị phối hợp</text>
-  <text x="990" y="555" fill="#ffffff" font-size="11" text-anchor="start">• Phòng CNTT</text>
-  <text x="990" y="575" fill="#ffffff" font-size="11" text-anchor="start">• P. QLCL</text>
-
-  <!-- ================= KẾT NỐI T3 XUỐNG T4 ================= -->
-  <line x1="600" y1="720" x2="600" y2="732" stroke="#1C385B" stroke-width="1.5" stroke-dasharray="5,4"/>
-  <line x1="257.5" y1="732" x2="1052.5" y2="732" stroke="#1C385B" stroke-width="1.5" stroke-dasharray="5,4"/>
-  <line x1="257.5" y1="732" x2="257.5" y2="745" stroke="#1C385B" stroke-width="1.5" stroke-dasharray="5,4"/><polygon points="254,741 257.5,748 261,741" fill="#1C385B"/>
-  <line x1="522.5" y1="732" x2="522.5" y2="745" stroke="#1C385B" stroke-width="1.5" stroke-dasharray="5,4"/><polygon points="519,741 522.5,748 526,741" fill="#1C385B"/>
-  <line x1="787.5" y1="732" x2="787.5" y2="745" stroke="#1C385B" stroke-width="1.5" stroke-dasharray="5,4"/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -171,13 +8,13 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- html2canvas \& jsPDF for 100% Client-Side PDF Generation -->
+  <!-- html2canvas & jsPDF for 100% Client-Side PDF Generation -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
- 
+    
     body {
       font-family: 'Inter', sans-serif;
       background-color: #0f172a;
@@ -219,7 +56,7 @@
     /* Guide overlay on live camera */
     .viewfinder-grid {
       background-size: 20px 20px;
-      background-image:
+      background-image: 
         linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
     }
@@ -232,12 +69,12 @@
     <div class="max-w-6xl mx-auto flex items-center justify-between">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-xl bg-teal-500/20 text-teal-400 border border-teal-500/30 flex items-center justify-center font-bold text-lg shadow-sm">
-          <i data-lucide="shield-check" class="w-6 h-6">
+          <i data-lucide="shield-check" class="w-6 h-6"></i>
         </div>
         <div>
           <h1 class="text-base sm:text-lg font-bold text-slate-100 flex items-center gap-2">
             CSSD Bowie-Dick Digitalizer
-            <span class="text-\[10px] bg-teal-500/20 text-teal-300 border border-teal-500/30 px-2 py-0.5 rounded-full font-semibold uppercase tracking-wider">Free Pro</span>
+            <span class="text-[10px] bg-teal-500/20 text-teal-300 border border-teal-500/30 px-2 py-0.5 rounded-full font-semibold uppercase tracking-wider">Free Pro</span>
           </h1>
           <p class="text-xs text-slate-400 hidden sm:block">Số hóa hồ sơ kiểm định nồi hấp tiệt khuẩn chuẩn ISO 11140-5</p>
         </div>
@@ -245,11 +82,11 @@
 
       <div class="flex items-center gap-2">
         <button id="btn-load-demo" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-teal-300 hover:text-teal-200 border border-slate-700 rounded-lg text-xs font-medium flex items-center gap-1.5 transition shadow-sm">
-          <i data-lucide="sparkles" class="w-3.5 h-3.5">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
           <span>Nạp Mẫu Demo</span>
         </button>
         <button id="btn-export-pdf" class="px-3 py-1.5 bg-teal-600 hover:bg-teal-500 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 transition shadow-md shadow-teal-600/30">
-          <i data-lucide="file-down" class="w-4 h-4">
+          <i data-lucide="file-down" class="w-4 h-4"></i>
           <span>Xuất PDF</span>
         </button>
       </div>
@@ -259,54 +96,54 @@
   <!-- MAIN APP CONTAINER -->
   <main class="max-w-6xl mx-auto px-4 pt-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
 
-    <!-- LEFT COLUMN: CONTROLS \& INPUT FORM -->
+    <!-- LEFT COLUMN: CONTROLS & INPUT FORM -->
     <div class="no-print lg:col-span-5 space-y-6">
 
       <!-- STEP 1: CAPTURE AREA -->
       <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-4 sm:p-5 shadow-lg backdrop-blur">
         <div class="flex items-center justify-between mb-3">
           <h2 class="text-sm font-bold uppercase tracking-wider text-teal-400 flex items-center gap-2">
-            <i data-lucide="camera" class="w-4 h-4">
+            <i data-lucide="camera" class="w-4 h-4"></i>
             1. Chụp / Tải Ảnh Tổ Hợp Test
           </h2>
-          <span class="text-\[11px] text-slate-400">Khung chuẩn 4 vùng</span>
+          <span class="text-[11px] text-slate-400">Khung chuẩn 4 vùng</span>
         </div>
 
         <!-- Image Preview / Empty Box -->
-        <div id="image-preview-wrapper" class="relative w-full aspect-\[4/3] rounded-xl overflow-hidden bg-slate-900 border-2 border-dashed border-slate-700 flex flex-col items-center justify-center p-3 text-center group transition">
+        <div id="image-preview-wrapper" class="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-slate-900 border-2 border-dashed border-slate-700 flex flex-col items-center justify-center p-3 text-center group transition">
           <div id="empty-state-content" class="space-y-2 pointer-events-none">
             <div class="w-12 h-12 rounded-full bg-slate-800 border border-slate-700 text-slate-400 flex items-center justify-center mx-auto">
-              <i data-lucide="image-plus" class="w-6 h-6">
+              <i data-lucide="image-plus" class="w-6 h-6"></i>
             </div>
             <p class="text-xs text-slate-300 font-medium">Chưa có ảnh chụp mẻ test</p>
-            <p class="text-\[11px] text-slate-500 max-w-\[240px]">Chụp theo khung 4 phần: Tờ test, Nhãn LOT, Chỉ thị Type 5, Bill in máy</p>
+            <p class="text-[11px] text-slate-500 max-w-[240px]">Chụp theo khung 4 phần: Tờ test, Nhãn LOT, Chỉ thị Type 5, Bill in máy</p>
           </div>
           <img id="captured-image-tag" src="" alt="Captured Bowie-Dick" class="hidden absolute inset-0 w-full h-full object-contain bg-black/40">
 
           <!-- Image quick action toolbar -->
           <div id="image-action-bar" class="hidden absolute top-2 right-2 flex items-center gap-1.5 bg-slate-900/90 border border-slate-700 p-1 rounded-lg backdrop-blur shadow-md">
             <button id="btn-rotate-img" title="Xoay 90 độ" class="p-1.5 text-slate-300 hover:text-white rounded hover:bg-slate-800 transition">
-              <i data-lucide="rotate-cw" class="w-4 h-4">
+              <i data-lucide="rotate-cw" class="w-4 h-4"></i>
             </button>
             <button id="btn-toggle-contrast" title="Tăng tương phản mực in" class="p-1.5 text-slate-300 hover:text-teal-400 rounded hover:bg-slate-800 transition">
-              <i data-lucide="contrast" class="w-4 h-4">
+              <i data-lucide="contrast" class="w-4 h-4"></i>
             </button>
             <button id="btn-delete-img" title="Xóa ảnh" class="p-1.5 text-rose-400 hover:text-rose-300 rounded hover:bg-rose-500/20 transition">
-              <i data-lucide="trash-2" class="w-4 h-4">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
             </button>
           </div>
         </div>
 
         <!-- Buttons to trigger Live Camera or File Upload -->
         <div class="grid grid-cols-2 gap-2.5 mt-3">
-          <button id="btn-open-live-cam" class="w-full py-2.5 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-500 hover:to-emerald-500 text-white rounded-xl text-xs font-semibold flex items-center justify-center gap-2 shadow-md transition active:scale-\[0.99]">
-            <i data-lucide="camera" class="w-4 h-4">
+          <button id="btn-open-live-cam" class="w-full py-2.5 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-500 hover:to-emerald-500 text-white rounded-xl text-xs font-semibold flex items-center justify-center gap-2 shadow-md transition active:scale-[0.99]">
+            <i data-lucide="camera" class="w-4 h-4"></i>
             <span>Mở Camera Căn Khung</span>
           </button>
           <label class="w-full py-2.5 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded-xl text-xs font-medium flex items-center justify-center gap-2 cursor-pointer transition">
-            <i data-lucide="upload" class="w-4 h-4">
+            <i data-lucide="upload" class="w-4 h-4"></i>
             <span>Chọn Từ Thiết Bị</span>
-            <input type="file" id="file-input" accept="image/\*" class="hidden">
+            <input type="file" id="file-input" accept="image/*" class="hidden">
           </label>
         </div>
       </div>
@@ -314,7 +151,7 @@
       <!-- STEP 2: METADATA FORM -->
       <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-4 sm:p-5 shadow-lg backdrop-blur space-y-4">
         <h2 class="text-sm font-bold uppercase tracking-wider text-teal-400 flex items-center gap-2">
-          <i data-lucide="clipboard-list" class="w-4 h-4">
+          <i data-lucide="clipboard-list" class="w-4 h-4"></i>
           2. Thông Tin Hồ Sơ Kiểm Định
         </h2>
 
@@ -357,18 +194,18 @@
         <div>
           <label class="block text-slate-400 mb-1.5 text-xs font-medium">Kết Luận Đánh Giá Tờ Test:</label>
           <div class="grid grid-cols-2 gap-3">
-            <label class="relative flex items-center p-3 rounded-xl border border-slate-700 bg-slate-900 cursor-pointer has-\[:checked]:border-emerald-500 has-\[:checked]:bg-emerald-500/10 transition">
+            <label class="relative flex items-center p-3 rounded-xl border border-slate-700 bg-slate-900 cursor-pointer has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-500/10 transition">
               <input type="radio" name="evaluation-result" value="PASS" checked class="w-4 h-4 text-emerald-500 focus:ring-emerald-400">
               <div class="ml-2.5">
                 <span class="block text-xs font-bold text-emerald-400">ĐẠT (PASS)</span>
-                <span class="block text-\[10px] text-slate-400">Chuyển màu đen đồng nhất</span>
+                <span class="block text-[10px] text-slate-400">Chuyển màu đen đồng nhất</span>
               </div>
             </label>
-            <label class="relative flex items-center p-3 rounded-xl border border-slate-700 bg-slate-900 cursor-pointer has-\[:checked]:border-rose-500 has-\[:checked]:bg-rose-500/10 transition">
+            <label class="relative flex items-center p-3 rounded-xl border border-slate-700 bg-slate-900 cursor-pointer has-[:checked]:border-rose-500 has-[:checked]:bg-rose-500/10 transition">
               <input type="radio" name="evaluation-result" value="FAIL" class="w-4 h-4 text-rose-500 focus:ring-rose-400">
               <div class="ml-2.5">
                 <span class="block text-xs font-bold text-rose-400">KHÔNG ĐẠT (FAIL)</span>
-                <span class="block text-\[10px] text-slate-400">Khí sót / Màu loang lổ</span>
+                <span class="block text-[10px] text-slate-400">Khí sót / Màu loang lổ</span>
               </div>
             </label>
           </div>
@@ -378,7 +215,7 @@
       <!-- STEP 3: DUAL SIGNATURE PADS -->
       <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-4 sm:p-5 shadow-lg backdrop-blur space-y-4">
         <h2 class="text-sm font-bold uppercase tracking-wider text-teal-400 flex items-center gap-2">
-          <i data-lucide="pen-tool" class="w-4 h-4">
+          <i data-lucide="pen-tool" class="w-4 h-4"></i>
           3. Ký Duyệt Trực Tuyến (Cảm Ứng)
         </h2>
 
@@ -387,7 +224,7 @@
           <div>
             <div class="flex items-center justify-between mb-1">
               <label class="text-slate-300 font-medium">KTV Vận Hành:</label>
-              <button id="clear-sig-op" class="text-\[11px] text-slate-400 hover:text-rose-400 transition">Ký lại</button>
+              <button id="clear-sig-op" class="text-[11px] text-slate-400 hover:text-rose-400 transition">Ký lại</button>
             </div>
             <div class="relative bg-white rounded-lg border border-slate-700 overflow-hidden h-24">
               <canvas id="canvas-sig-op" class="w-full h-full cursor-crosshair"></canvas>
@@ -399,7 +236,7 @@
           <div>
             <div class="flex items-center justify-between mb-1">
               <label class="text-slate-300 font-medium">ĐD Trưởng / KSNK:</label>
-              <button id="clear-sig-sup" class="text-\[11px] text-slate-400 hover:text-rose-400 transition">Ký lại</button>
+              <button id="clear-sig-sup" class="text-[11px] text-slate-400 hover:text-rose-400 transition">Ký lại</button>
             </div>
             <div class="relative bg-white rounded-lg border border-slate-700 overflow-hidden h-24">
               <canvas id="canvas-sig-sup" class="w-full h-full cursor-crosshair"></canvas>
@@ -415,7 +252,7 @@
     <div class="lg:col-span-7 flex flex-col items-center">
       <div class="w-full flex items-center justify-between mb-3 text-xs text-slate-400 px-2 no-print">
         <span class="flex items-center gap-1.5">
-          <i data-lucide="eye" class="w-4 h-4 text-teal-400">
+          <i data-lucide="eye" class="w-4 h-4 text-teal-400"></i>
           Xem trước trang in Khổ Chuẩn A4
         </span>
         <span class="mono-font">210mm x 297mm</span>
@@ -425,7 +262,7 @@
       <div class="w-full overflow-x-auto pb-4 flex justify-center">
         <!-- ACTUAL PRINTABLE SHEET (210mm x 297mm) -->
         <div id="certificate-container" class="p-8 sm:p-10 flex flex-col justify-between text-slate-900">
- 
+          
           <!-- TOP HEADER SECTION -->
           <div>
             <div class="flex items-center justify-between border-b-2 border-slate-900 pb-4">
@@ -438,14 +275,14 @@
                   <p id="cert-department" class="text-xs text-slate-600 font-medium">Đơn Vị Tiệt Trùng Trung Tâm (CSSD)</p>
                 </div>
               </div>
-              <div class="text-right text-\[11px] text-slate-500 space-y-0.5">
+              <div class="text-right text-[11px] text-slate-500 space-y-0.5">
                 <div class="font-bold text-slate-800">MÃ BIỂU MẪU: BM-CSSD-BD01</div>
                 <div>Tiêu chuẩn: ISO 11140-5:2014 Type 2</div>
                 <div class="mono-font" id="cert-print-timestamp">Ngày in: 22/10/2026</div>
               </div>
             </div>
 
-            <!-- TITLE \& BADGE -->
+            <!-- TITLE & BADGE -->
             <div class="text-center my-4">
               <h1 class="text-lg sm:text-xl font-extrabold uppercase tracking-tight text-slate-900">
                 PHIẾU KIỂM TRA ĐỘ THẢI KHÍ & XÂM NHẬP HƠI NƯỚC
@@ -476,9 +313,9 @@
               <div class="grid grid-cols-4 py-2 px-3 text-slate-800 items-center">
                 <div id="cert-lot" class="mono-font font-medium">202803CV</div>
                 <div id="cert-exp" class="mono-font font-medium">2028-03-17</div>
-                <div class="mono-font text-\[11px]">5: Bowie-Dick-Test 134°C</div>
+                <div class="mono-font text-[11px]">5: Bowie-Dick-Test 134°C</div>
                 <div id="cert-status-badge">
-                  <span class="inline-flex items-center px-2 py-0.5 rounded text-\[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
                     ✓ ĐẠT (PASS)
                   </span>
                 </div>
@@ -487,23 +324,23 @@
 
             <!-- COMPOSITE IMAGE SECTION (Centerpiece) -->
             <div class="border-2 border-slate-300 rounded-xl p-2 bg-slate-50/50 mb-4">
-              <div class="text-\[11px] font-semibold text-slate-500 mb-1 flex items-center justify-between">
+              <div class="text-[11px] font-semibold text-slate-500 mb-1 flex items-center justify-between">
                 <span>ẢNH CHỤP MINH CHỨNG THỰC TẾ (BOWIE-DICK SHEET + BILL + LOT + TYPE 5)</span>
-                <span class="text-\[10px] text-slate-400">Ảnh gốc không qua chỉnh sửa cấu trúc</span>
+                <span class="text-[10px] text-slate-400">Ảnh gốc không qua chỉnh sửa cấu trúc</span>
               </div>
-              <div class="w-full aspect-\[4/3] rounded-lg overflow-hidden bg-slate-200 border border-slate-300 flex items-center justify-center relative">
+              <div class="w-full aspect-[4/3] rounded-lg overflow-hidden bg-slate-200 border border-slate-300 flex items-center justify-center relative">
                 <img id="cert-image-preview" src="" alt="Bowie-Dick Test Proof" class="w-full h-full object-contain">
                 <span id="cert-image-placeholder" class="text-xs text-slate-400">Hình ảnh kiểm định sẽ xuất hiện tại đây</span>
               </div>
             </div>
           </div>
 
-          <!-- BOTTOM AUDIT \& SIGNATURES SECTION -->
+          <!-- BOTTOM AUDIT & SIGNATURES SECTION -->
           <div class="pt-2 border-t border-slate-200">
             <div class="grid grid-cols-2 gap-8 text-center text-xs">
               <div>
                 <p class="font-bold text-slate-800 uppercase tracking-wide">KỸ THUẬT VIÊN VẬN HÀNH</p>
-                <p class="text-\[10px] text-slate-500 italic mt-0.5">(Ký và ghi rõ họ tên)</p>
+                <p class="text-[10px] text-slate-500 italic mt-0.5">(Ký và ghi rõ họ tên)</p>
                 <div class="h-20 flex items-center justify-center my-1">
                   <img id="cert-sig-op-img" src="" alt="Chữ ký KTV" class="max-h-16 max-w-full object-contain hidden">
                 </div>
@@ -512,7 +349,7 @@
 
               <div>
                 <p class="font-bold text-slate-800 uppercase tracking-wide">ĐIỀU DƯỠNG TRƯỞNG / KSNK DUYỆT</p>
-                <p class="text-\[10px] text-slate-500 italic mt-0.5">(Ký và xác nhận chất lượng)</p>
+                <p class="text-[10px] text-slate-500 italic mt-0.5">(Ký và xác nhận chất lượng)</p>
                 <div class="h-20 flex items-center justify-center my-1">
                   <img id="cert-sig-sup-img" src="" alt="Chữ ký Phụ Trách" class="max-h-16 max-w-full object-contain hidden">
                 </div>
@@ -520,7 +357,7 @@
               </div>
             </div>
 
-            <div class="text-\[9px] text-slate-400 text-center mt-6 border-t border-slate-100 pt-2 flex items-center justify-between">
+            <div class="text-[9px] text-slate-400 text-center mt-6 border-t border-slate-100 pt-2 flex items-center justify-between">
               <span>Hệ thống số hóa hồ sơ kiểm định CSSD - Tiêu chuẩn vô khuẩn bệnh viện</span>
               <span class="mono-font" id="cert-hash-footer">Bản lưu trữ điện tử</span>
             </div>
@@ -542,13 +379,13 @@
       </div>
       <div class="flex items-center gap-2">
         <button id="cam-toggle-grid" class="p-2 bg-slate-800/80 rounded-full text-teal-400 hover:bg-slate-700 transition" title="Ẩn/Hiện Lưới">
-          <i data-lucide="grid" class="w-4 h-4">
+          <i data-lucide="grid" class="w-4 h-4"></i>
         </button>
         <button id="cam-switch-facing" class="p-2 bg-slate-800/80 rounded-full text-slate-200 hover:bg-slate-700 transition" title="Đổi camera Trước/Sau">
-          <i data-lucide="refresh-cw" class="w-4 h-4">
+          <i data-lucide="refresh-cw" class="w-4 h-4"></i>
         </button>
         <button id="cam-close-btn" class="p-2 bg-slate-800/80 rounded-full text-slate-300 hover:text-rose-400 hover:bg-slate-700 transition" title="Đóng">
-          <i data-lucide="x" class="w-5 h-5">
+          <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
     </div>
@@ -559,45 +396,45 @@
 
       <!-- The 4-BOX GUIDE OVERLAY (Mimics user's real-world composite layout) -->
       <div id="camera-overlay-boxes" class="absolute inset-0 pointer-events-none p-3 sm:p-6 flex items-center justify-center">
-        <div class="w-full max-w-xl aspect-\[3/4] sm:aspect-\[4/3] border-2 border-white/20 rounded-xl relative grid grid-cols-12 grid-rows-12 gap-2 p-2 bg-black/10 backdrop-blur-\[1px]">
- 
+        <div class="w-full max-w-xl aspect-[3/4] sm:aspect-[4/3] border-2 border-white/20 rounded-xl relative grid grid-cols-12 grid-rows-12 gap-2 p-2 bg-black/10 backdrop-blur-[1px]">
+          
           <!-- Box 1: Bowie-Dick Main Sheet (Top Left) -->
           <div class="col-span-8 row-span-8 border-2 border-dashed border-teal-400/90 rounded-lg bg-teal-500/10 flex flex-col justify-between p-2">
-            <span class="text-\[10px] sm:text-xs font-bold text-teal-300 bg-slate-900/80 px-2 py-0.5 rounded w-max border border-teal-500/30">
+            <span class="text-[10px] sm:text-xs font-bold text-teal-300 bg-slate-900/80 px-2 py-0.5 rounded w-max border border-teal-500/30">
               ① Tờ Test Bowie-Dick (1233LF)
             </span>
-            <div class="text-\[9px] text-teal-200/60 text-center uppercase tracking-wider">
+            <div class="text-[9px] text-teal-200/60 text-center uppercase tracking-wider">
               Kiểm tra biến màu đen đồng nhất
             </div>
           </div>
 
           <!-- Box 4: Thermal Receipt (Entire Right Column) -->
           <div class="col-span-4 row-span-12 border-2 border-dashed border-amber-400/90 rounded-lg bg-amber-500/10 flex flex-col justify-between p-2">
-            <span class="text-\[10px] sm:text-xs font-bold text-amber-300 bg-slate-900/80 px-2 py-0.5 rounded w-max border border-amber-500/30">
+            <span class="text-[10px] sm:text-xs font-bold text-amber-300 bg-slate-900/80 px-2 py-0.5 rounded w-max border border-amber-500/30">
               ④ Bill Máy Hấp
             </span>
-            <div class="text-\[9px] text-amber-200/70 text-center space-y-1">
+            <div class="text-[9px] text-amber-200/70 text-center space-y-1">
               <p>Chu kỳ & F0</p>
               <p>Nhiệt độ / Áp suất</p>
               <p>Chữ ký người chạy</p>
             </div>
-            <div class="text-\[8px] text-amber-300/50 text-center">Khớp ngày & mẻ</div>
+            <div class="text-[8px] text-amber-300/50 text-center">Khớp ngày & mẻ</div>
           </div>
 
           <!-- Box 2: LOT Label (Bottom Left) -->
           <div class="col-span-4 row-span-4 border-2 border-dashed border-sky-400/90 rounded-lg bg-sky-500/10 flex flex-col justify-between p-1.5">
-            <span class="text-\[9px] sm:text-\[11px] font-bold text-sky-300 bg-slate-900/80 px-1.5 py-0.5 rounded w-max border border-sky-500/30">
+            <span class="text-[9px] sm:text-[11px] font-bold text-sky-300 bg-slate-900/80 px-1.5 py-0.5 rounded w-max border border-sky-500/30">
               ② Nhãn LOT & Hạn
             </span>
-            <div class="text-\[8px] text-sky-200/60 text-center">LOT / Date</div>
+            <div class="text-[8px] text-sky-200/60 text-center">LOT / Date</div>
           </div>
 
           <!-- Box 3: Type 5 Strip (Bottom Middle) -->
           <div class="col-span-4 row-span-4 border-2 border-dashed border-emerald-400/90 rounded-lg bg-emerald-500/10 flex flex-col justify-between p-1.5">
-            <span class="text-\[9px] sm:text-\[11px] font-bold text-emerald-300 bg-slate-900/80 px-1.5 py-0.5 rounded w-max border border-emerald-500/30">
+            <span class="text-[9px] sm:text-[11px] font-bold text-emerald-300 bg-slate-900/80 px-1.5 py-0.5 rounded w-max border border-emerald-500/30">
               ③ Tích phân Type 5
             </span>
-            <div class="text-\[8px] text-emerald-200/70 text-center font-bold">REJECT ➔ ACCEPT</div>
+            <div class="text-[8px] text-emerald-200/70 text-center font-bold">REJECT ➔ ACCEPT</div>
           </div>
 
         </div>
@@ -610,7 +447,7 @@
     <!-- Camera Bottom Controls -->
     <div class="flex items-center justify-around py-3 px-4 z-10">
       <button id="cam-torch-btn" class="p-3 bg-slate-800 text-slate-300 hover:text-amber-400 rounded-full transition" title="Bật/Tắt Đèn pin">
-        <i data-lucide="zap" class="w-5 h-5">
+        <i data-lucide="zap" class="w-5 h-5"></i>
       </button>
 
       <!-- Big Capture Shutter Button -->
@@ -619,7 +456,7 @@
       </button>
 
       <button id="cam-cancel-btn" class="p-3 bg-slate-800 text-slate-300 hover:text-white rounded-full transition" title="Hủy">
-        <i data-lucide="corner-down-left" class="w-5 h-5">
+        <i data-lucide="corner-down-left" class="w-5 h-5"></i>
       </button>
     </div>
   </div>
@@ -694,7 +531,7 @@
         const tVal = inputTestTime.value;
         if (dVal) {
           const parts = dVal.split('-');
-          certDatetime.innerText = `${parts\[2]}/${parts\[1]}/${parts\[0]} ${tVal}`;
+          certDatetime.innerText = `${parts[2]}/${parts[1]}/${parts[0]} ${tVal}`;
         }
 
         certLot.innerText = inputLotNo.value.trim() || '---';
@@ -706,12 +543,12 @@
         const selectedRadio = document.querySelector('input[name="evaluation-result"]:checked');
         if (selectedRadio && selectedRadio.value === 'PASS') {
           certStatusBadge.innerHTML = `
-            <span class="inline-flex items-center px-2 py-0.5 rounded text-\[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
               ✓ ĐẠT (PASS)
             </span>`;
         } else {
           certStatusBadge.innerHTML = `
-            <span class="inline-flex items-center px-2 py-0.5 rounded text-\[11px] font-bold bg-rose-100 text-rose-800 border border-rose-300">
+            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-rose-100 text-rose-800 border border-rose-300">
               ✕ KHÔNG ĐẠT (FAIL)
             </span>`;
         }
@@ -1152,7 +989,7 @@
           const cycleStr = inputCycleNo.value.trim() || 'Cycle';
           const dateStr = inputTestDate.value.replace(/-/g, '') || 'Date';
           const sterilizerStr = (inputSterilizerId.value.trim() || 'NoiHap').replace(/\s+/g, '_');
-          const fileName = `BowieDick\_${sterilizerStr}\_Me${cycleStr}\_${dateStr}.pdf`;
+          const fileName = `BowieDick_${sterilizerStr}_Me${cycleStr}_${dateStr}.pdf`;
 
           pdf.save(fileName);
         } catch (error) {
@@ -1166,31 +1003,4 @@
     });
   </script>
 </body>
-</html><polygon points="784,741 787.5,748 791,741" fill="#1C385B"/>
-  <line x1="1052.5" y1="732" x2="1052.5" y2="745" stroke="#1C385B" stroke-width="1.5" stroke-dasharray="5,4"/><polygon points="1049,741 1052.5,748 1056,741" fill="#1C385B"/>
-
-  <!-- ================= TẦNG 4: THỰC THI BỆNH VIỆN ================= -->
-  <rect x="135" y="750" width="245" height="35" rx="6" fill="#1C385B" filter="url(#shadow)"/>
-  <text x="257.5" y="773" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">BVQT Phương Châu Cần Thơ</text>
-  <rect x="135" y="790" width="245" height="60" rx="6" fill="#D1E6EB" filter="url(#shadow)"/>
-  <text x="257.5" y="812" fill="#000000" font-size="12" text-anchor="middle">Khoa KSNK</text>
-  <text x="257.5" y="832" fill="#1C385B" font-size="12" font-weight="bold" text-anchor="middle">ThS. Nguyễn Nghinh Lương</text>
-
-  <rect x="400" y="750" width="245" height="35" rx="6" fill="#1C385B" filter="url(#shadow)"/>
-  <text x="522.5" y="773" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">BVQT Phương Châu Sa Đéc</text>
-  <rect x="400" y="790" width="245" height="60" rx="6" fill="#D1E6EB" filter="url(#shadow)"/>
-  <text x="522.5" y="812" fill="#000000" font-size="12" text-anchor="middle">Khoa KSNK</text>
-  <text x="522.5" y="832" fill="#1C385B" font-size="12" font-weight="bold" text-anchor="middle">BS. Dương Tuấn Hòa</text>
-
-  <rect x="665" y="750" width="245" height="35" rx="6" fill="#1C385B" filter="url(#shadow)"/>
-  <text x="787.5" y="773" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">BVQT Phương Châu Sóc Trăng</text>
-  <rect x="665" y="790" width="245" height="60" rx="6" fill="#D1E6EB" filter="url(#shadow)"/>
-  <text x="787.5" y="812" fill="#000000" font-size="12" text-anchor="middle">Khoa KSNK</text>
-  <text x="787.5" y="832" fill="#1C385B" font-size="12" font-weight="bold" text-anchor="middle">BS. Phan Quốc Thịnh</text>
-
-  <rect x="930" y="750" width="245" height="35" rx="6" fill="#1C385B" filter="url(#shadow)"/>
-  <text x="1052.5" y="773" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">BVQT Phương Nam</text>
-  <rect x="930" y="790" width="245" height="60" rx="6" fill="#D1E6EB" filter="url(#shadow)"/>
-  <text x="1052.5" y="812" fill="#000000" font-size="12" text-anchor="middle">Khoa KSNK</text>
-  <text x="1052.5" y="832" fill="#1C385B" font-size="12" font-weight="bold" text-anchor="middle">ThS. Lê Bích Tuyền</text>
-</svg>
+</html>
