@@ -200,6 +200,13 @@
             <label class="block text-slate-400 mb-1 font-medium">Hạn Dùng Test Pack (EXP)</label>
             <input type="date" id="input-exp-date" value="" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-teal-500 transition mono-font">
           </div>
+          <div class="sm:col-span-2">
+            <label class="block text-slate-400 mb-1 font-medium flex items-center justify-between">
+              <span>Email KTV / Quản lý (Nhận thông báo & bản sao)</span>
+              <span class="text-[10px] text-teal-400">Không bắt buộc</span>
+            </label>
+            <input type="email" id="input-user-email" placeholder="ví dụ: ktv@benhvien.vn" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-teal-500 transition text-xs">
+          </div>
         </div>
 
         <div>
@@ -381,6 +388,32 @@
 
   </main>
 
+  <!-- POPUP LEAD MAGNET / EMAIL PROMPT (Tùy chọn) -->
+  <div id="email-modal" class="fixed inset-0 z-50 bg-black/80 hidden flex items-center justify-center p-4 no-print">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-teal-500/20 text-teal-400 border border-teal-500/30 flex items-center justify-center font-bold">
+          <i data-lucide="mail-check" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h3 class="text-sm font-bold text-white">Lưu trữ & Xuất Chứng Nhận PDF</h3>
+          <p class="text-xs text-slate-400">Nhận bản sao số hóa và tài liệu CSSD cập nhật</p>
+        </div>
+      </div>
+      <p class="text-xs text-slate-300 leading-relaxed">
+        Nhập địa chỉ Email để đồng bộ lưu trữ hồ sơ và nhận thông báo khi có bản cập nhật quy chuẩn tiệt khuẩn mới nhất:
+      </p>
+      <input type="email" id="modal-email-input" placeholder="nhap.email@benhvien.vn" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-teal-500 transition">
+      <div class="flex items-center justify-end gap-2 pt-2">
+        <button id="modal-skip-btn" class="px-3.5 py-2 text-xs text-slate-400 hover:text-white rounded-lg transition font-medium">Bỏ qua & Xuất PDF</button>
+        <button id="modal-confirm-btn" class="px-4 py-2 bg-teal-600 hover:bg-teal-500 text-white text-xs font-semibold rounded-lg shadow-md transition flex items-center gap-1.5">
+          <i data-lucide="download" class="w-3.5 h-3.5"></i>
+          <span>Xác Nhận & Tải Về</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- LIVE CAMERA MODAL -->
   <div id="live-cam-modal" class="fixed inset-0 z-50 bg-black/95 hidden flex flex-col justify-between p-3 sm:p-5 select-none no-print">
     <div class="flex items-center justify-between text-white px-2 py-1 z-10">
@@ -403,7 +436,6 @@
 
     <!-- Live Video Viewport with the 4-BOX OVERLAY -->
     <div class="relative flex-1 my-2 flex items-center justify-center overflow-hidden rounded-2xl bg-black border border-slate-800">
-      <!-- Tối ưu cho iOS Safari: autoplay, playsinline, webkit-playsinline, muted -->
       <video id="webcam-video" autoplay playsinline webkit-playsinline muted disablePictureInPicture class="w-full h-full object-cover"></video>
 
       <div id="camera-overlay-boxes" class="absolute inset-0 pointer-events-none p-3 sm:p-6 flex items-center justify-center">
@@ -464,7 +496,10 @@
     document.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
 
-      // BẢO MẬT 1: Chống thất thoát dữ liệu khi vô tình tải lại trang
+      // GOOGLE SHEETS WEBHOOK ENDPOINT
+      const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxmvM-St5GIFBSSPUrslWVmBryF9KDEweHbiRP65rq4tPyFhs5pdA0cH71Bfn0awbuYwg/exec';
+
+      // Chống mất dữ liệu khi lỡ tay thoát trang
       window.addEventListener('beforeunload', function (e) {
         const opName = document.getElementById('input-op-name').value.trim();
         if (currentImageDataUrl || opName !== '') {
@@ -473,7 +508,7 @@
         }
       });
 
-      // 1. KHAI BÁO TẤT CẢ CÁC BIẾN DOM TRƯỚC
+      // 1. KHAI BÁO CÁC BIẾN DOM
       const btnExportPdf = document.getElementById('btn-export-pdf');
       const btnLoadDemo = document.getElementById('btn-load-demo');
       const btnOpenLiveCam = document.getElementById('btn-open-live-cam');
@@ -514,7 +549,14 @@
       const inputExpDate = document.getElementById('input-exp-date');
       const inputOpName = document.getElementById('input-op-name');
       const inputSupName = document.getElementById('input-sup-name');
+      const inputUserEmail = document.getElementById('input-user-email');
       const evaluationRadios = document.querySelectorAll('input[name="evaluation-result"]');
+
+      // Lead modal elements
+      const emailModal = document.getElementById('email-modal');
+      const modalEmailInput = document.getElementById('modal-email-input');
+      const modalConfirmBtn = document.getElementById('modal-confirm-btn');
+      const modalSkipBtn = document.getElementById('modal-skip-btn');
 
       const todayStr = new Date().toISOString().split('T')[0];
       inputTestDate.value = todayStr;
@@ -559,7 +601,6 @@
             </span>`;
         }
 
-        // Cập nhật mã QR Code chống giả mạo
         if (window.QRious) {
           const opStr = inputOpName.value.trim() || 'Unknown';
           const cycleStr = inputCycleNo.value.trim() || '---';
@@ -573,7 +614,7 @@
         }
       }
 
-      // 3. KHỞI TẠO GIỜ HỆ THỐNG AN TOÀN
+      // 3. KHỞI TẠO GIỜ HỆ THỐNG
       function initSystemTime() {
         const timeBadge = document.getElementById('cert-print-timestamp');
         const now = new Date();
@@ -589,10 +630,29 @@
       }
       initSystemTime();
 
-      [inputHospital, inputDepartment, inputSterilizerId, inputCycleNo, inputTestDate, inputTestTime, inputLotNo, inputExpDate, inputOpName, inputSupName].forEach(el => {
+      [inputHospital, inputDepartment, inputSterilizerId, inputCycleNo, inputTestDate, inputTestTime, inputLotNo, inputExpDate, inputOpName, inputSupName, inputUserEmail].forEach(el => {
         el.addEventListener('input', syncFormToCert);
       });
       evaluationRadios.forEach(r => r.addEventListener('change', syncFormToCert));
+
+      // 4. HÀM GỬI LOG VỀ GOOGLE SHEETS
+      function sendLogToGoogleSheet(emailAddress) {
+        const payload = {
+          email: emailAddress || inputUserEmail.value.trim() || 'N/A',
+          hospital: inputHospital.value.trim() || 'N/A',
+          sterilizer: inputSterilizerId.value.trim() || 'N/A',
+          cycle: inputCycleNo.value.trim() || 'N/A',
+          result: document.querySelector('input[name="evaluation-result"]:checked')?.value || 'N/A'
+        };
+
+        // Gửi ngầm (no-cors) tránh làm chậm trình duyệt
+        fetch(WEBHOOK_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).catch(err => console.warn('Webhook log error:', err));
+      }
 
       // ==========================================
       // THUẬT TOÁN 1: QUÉT TỜ BOWIE-DICK 1233LF
@@ -886,7 +946,7 @@
       initSigPad('canvas-sig-op', 'clear-sig-op', 'cert-sig-op-img');
       initSigPad('canvas-sig-sup', 'clear-sig-sup', 'cert-sig-sup-img');
 
-      // LIVE CAMERA MODAL HANDLING
+      // LIVE CAMERA
       const liveCamModal = document.getElementById('live-cam-modal');
       const webcamVideo = document.getElementById('webcam-video');
       const camCloseBtn = document.getElementById('cam-close-btn');
@@ -902,13 +962,11 @@
       let facingMode = 'environment';
       let torchActive = false;
 
-      // HÀM MỞ CAMERA TƯƠNG THÍCH HOÀN TOÀN IOS WEBKIT & ANDROID
       async function startCamera() {
         if (currentStream) {
           currentStream.getTracks().forEach(t => t.stop());
         }
         try {
-          // Bắt buộc cấu hình inline tránh Safari bật trình phát toàn màn hình
           webcamVideo.setAttribute('playsinline', '');
           webcamVideo.setAttribute('webkit-playsinline', '');
           webcamVideo.muted = true;
@@ -925,7 +983,6 @@
           currentStream = await navigator.mediaDevices.getUserMedia(constraints);
           webcamVideo.srcObject = currentStream;
 
-          // Chạy video inline
           await webcamVideo.play();
           liveCamModal.classList.remove('hidden');
         } catch (err) {
@@ -982,7 +1039,7 @@
         stopCamera();
       });
 
-      // LOAD DEMO SAMPLE
+      // LOAD DEMO
       btnLoadDemo.addEventListener('click', () => {
         const demoCanvas = document.createElement('canvas');
         demoCanvas.width = 1200;
@@ -1112,6 +1169,7 @@
         inputExpDate.value = "2028-03-17";
         inputOpName.value = "Phạm Thanh Hùng";
         inputSupName.value = "M. Thuận";
+        inputUserEmail.value = "demo.ktv@phuongchau.com";
         syncFormToCert();
 
         const sigOpCanvas = document.getElementById('canvas-sig-op');
@@ -1137,8 +1195,8 @@
         document.getElementById('cert-sig-sup-img').classList.remove('hidden');
       });
 
-      // EXPORT PDF
-      btnExportPdf.addEventListener('click', async () => {
+      // 5. THỰC HIỆN TẢI FILE PDF
+      async function executePdfDownload() {
         const certElement = document.getElementById('certificate-container');
         const originalText = btnExportPdf.innerHTML;
         btnExportPdf.innerHTML = `
@@ -1170,6 +1228,38 @@
           btnExportPdf.innerHTML = originalText;
           btnExportPdf.disabled = false;
         }
+      }
+
+      // XỬ LÝ SỰ KIỆN NÚT XUẤT PDF
+      btnExportPdf.addEventListener('click', () => {
+        const userEmail = inputUserEmail.value.trim();
+        // Nếu người dùng đã nhập email ở form chính, gửi log và xuất PDF ngay
+        if (userEmail) {
+          sendLogToGoogleSheet(userEmail);
+          executePdfDownload();
+        } else {
+          // Nếu chưa nhập, mở popup gợi ý nhẹ nhàng
+          modalEmailInput.value = '';
+          emailModal.classList.remove('hidden');
+        }
+      });
+
+      // Bấm xác nhận từ popup
+      modalConfirmBtn.addEventListener('click', () => {
+        const emailFromModal = modalEmailInput.value.trim();
+        if (emailFromModal) {
+          inputUserEmail.value = emailFromModal;
+        }
+        emailModal.classList.add('hidden');
+        sendLogToGoogleSheet(emailFromModal);
+        executePdfDownload();
+      });
+
+      // Bấm bỏ qua từ popup
+      modalSkipBtn.addEventListener('click', () => {
+        emailModal.classList.add('hidden');
+        sendLogToGoogleSheet('Skipped');
+        executePdfDownload();
       });
     });
   </script>
