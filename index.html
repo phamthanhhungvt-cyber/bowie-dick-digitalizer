@@ -170,7 +170,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
           <div>
             <label class="block text-slate-400 mb-1 font-medium">Bệnh viện / Cơ sở CSSD</label>
-            <input type="text" id="input-hospital" value="" placeholder="" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-teal-500 transition">
+            <input type="text" id="input-hospital" value="" placeholder="BỆNH VIỆN PHƯƠNG CHÂU" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-teal-500 transition">
           </div>
           <div>
             <label class="block text-slate-400 mb-1 font-medium">Khoa / Bộ phận</label>
@@ -289,7 +289,7 @@
               <div class="text-right text-[11px] text-slate-500 flex flex-col items-end gap-1">
                 <div class="font-bold text-slate-800 leading-tight">MÃ BIỂU MẪU: BM-CSSD-BD01</div>
                 <div class="leading-tight">Tiêu chuẩn: ISO 11140-5:2014 Type 2</div>
-                <div class="mono-font text-blue-700 font-semibold bg-blue-50 px-1 py-0.5 rounded leading-tight mt-0.5" id="cert-print-timestamp">Lập phiếu: Đang xác thực...</div>
+                <div class="mono-font text-slate-700 font-semibold bg-slate-100 px-1 py-0.5 rounded leading-tight mt-0.5" id="cert-print-timestamp">Lập phiếu: Đang xác thực...</div>
                 <canvas id="cert-qr-code" class="mt-1 w-14 h-14" title="Quét để kiểm tra chống giả mạo"></canvas>
               </div>
             </div>
@@ -471,22 +471,7 @@
         }
       });
 
-      let verifiedTimestamp = '';
-      function initSystemTime() {
-        const timeBadge = document.getElementById('cert-print-timestamp');
-        const now = new Date();
-        const dd = String(now.getDate()).padStart(2, '0');
-        const mm = String(now.getMonth() + 1).padStart(2, '0');
-        const yyyy = now.getFullYear();
-        const hh = String(now.getHours()).padStart(2, '0');
-        const mins = String(now.getMinutes()).padStart(2, '0');
-        verifiedTimestamp = `${dd}/${mm}/${yyyy} ${hh}:${mins}`;
-        timeBadge.innerText = `Lập phiếu: ${verifiedTimestamp}`;
-        timeBadge.className = 'mono-font text-slate-700 font-semibold bg-slate-100 px-1 py-0.5 rounded leading-tight mt-0.5';
-        syncFormToCert();
-      }
-      initSystemTime();
-
+      // 1. KHAI BÁO TẤT CẢ CÁC BIẾN DOM TRƯỚC
       const btnExportPdf = document.getElementById('btn-export-pdf');
       const btnLoadDemo = document.getElementById('btn-load-demo');
       const btnOpenLiveCam = document.getElementById('btn-open-live-cam');
@@ -534,8 +519,9 @@
 
       let currentImageDataUrl = '';
       let hasHighContrast = false;
+      let verifiedTimestamp = '';
 
-      // Synchronize Form to Certificate & Gen QR
+      // 2. HÀM ĐỒNG BỘ FORM VÀ SINH QR CODE
       function syncFormToCert() {
         certHospital.innerText = inputHospital.value.trim() || 'BỆNH VIỆN PHƯƠNG CHÂU';
         certDepartment.innerText = inputDepartment.value.trim() || 'KHOA CSSD';
@@ -571,7 +557,7 @@
             </span>`;
         }
 
-        // BẢO MẬT 3: Cập nhật mã QR Code chống giả mạo
+        // Cập nhật mã QR Code chống giả mạo
         if (window.QRious) {
           const opStr = inputOpName.value.trim() || 'Unknown';
           const cycleStr = inputCycleNo.value.trim() || '---';
@@ -584,6 +570,22 @@
           });
         }
       }
+
+      // 3. KHỞI TẠO GIỜ HỆ THỐNG AN TOÀN (Sau khi các biến và hàm đã sẵn sàng)
+      function initSystemTime() {
+        const timeBadge = document.getElementById('cert-print-timestamp');
+        const now = new Date();
+        const dd = String(now.getDate()).padStart(2, '0');
+        const mm = String(now.getMonth() + 1).padStart(2, '0');
+        const yyyy = now.getFullYear();
+        const hh = String(now.getHours()).padStart(2, '0');
+        const mins = String(now.getMinutes()).padStart(2, '0');
+        verifiedTimestamp = `${dd}/${mm}/${yyyy} ${hh}:${mins}`;
+        timeBadge.innerText = `Lập phiếu: ${verifiedTimestamp}`;
+        timeBadge.className = 'mono-font text-slate-700 font-semibold bg-slate-100 px-1 py-0.5 rounded leading-tight mt-0.5';
+        syncFormToCert();
+      }
+      initSystemTime();
 
       [inputHospital, inputDepartment, inputSterilizerId, inputCycleNo, inputTestDate, inputTestTime, inputLotNo, inputExpDate, inputOpName, inputSupName].forEach(el => {
         el.addEventListener('input', syncFormToCert);
@@ -862,7 +864,7 @@
           drawing = false;
           previewImg.src = canvas.toDataURL('image/png');
           previewImg.classList.remove('hidden');
-          syncFormToCert(); // Trigger QR Code update
+          syncFormToCert();
         }
 
         canvas.addEventListener('mousedown', start);
