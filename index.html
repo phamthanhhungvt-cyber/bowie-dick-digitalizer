@@ -836,7 +836,6 @@
         // TẦNG 2: NHẬN DIỆN CHỮ OCR (TESSERACT CLIENT-SIDE)
         if ((!lot || !exp) && window.Tesseract) {
           try {
-            // Tiền xử lý ảnh: Tăng tương phản mực in đen trên nền nhãn trắng
             const ocrCanvas = document.createElement('canvas');
             ocrCanvas.width = scanW;
             ocrCanvas.height = scanH;
@@ -847,19 +846,17 @@
             const d = imgData.data;
             for (let i = 0; i < d.length; i += 4) {
               const luma = 0.299 * d[i] + 0.587 * d[i+1] + 0.114 * d[i+2];
-              // Ngưỡng phân tách chữ in
               const val = luma < 135 ? 0 : 255;
               d[i] = d[i+1] = d[i+2] = val;
             }
             ocrCtx.putImageData(imgData, 0, 0);
 
-            // Chạy nhận diện nhanh tập ký tự tiếng Anh & số
             const ocrResult = await Tesseract.recognize(ocrCanvas, 'eng', {
               tessedit_char_whitelist: '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-/: '
             });
             const text = ocrResult.data.text.toUpperCase();
 
-            // 1. Tìm LOT (vd: LOT 202803CV)
+            // Tìm LOT (vd: LOT 202803CV)
             if (!lot) {
               const lotOcr = text.match(/LOT[\s:]*([0-9]{6,8}[A-Z0-9]{1,3})/i) || text.match(/([0-9]{6,8}[A-Z]{1,3})/);
               if (lotOcr) {
@@ -867,7 +864,7 @@
               }
             }
 
-            // 2. Tìm EXP (vd: 2028-03-17)
+            // Tìm EXP (vd: 2028-03-17)
             if (!exp) {
               const expOcr = text.match(/(\d{4})[-/.](\d{2})[-/.](\d{2})/);
               if (expOcr) {
@@ -1004,31 +1001,30 @@
         fileInput.value = '';
       });
 
+      // KHẮC PHỤC TRIỆT ĐỂ LỖI CHỮ KÝ: Cố định canvas nội bộ, không gán lại kích thước khi resize
       function initSigPad(canvasId, clearBtnId, previewImgId) {
         const canvas = document.getElementById(canvasId);
         const clearBtn = document.getElementById(clearBtnId);
         const previewImg = document.getElementById(previewImgId);
         const ctx = canvas.getContext('2d');
 
-        function resizeCanvas() {
-          const rect = canvas.getBoundingClientRect();
-          canvas.width = rect.width * 2;
-          canvas.height = rect.height * 2;
-          ctx.scale(2, 2);
-          ctx.strokeStyle = '#0284c7';
-          ctx.lineWidth = 2.5;
-          ctx.lineCap = 'round';
-          ctx.lineJoin = 'round';
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
+        // Khởi tạo kích thước cố định với scale 2x cho nét vẽ mịn màng
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = (rect.width || 300) * 2;
+        canvas.height = (rect.height || 96) * 2;
+        ctx.scale(2, 2);
+        ctx.strokeStyle = '#0284c7';
+        ctx.lineWidth = 2.5;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
 
         let drawing = false;
+
         function getPos(e) {
-          const rect = canvas.getBoundingClientRect();
+          const r = canvas.getBoundingClientRect();
           const clientX = e.touches ? e.touches[0].clientX : e.clientX;
           const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-          return { x: clientX - rect.left, y: clientY - rect.top };
+          return { x: clientX - r.left, y: clientY - r.top };
         }
 
         function start(e) {
@@ -1050,7 +1046,9 @@
         function end() {
           if (!drawing) return;
           drawing = false;
-          previewImg.src = canvas.toDataURL('image/png');
+          // Xuất chữ ký sang ảnh hiển thị trên trang in A4
+          const dataUrl = canvas.toDataURL('image/png');
+          previewImg.src = dataUrl;
           previewImg.classList.remove('hidden');
           syncFormToCert();
         }
@@ -1066,6 +1064,7 @@
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           previewImg.src = '';
           previewImg.classList.add('hidden');
+          syncFormToCert();
         });
       }
 
@@ -1310,7 +1309,7 @@
         document.getElementById('cert-sig-sup-img').classList.add('hidden');
       });
 
-      // 5. THỰC HIỆN TẢI FILE PDF
+      // 5. THỰC HIỆN TẢI FILE PDF (CHỜ ẢNH CHỮ KÝ DECODE XONG)
       async function executePdfDownload() {
         const certElement = document.getElementById('certificate-container');
         const originalText = btnExportPdf.innerHTML;
@@ -1324,7 +1323,23 @@
         btnExportPdf.disabled = true;
 
         try {
-          const canvas = await html2canvas(certElement, { scale: 2, useCORS: true, allowTaint: true, backgroundColor: '#ffffff' });
+          // Đảm bảo toàn bộ ảnh (chữ ký + ảnh test) đã decode xong
+          const allImages = certElement.querySelectorAll('img');
+          await Promise.all(Array.from(allImages).map(img => {
+            if (img.src && !img.classList.contains('hidden')) {
+              if (img.complete) return Promise.resolve();
+              return new Promise(res => { img.onload = res; img.onerror = res; });
+            }
+            return Promise.resolve();
+          }));
+
+          const canvas = await html2canvas(certElement, { 
+            scale: 2, 
+            useCORS: true, 
+            allowTaint: true, 
+            backgroundColor: '#ffffff' 
+          });
+          
           const imgData = canvas.toDataURL('image/jpeg', 0.98);
           const { jsPDF } = window.jspdf;
           const pdf = new jsPDF('p', 'mm', 'a4');
