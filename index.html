@@ -663,11 +663,102 @@
         };
       }
 
+      // Thuật toán kiểm tra thanh Type 5 (Ô số 3)
+      function analyzeType5Strip(sourceImage, t5RectNorm = { x: 0.33, y: 0.66, w: 0.33, h: 0.33 }) {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d', { willReadFrequently: true });
+
+        const imgW = sourceImage.naturalWidth || sourceImage.width;
+        const imgH = sourceImage.naturalHeight || sourceImage.height;
+
+        const cropX = Math.round(t5RectNorm.x * imgW);
+        const cropY = Math.round(t5RectNorm.y * imgH);
+        const cropW = Math.round(t5RectNorm.w * imgW);
+        const cropH = Math.round(t5RectNorm.h * imgH);
+
+        canvas.width = cropW;
+        canvas.height = cropH;
+        ctx.drawImage(sourceImage, cropX, cropY, cropW, cropH, 0, 0, cropW, cropH);
+
+        const imgData = ctx.getImageData(0, 0, cropW, cropH);
+        const data = imgData.data;
+
+        // Quét nửa bên phải của ô số 3 (Vùng ACCEPT màu xanh)
+        // Nếu vạch đen chưa chạy tới đây, vùng này sẽ rất sáng (màu trắng/xanh lá)
+        let rightHalfLumaSum = 0;
+        let rightHalfCount = 0;
+        const startX = Math.floor(cropW * 0.55); // Bắt đầu quét từ 55% chiều ngang
+
+        for (let y = 0; y < cropH; y++) {
+          for (let x = startX; x < cropW; x++) {
+            const idx = (y * cropW + x) * 4;
+            const r = data[idx];
+            const g = data[idx + 1];
+            const b = data[idx + 2];
+
+            const luma = 0.299 * r + 0.587 * g + 0.114 * b;
+            rightHalfLumaSum += luma;
+            rightHalfCount++;
+          }
+        }
+
+        const avgRightLuma = rightHalfCount > 0 ? rightHalfLumaSum / rightHalfCount : 255;
+        
+        // Nếu vùng ACCEPT quá sáng (> 160) tức là mực đen chưa tràn tới
+        const isPass = avgRightLuma < 160; 
+
+        return {
+          result: isPass ? 'PASS' : 'FAIL',
+          avgRightLuma: Math.round(avgRightLuma),
+          message: isPass ? 'Vạch đen đã chạm vùng ACCEPT.' : `Vạch đen ngưng ở REJECT (Độ sáng vùng Accept cao: ${Math.round(avgRightLuma)}).`
+        };
+      }
+
       function applyAutoEvaluation(dataUrl) {
         if (!dataUrl) {
           aiFeedbackBanner.classList.add('hidden');
           return;
         }
+
+        const testImg = new Image();
+        testImg.onload = () => {
+          // Chạy cả 2 thuật toán
+          const bdRes = analyzeBowieDickSheet(testImg);
+          const t5Res = analyzeType5Strip(testImg);
+
+          const radioPass = document.querySelector('input[name="evaluation-result"][value="PASS"]');
+          const radioFail = document.querySelector('input[name="evaluation-result"][value="FAIL"]');
+
+          // Cả 2 phải cùng PASS thì mới đánh giá là ĐẠT
+          if (bdRes.result === 'PASS' && t5Res.result === 'PASS') {
+            radioPass.checked = true;
+            aiFeedbackBanner.className = 'mt-3 p-3 rounded-xl border text-xs transition bg-emerald-500/10 border-emerald-500/40 text-emerald-200';
+            aiFeedbackIcon.innerHTML = `<i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>`;
+            aiFeedbackTitle.innerText = 'AI ĐÁNH GIÁ: ĐẠT (PASS)';
+            aiFeedbackTitle.className = 'font-bold uppercase tracking-wider text-[11px] text-emerald-400';
+            aiFeedbackDesc.innerText = "Tờ Bowie-Dick biến màu đồng nhất và thanh Type 5 đạt ACCEPT.";
+          } else {
+            radioFail.checked = true;
+            aiFeedbackBanner.className = 'mt-3 p-3 rounded-xl border text-xs transition bg-rose-500/10 border-rose-500/40 text-rose-200';
+            aiFeedbackIcon.innerHTML = `<i data-lucide="alert-triangle" class="w-4 h-4 text-rose-400"></i>`;
+            aiFeedbackTitle.innerText = 'AI CẢNH BÁO: KHÔNG ĐẠT (FAIL)';
+            aiFeedbackTitle.className = 'font-bold uppercase tracking-wider text-[11px] text-rose-400';
+            
+            // Ghi rõ lỗi do Tờ BD hay do Type 5
+            let errorMsg = [];
+            if (bdRes.result === 'FAIL') errorMsg.push(`Tờ test: ${bdRes.message}`);
+            if (t5Res.result === 'FAIL') errorMsg.push(`Type 5: ${t5Res.message}`);
+            aiFeedbackDesc.innerText = errorMsg.join(" | ");
+          }
+
+          aiFeedbackMetrics.innerText = `BD Luma: ${bdRes.deltaLuma} | T5 Luma: ${t5Res.avgRightLuma}`;
+          aiFeedbackBanner.classList.remove('hidden');
+          lucide.createIcons();
+
+          syncFormToCert();
+        };
+        testImg.src = dataUrl;
+      }
 
         const testImg = new Image();
         testImg.onload = () => {
