@@ -8,9 +8,11 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- html2canvas & jsPDF for 100% Client-Side PDF Generation -->
+  <!-- html2canvas & jsPDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <!-- QRious for QR Code Generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
@@ -74,7 +76,7 @@
         <div>
           <h1 class="text-base sm:text-lg font-bold text-slate-100 flex items-center gap-2">
             CSSD Bowie-Dick Digitalizer
-            <span class="text-[10px] bg-teal-500/20 text-teal-300 border border-teal-500/30 px-2 py-0.5 rounded-full font-semibold uppercase tracking-wider">3M 1233LF Standard</span>
+            <span class="text-[10px] bg-teal-500/20 text-teal-300 border border-teal-500/30 px-2 py-0.5 rounded-full font-semibold uppercase tracking-wider">SECURE PRO</span>
           </h1>
           <p class="text-xs text-slate-400 hidden sm:block">Số hóa & Đánh giá tự động theo tiêu chuẩn ISO 11140-5:2014 Type 2</p>
         </div>
@@ -109,7 +111,6 @@
           <span class="text-[11px] text-slate-400">Khung chuẩn 4 vùng</span>
         </div>
 
-        <!-- Image Preview / Empty Box -->
         <div id="image-preview-wrapper" class="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-slate-900 border-2 border-dashed border-slate-700 flex flex-col items-center justify-center p-3 text-center group transition">
           <div id="empty-state-content" class="space-y-2 pointer-events-none">
             <div class="w-12 h-12 rounded-full bg-slate-800 border border-slate-700 text-slate-400 flex items-center justify-center mx-auto">
@@ -120,7 +121,6 @@
           </div>
           <img id="captured-image-tag" src="" alt="Captured Bowie-Dick" class="hidden absolute inset-0 w-full h-full object-contain bg-black/40">
 
-          <!-- Image quick action toolbar -->
           <div id="image-action-bar" class="hidden absolute top-2 right-2 flex items-center gap-1.5 bg-slate-900/90 border border-slate-700 p-1 rounded-lg backdrop-blur shadow-md">
             <button id="btn-rotate-img" title="Xoay 90 độ" class="p-1.5 text-slate-300 hover:text-white rounded hover:bg-slate-800 transition">
               <i data-lucide="rotate-cw" class="w-4 h-4"></i>
@@ -134,7 +134,6 @@
           </div>
         </div>
 
-        <!-- Buttons to trigger Live Camera or File Upload -->
         <div class="grid grid-cols-2 gap-2.5 mt-3">
           <button id="btn-open-live-cam" class="w-full py-2.5 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-500 hover:to-emerald-500 text-white rounded-xl text-xs font-semibold flex items-center justify-center gap-2 shadow-md transition active:scale-[0.99]">
             <i data-lucide="camera" class="w-4 h-4"></i>
@@ -147,7 +146,6 @@
           </label>
         </div>
 
-        <!-- AI Auto Evaluation Feedback Banner -->
         <div id="ai-feedback-banner" class="hidden mt-3 p-3 rounded-xl border text-xs transition">
           <div class="flex items-start gap-2.5">
             <div id="ai-feedback-icon" class="mt-0.5"></div>
@@ -184,7 +182,7 @@
           </div>
           <div>
             <label class="block text-slate-400 mb-1 font-medium">Số Mẻ Hấp (Cycle No.)</label>
-            <input type="text" id="input-cycle-no" value="004248" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-teal-500 transition mono-font">
+            <input type="text" id="input-cycle-no" value="" placeholder="Nhập số mẻ..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-teal-500 transition mono-font">
           </div>
           <div>
             <label class="block text-slate-400 mb-1 font-medium">Ngày thực hiện test</label>
@@ -192,19 +190,18 @@
           </div>
           <div>
             <label class="block text-slate-400 mb-1 font-medium">Giờ chạy chu trình</label>
-            <input type="time" id="input-test-time" value="07:55" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-teal-500 transition">
+            <input type="time" id="input-test-time" value="" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-teal-500 transition">
           </div>
           <div>
             <label class="block text-slate-400 mb-1 font-medium">Số Lô (LOT No.)</label>
-            <input type="text" id="input-lot-no" value="202803CV" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-teal-500 transition mono-font">
+            <input type="text" id="input-lot-no" value="" placeholder="Mã lô..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-teal-500 transition mono-font">
           </div>
           <div>
             <label class="block text-slate-400 mb-1 font-medium">Hạn Dùng Test Pack (EXP)</label>
-            <input type="text" id="input-exp-date" value="2028-03-17" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-teal-500 transition mono-font">
+            <input type="date" id="input-exp-date" value="" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-teal-500 transition mono-font">
           </div>
         </div>
 
-        <!-- Result evaluation radio cards -->
         <div>
           <label class="block text-slate-400 mb-1.5 text-xs font-medium">Kết Luận Đánh Giá Tờ Test (Tự động hoặc chỉnh tay):</label>
           <div class="grid grid-cols-2 gap-3">
@@ -234,7 +231,6 @@
         </h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-          <!-- Operator Sign -->
           <div>
             <div class="flex items-center justify-between mb-1">
               <label class="text-slate-300 font-medium">KTV Vận Hành:</label>
@@ -246,7 +242,6 @@
             <input type="text" id="input-op-name" value="" placeholder="Nhập họ tên KTV..." class="w-full mt-1.5 bg-slate-900 border border-slate-700 rounded-md px-2.5 py-1 text-slate-100 text-xs">
           </div>
 
-          <!-- Supervisor Sign -->
           <div>
             <div class="flex items-center justify-between mb-1">
               <label class="text-slate-300 font-medium">ĐD Trưởng / KSNK:</label>
@@ -275,7 +270,7 @@
       <!-- SCROLLABLE CONTAINER FOR A4 CERTIFICATE -->
       <div class="w-full overflow-x-auto pb-4 flex justify-center">
         <!-- ACTUAL PRINTABLE SHEET (210mm x 297mm) -->
-        <div id="certificate-container" class="p-8 sm:p-10 flex flex-col justify-between text-slate-900">
+        <div id="certificate-container" class="p-8 sm:p-10 flex flex-col justify-between text-slate-900 relative">
           
           <!-- TOP HEADER SECTION -->
           <div>
@@ -289,10 +284,13 @@
                   <p id="cert-department" class="text-xs text-slate-600 font-medium">Đơn Vị Tiệt Trùng Trung Tâm (CSSD)</p>
                 </div>
               </div>
-              <div class="text-right text-[11px] text-slate-500 space-y-0.5">
-                <div class="font-bold text-slate-800">MÃ BIỂU MẪU: BM-CSSD-BD01</div>
-                <div>Tiêu chuẩn: ISO 11140-5:2014 Type 2</div>
-                <div class="mono-font" id="cert-print-timestamp">Ngày in: 23/10/2026</div>
+              
+              <!-- Anti-Tampering Timestamp & QR Code -->
+              <div class="text-right text-[11px] text-slate-500 flex flex-col items-end gap-1">
+                <div class="font-bold text-slate-800 leading-tight">MÃ BIỂU MẪU: BM-CSSD-BD01</div>
+                <div class="leading-tight">Tiêu chuẩn: ISO 11140-5:2014 Type 2</div>
+                <div class="mono-font text-blue-700 font-semibold bg-blue-50 px-1 py-0.5 rounded leading-tight mt-0.5" id="cert-print-timestamp">Lập phiếu: Đang xác thực...</div>
+                <canvas id="cert-qr-code" class="mt-1 w-14 h-14" title="Quét để kiểm tra chống giả mạo"></canvas>
               </div>
             </div>
 
@@ -314,8 +312,8 @@
               </div>
               <div class="grid grid-cols-4 py-2 px-3 text-slate-800 border-b border-slate-200">
                 <div id="cert-sterilizer" class="font-bold">NỒI HẤP I</div>
-                <div id="cert-cycle" class="mono-font font-bold">004248</div>
-                <div id="cert-datetime" class="mono-font">23/10/2026 07:55</div>
+                <div id="cert-cycle" class="mono-font font-bold">---</div>
+                <div id="cert-datetime" class="mono-font">---</div>
                 <div>3M™ Comply™ 1233LF</div>
               </div>
               <div class="grid grid-cols-4 bg-slate-50 font-semibold border-b border-slate-300 text-slate-700 py-1.5 px-3">
@@ -325,8 +323,8 @@
                 <div>Kết quả đánh giá</div>
               </div>
               <div class="grid grid-cols-4 py-2 px-3 text-slate-800 items-center">
-                <div id="cert-lot" class="mono-font font-medium">202803CV</div>
-                <div id="cert-exp" class="mono-font font-medium">2028-03-17</div>
+                <div id="cert-lot" class="mono-font font-medium">---</div>
+                <div id="cert-exp" class="mono-font font-medium">---</div>
                 <div class="mono-font text-[11px]">5: Bowie-Dick-Test 134°C</div>
                 <div id="cert-status-badge">
                   <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
@@ -336,7 +334,7 @@
               </div>
             </div>
 
-            <!-- COMPOSITE IMAGE SECTION (Centerpiece) -->
+            <!-- COMPOSITE IMAGE SECTION -->
             <div class="border-2 border-slate-300 rounded-xl p-2 bg-slate-50/50 mb-4">
               <div class="text-[11px] font-semibold text-slate-500 mb-1 flex items-center justify-between">
                 <span>ẢNH CHỤP MINH CHỨNG THỰC TẾ (BOWIE-DICK SHEET + BILL + LOT + TYPE 5)</span>
@@ -372,7 +370,7 @@
             </div>
 
             <div class="text-[9px] text-slate-400 text-center mt-6 border-t border-slate-100 pt-2 flex items-center justify-between">
-              <span>Hệ thống số hóa hồ sơ kiểm định CSSD - Tiêu chuẩn vô khuẩn bệnh viện</span>
+              <span>Hệ thống số hóa hồ sơ kiểm định CSSD - Được bảo vệ tính toàn vẹn (Integrity Protected)</span>
               <span class="mono-font" id="cert-hash-footer">Bản lưu trữ điện tử</span>
             </div>
           </div>
@@ -383,9 +381,8 @@
 
   </main>
 
-  <!-- LIVE CAMERA MODAL WITH 4-BOX GUIDE OVERLAY -->
+  <!-- LIVE CAMERA MODAL -->
   <div id="live-cam-modal" class="fixed inset-0 z-50 bg-black/95 hidden flex flex-col justify-between p-3 sm:p-5 select-none no-print">
-    <!-- Camera Top Bar -->
     <div class="flex items-center justify-between text-white px-2 py-1 z-10">
       <div class="flex items-center gap-2">
         <span class="w-3 h-3 rounded-full bg-rose-500 animate-pulse"></span>
@@ -404,15 +401,11 @@
       </div>
     </div>
 
-    <!-- Live Video Viewport with the 4-BOX OVERLAY -->
     <div class="relative flex-1 my-2 flex items-center justify-center overflow-hidden rounded-2xl bg-black border border-slate-800">
       <video id="webcam-video" autoplay playsinline class="w-full h-full object-cover"></video>
 
-      <!-- The 4-BOX GUIDE OVERLAY -->
       <div id="camera-overlay-boxes" class="absolute inset-0 pointer-events-none p-3 sm:p-6 flex items-center justify-center">
         <div class="w-full max-w-xl aspect-[3/4] sm:aspect-[4/3] border-2 border-white/20 rounded-xl relative grid grid-cols-12 grid-rows-12 gap-2 p-2 bg-black/10 backdrop-blur-[1px]">
-          
-          <!-- Box 1: Bowie-Dick Main Sheet (Top Left) -->
           <div class="col-span-8 row-span-8 border-2 border-dashed border-teal-400/90 rounded-lg bg-teal-500/10 flex flex-col justify-between p-2">
             <span class="text-[10px] sm:text-xs font-bold text-teal-300 bg-slate-900/80 px-2 py-0.5 rounded w-max border border-teal-500/30">
               ① Tờ Test Bowie-Dick (1233LF)
@@ -422,7 +415,6 @@
             </div>
           </div>
 
-          <!-- Box 4: Thermal Receipt (Entire Right Column) -->
           <div class="col-span-4 row-span-12 border-2 border-dashed border-amber-400/90 rounded-lg bg-amber-500/10 flex flex-col justify-between p-2">
             <span class="text-[10px] sm:text-xs font-bold text-amber-300 bg-slate-900/80 px-2 py-0.5 rounded w-max border border-amber-500/30">
               ④ Bill Máy Hấp
@@ -430,41 +422,31 @@
             <div class="text-[9px] text-amber-200/70 text-center space-y-1">
               <p>Chu kỳ & F0</p>
               <p>Nhiệt độ / Áp suất</p>
-              <p>Chữ ký người chạy</p>
             </div>
-            <div class="text-[8px] text-amber-300/50 text-center">Khớp ngày & mẻ</div>
           </div>
 
-          <!-- Box 2: LOT Label (Bottom Left) -->
           <div class="col-span-4 row-span-4 border-2 border-dashed border-sky-400/90 rounded-lg bg-sky-500/10 flex flex-col justify-between p-1.5">
             <span class="text-[9px] sm:text-[11px] font-bold text-sky-300 bg-slate-900/80 px-1.5 py-0.5 rounded w-max border border-sky-500/30">
               ② Nhãn LOT & Hạn
             </span>
-            <div class="text-[8px] text-sky-200/60 text-center">LOT / Date</div>
           </div>
 
-          <!-- Box 3: Type 5 Strip (Bottom Middle) -->
           <div class="col-span-4 row-span-4 border-2 border-dashed border-emerald-400/90 rounded-lg bg-emerald-500/10 flex flex-col justify-between p-1.5">
             <span class="text-[9px] sm:text-[11px] font-bold text-emerald-300 bg-slate-900/80 px-1.5 py-0.5 rounded w-max border border-emerald-500/30">
               ③ Tích phân Type 5
             </span>
-            <div class="text-[8px] text-emerald-200/70 text-center font-bold">REJECT ➔ ACCEPT</div>
           </div>
-
         </div>
       </div>
 
-      <!-- Canvas buffer for capturing frame -->
       <canvas id="camera-capture-canvas" class="hidden"></canvas>
     </div>
 
-    <!-- Camera Bottom Controls -->
     <div class="flex items-center justify-around py-3 px-4 z-10">
       <button id="cam-torch-btn" class="p-3 bg-slate-800 text-slate-300 hover:text-amber-400 rounded-full transition" title="Bật/Tắt Đèn pin">
         <i data-lucide="zap" class="w-5 h-5"></i>
       </button>
 
-      <!-- Big Capture Shutter Button -->
       <button id="cam-shutter-btn" class="w-18 h-18 p-1 rounded-full border-4 border-white flex items-center justify-center transition active:scale-95 shadow-xl hover:border-teal-400 group">
         <div class="w-14 h-14 rounded-full bg-white group-hover:bg-teal-400 transition"></div>
       </button>
@@ -480,7 +462,48 @@
     document.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
 
-      // DOM Elements
+      // BẢO MẬT 1: Chống thất thoát dữ liệu khi vô tình tải lại trang
+      window.addEventListener('beforeunload', function (e) {
+        const opName = document.getElementById('input-op-name').value.trim();
+        if (currentImageDataUrl || opName !== '') {
+          e.preventDefault();
+          e.returnValue = ''; 
+        }
+      });
+
+      // BẢO MẬT 2: Fetch Internet Time (Chống KTV chỉnh lùi giờ trên máy)
+      let verifiedTimestamp = '';
+      async function fetchRealTime() {
+        const timeBadge = document.getElementById('cert-print-timestamp');
+        try {
+          const res = await fetch('https://worldtimeapi.org/api/timezone/Asia/Ho_Chi_Minh');
+          const data = await res.json();
+          const dateObj = new Date(data.datetime);
+          const dd = String(dateObj.getDate()).padStart(2, '0');
+          const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
+          const yyyy = dateObj.getFullYear();
+          const hh = String(dateObj.getHours()).padStart(2, '0');
+          const mins = String(dateObj.getMinutes()).padStart(2, '0');
+          verifiedTimestamp = `${dd}/${mm}/${yyyy} ${hh}:${mins}`;
+          timeBadge.innerText = `Lập phiếu: ${verifiedTimestamp} (Chuẩn VN)`;
+          timeBadge.classList.replace('text-blue-700', 'text-emerald-700');
+          timeBadge.classList.replace('bg-blue-50', 'bg-emerald-50');
+        } catch (e) {
+          const today = new Date();
+          const dd = String(today.getDate()).padStart(2, '0');
+          const mm = String(today.getMonth() + 1).padStart(2, '0');
+          const yyyy = today.getFullYear();
+          const hh = String(today.getHours()).padStart(2, '0');
+          const mins = String(today.getMinutes()).padStart(2, '0');
+          verifiedTimestamp = `${dd}/${mm}/${yyyy} ${hh}:${mins}`;
+          timeBadge.innerText = `Lập phiếu: ${verifiedTimestamp} (Cục bộ)`;
+          timeBadge.classList.replace('text-blue-700', 'text-amber-700');
+          timeBadge.classList.replace('bg-blue-50', 'bg-amber-50');
+        }
+        syncFormToCert(); // Update QR with new time
+      }
+      fetchRealTime();
+
       const btnExportPdf = document.getElementById('btn-export-pdf');
       const btnLoadDemo = document.getElementById('btn-load-demo');
       const btnOpenLiveCam = document.getElementById('btn-open-live-cam');
@@ -492,14 +515,12 @@
       const btnToggleContrast = document.getElementById('btn-toggle-contrast');
       const btnDeleteImg = document.getElementById('btn-delete-img');
 
-      // AI Feedback Elements
       const aiFeedbackBanner = document.getElementById('ai-feedback-banner');
       const aiFeedbackIcon = document.getElementById('ai-feedback-icon');
       const aiFeedbackTitle = document.getElementById('ai-feedback-title');
       const aiFeedbackMetrics = document.getElementById('ai-feedback-metrics');
       const aiFeedbackDesc = document.getElementById('ai-feedback-desc');
 
-      // Certificate Target Preview Elements
       const certHospital = document.getElementById('cert-hospital');
       const certDepartment = document.getElementById('cert-department');
       const certSterilizer = document.getElementById('cert-sterilizer');
@@ -512,11 +533,7 @@
       const certImagePlaceholder = document.getElementById('cert-image-placeholder');
       const certOpName = document.getElementById('cert-op-name');
       const certSupName = document.getElementById('cert-sup-name');
-      const certSigOpImg = document.getElementById('cert-sig-op-img');
-      const certSigSupImg = document.getElementById('cert-sig-sup-img');
-      const certPrintTimestamp = document.getElementById('cert-print-timestamp');
 
-      // Inputs
       const inputHospital = document.getElementById('input-hospital');
       const inputDepartment = document.getElementById('input-department');
       const inputSterilizerId = document.getElementById('input-sterilizer-id');
@@ -529,18 +546,13 @@
       const inputSupName = document.getElementById('input-sup-name');
       const evaluationRadios = document.querySelectorAll('input[name="evaluation-result"]');
 
-      // Set today's date in picker
-      const today = new Date();
-      const yyyy = today.getFullYear();
-      const mm = String(today.getMonth() + 1).padStart(2, '0');
-      const dd = String(today.getDate()).padStart(2, '0');
-      inputTestDate.value = `${yyyy}-${mm}-${dd}`;
-      certPrintTimestamp.innerText = `Ngày in: ${dd}/${mm}/${yyyy}`;
+      const todayStr = new Date().toISOString().split('T')[0];
+      inputTestDate.value = todayStr;
 
       let currentImageDataUrl = '';
       let hasHighContrast = false;
 
-      // Synchronize Form to Certificate Preview
+      // Synchronize Form to Certificate & Gen QR
       function syncFormToCert() {
         certHospital.innerText = inputHospital.value.trim() || 'BỆNH VIỆN PHƯƠNG CHÂU';
         certDepartment.innerText = inputDepartment.value.trim() || 'KHOA CSSD';
@@ -560,18 +572,33 @@
         certOpName.innerText = inputOpName.value.trim() || '....................................';
         certSupName.innerText = inputSupName.value.trim() || '....................................';
 
-        // Result radio
         const selectedRadio = document.querySelector('input[name="evaluation-result"]:checked');
+        let statusText = 'N/A';
         if (selectedRadio && selectedRadio.value === 'PASS') {
+          statusText = 'PASS';
           certStatusBadge.innerHTML = `
             <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
               ✓ ĐẠT (PASS)
             </span>`;
         } else {
+          statusText = 'FAIL';
           certStatusBadge.innerHTML = `
             <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-rose-100 text-rose-800 border border-rose-300">
               ✕ KHÔNG ĐẠT (FAIL)
             </span>`;
+        }
+
+        // BẢO MẬT 3: Cập nhật mã QR Code chống giả mạo
+        if (window.QRious) {
+          const opStr = inputOpName.value.trim() || 'Unknown';
+          const cycleStr = inputCycleNo.value.trim() || '---';
+          const qrString = `Mẻ: ${cycleStr} | KQ: ${statusText} | KTV: ${opStr} | In: ${verifiedTimestamp}`;
+          new QRious({
+            element: document.getElementById('cert-qr-code'),
+            value: qrString,
+            size: 150,
+            level: 'M'
+          });
         }
       }
 
@@ -579,7 +606,6 @@
         el.addEventListener('input', syncFormToCert);
       });
       evaluationRadios.forEach(r => r.addEventListener('change', syncFormToCert));
-      syncFormToCert();
 
       // ==========================================
       // THUẬT TOÁN 1: QUÉT TỜ BOWIE-DICK 1233LF
@@ -615,11 +641,7 @@
         for (let y = 0; y < cropH; y++) {
           for (let x = 0; x < cropW; x++) {
             const idx = (y * cropW + x) * 4;
-            const r = data[idx];
-            const g = data[idx + 1];
-            const b = data[idx + 2];
-
-            const luma = 0.299 * r + 0.587 * g + 0.114 * b;
+            const luma = 0.299 * data[idx] + 0.587 * data[idx+1] + 0.114 * data[idx+2];
             const dist = Math.hypot(x - centerX, y - centerY);
 
             if (dist <= centerRadius) {
@@ -651,13 +673,7 @@
           verdictReason = `Biến màu nâu sẫm/đen đồng nhất đạt chuẩn ISO 11140-5.`;
         }
 
-        return {
-          result: isPass ? 'PASS' : 'FAIL',
-          avgCenterLuma: Math.round(avgCenterLuma),
-          avgPeriLuma: Math.round(avgPeriLuma),
-          deltaLuma: parseFloat(deltaLuma.toFixed(1)),
-          message: verdictReason
-        };
+        return { result: isPass ? 'PASS' : 'FAIL', avgCenterLuma: Math.round(avgCenterLuma), avgPeriLuma: Math.round(avgPeriLuma), deltaLuma: parseFloat(deltaLuma.toFixed(1)), message: verdictReason };
       }
 
       // ==========================================
@@ -678,13 +694,10 @@
         let minX = imgW, maxX = 0, minY = imgH, maxY = 0;
         let foundGreen = false;
 
-        // Bước 1: Quét toàn ảnh để tự động dò tìm vị trí ô ACCEPT (màu xanh lá)
         for (let y = Math.floor(imgH * 0.3); y < Math.floor(imgH * 0.95); y++) {
           for (let x = Math.floor(imgW * 0.1); x < Math.floor(imgW * 0.9); x++) {
             const idx = (y * imgW + x) * 4;
             const r = data[idx], g = data[idx + 1], b = data[idx + 2];
-
-            // Đặc nhận diện màu Xanh Lục đặc trưng của 3M Type 5
             if (g > r + 20 && g > b + 20 && g > 65) {
               if (x < minX) minX = x;
               if (x > maxX) maxX = x;
@@ -695,19 +708,11 @@
           }
         }
 
-        // Nếu ảnh chụp không dính thanh Type 5 hoặc sai màu trầm trọng
         if (!foundGreen || (maxX - minX < 5)) {
-          return { 
-            result: 'FAIL', 
-            avgAcceptLuma: 255, 
-            message: 'Không tìm thấy vùng ACCEPT (màu xanh). Hãy chụp lọt thanh Type 5 vào khung.' 
-          };
+          return { result: 'FAIL', avgAcceptLuma: 255, message: 'Không tìm thấy vùng ACCEPT (màu xanh). Hãy chụp lọt thanh Type 5 vào khung.' };
         }
 
-        // Bước 2: Đo độ sáng trung bình TRONG đúng khung xanh vừa tìm được
-        let boxLumaSum = 0;
-        let boxPixelCount = 0;
-
+        let boxLumaSum = 0, boxPixelCount = 0;
         for (let y = minY; y <= maxY; y++) {
           for (let x = minX; x <= maxX; x++) {
             const idx = (y * imgW + x) * 4;
@@ -718,15 +723,9 @@
         }
 
         const avgBoxLuma = boxPixelCount > 0 ? boxLumaSum / boxPixelCount : 255;
-        
-        // Khi vệt sáp hóa chất chạy ngang qua, nó sẽ làm nền xanh tối đi đáng kể
         const isPass = avgBoxLuma < 125;
 
-        return {
-          result: isPass ? 'PASS' : 'FAIL',
-          avgAcceptLuma: Math.round(avgBoxLuma),
-          message: isPass ? 'Vệt sáp đen đã đi sâu vào vùng ACCEPT.' : `Vệt sáp chưa đạt vạch ACCEPT (Luma: ${Math.round(avgBoxLuma)}).`
-        };
+        return { result: isPass ? 'PASS' : 'FAIL', avgAcceptLuma: Math.round(avgBoxLuma), message: isPass ? 'Vệt sáp đen đã đi sâu vào vùng ACCEPT.' : `Vệt sáp chưa đạt vạch ACCEPT (Luma: ${Math.round(avgBoxLuma)}).` };
       }
 
       function applyAutoEvaluation(dataUrl) {
@@ -779,22 +778,18 @@
           capturedImageTag.classList.remove('hidden');
           emptyStateContent.classList.add('hidden');
           imageActionBar.classList.remove('hidden');
-
           certImagePreview.src = dataUrl;
           certImagePreview.classList.remove('hidden');
           certImagePlaceholder.classList.add('hidden');
-
           applyAutoEvaluation(dataUrl);
         } else {
           capturedImageTag.src = '';
           capturedImageTag.classList.add('hidden');
           emptyStateContent.classList.remove('hidden');
           imageActionBar.classList.add('hidden');
-
           certImagePreview.src = '';
           certImagePreview.classList.add('hidden');
           certImagePlaceholder.classList.remove('hidden');
-
           aiFeedbackBanner.classList.add('hidden');
         }
       }
@@ -803,9 +798,7 @@
         const file = e.target.files[0];
         if (file) {
           const reader = new FileReader();
-          reader.onload = (event) => {
-            updateImageDisplay(event.target.result);
-          };
+          reader.onload = (event) => updateImageDisplay(event.target.result);
           reader.readAsDataURL(file);
         }
       });
@@ -858,15 +851,11 @@
         window.addEventListener('resize', resizeCanvas);
 
         let drawing = false;
-
         function getPos(e) {
           const rect = canvas.getBoundingClientRect();
           const clientX = e.touches ? e.touches[0].clientX : e.clientX;
           const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-          return {
-            x: clientX - rect.left,
-            y: clientY - rect.top
-          };
+          return { x: clientX - rect.left, y: clientY - rect.top };
         }
 
         function start(e) {
@@ -888,15 +877,14 @@
         function end() {
           if (!drawing) return;
           drawing = false;
-          const dataUrl = canvas.toDataURL('image/png');
-          previewImg.src = dataUrl;
+          previewImg.src = canvas.toDataURL('image/png');
           previewImg.classList.remove('hidden');
+          syncFormToCert(); // Trigger QR Code update
         }
 
         canvas.addEventListener('mousedown', start);
         canvas.addEventListener('mousemove', move);
         window.addEventListener('mouseup', end);
-
         canvas.addEventListener('touchstart', start, { passive: false });
         canvas.addEventListener('touchmove', move, { passive: false });
         window.addEventListener('touchend', end);
@@ -927,23 +915,13 @@
       let torchActive = false;
 
       async function startCamera() {
-        if (currentStream) {
-          currentStream.getTracks().forEach(t => t.stop());
-        }
+        if (currentStream) currentStream.getTracks().forEach(t => t.stop());
         try {
-          const constraints = {
-            video: {
-              facingMode: { ideal: facingMode },
-              width: { ideal: 1920 },
-              height: { ideal: 1080 }
-            },
-            audio: false
-          };
+          const constraints = { video: { facingMode: { ideal: facingMode }, width: { ideal: 1920 }, height: { ideal: 1080 } }, audio: false };
           currentStream = await navigator.mediaDevices.getUserMedia(constraints);
           webcamVideo.srcObject = currentStream;
           liveCamModal.classList.remove('hidden');
         } catch (err) {
-          console.error('Camera access error:', err);
           alert('Không thể mở Camera trực tiếp. Vui lòng kiểm tra quyền truy cập Camera trên trình duyệt hoặc sử dụng nút "Chọn Từ Thiết Bị".');
         }
       }
@@ -959,15 +937,8 @@
       btnOpenLiveCam.addEventListener('click', startCamera);
       camCloseBtn.addEventListener('click', stopCamera);
       camCancelBtn.addEventListener('click', stopCamera);
-
-      camSwitchFacing.addEventListener('click', () => {
-        facingMode = facingMode === 'environment' ? 'user' : 'environment';
-        startCamera();
-      });
-
-      camToggleGrid.addEventListener('click', () => {
-        cameraOverlayBoxes.classList.toggle('hidden');
-      });
+      camSwitchFacing.addEventListener('click', () => { facingMode = facingMode === 'environment' ? 'user' : 'environment'; startCamera(); });
+      camToggleGrid.addEventListener('click', () => { cameraOverlayBoxes.classList.toggle('hidden'); });
 
       camTorchBtn.addEventListener('click', async () => {
         if (!currentStream) return;
@@ -979,7 +950,7 @@
             await track.applyConstraints({ advanced: [{ torch: torchActive }] });
             camTorchBtn.classList.toggle('text-amber-400', torchActive);
           } catch (e) {
-            console.warn('Torch not supported', e);
+            console.warn('Torch error', e);
           }
         } else {
           alert('Thiết bị này không hỗ trợ điều khiển đèn flash từ trình duyệt.');
@@ -992,8 +963,7 @@
         cameraCaptureCanvas.height = webcamVideo.videoHeight;
         const ctx = cameraCaptureCanvas.getContext('2d');
         ctx.drawImage(webcamVideo, 0, 0, cameraCaptureCanvas.width, cameraCaptureCanvas.height);
-        const dataUrl = cameraCaptureCanvas.toDataURL('image/jpeg', 0.92);
-        updateImageDisplay(dataUrl);
+        updateImageDisplay(cameraCaptureCanvas.toDataURL('image/jpeg', 0.92));
         stopCamera();
       });
 
@@ -1006,7 +976,6 @@
         ctx.fillStyle = '#f1f5f9';
         ctx.fillRect(0, 0, demoCanvas.width, demoCanvas.height);
 
-        // 1. Bowie Dick Sheet
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(40, 40, 680, 500);
         ctx.strokeStyle = '#cbd5e1';
@@ -1030,20 +999,17 @@
         ctx.font = 'bold 20px cursive';
         ctx.fillText('Date: 23/10/26    Sterilizer No: I    Initials: Đạt / M. Thuận', 60, 520);
 
-        // 2. LOT Label
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(40, 560, 320, 300);
         ctx.strokeStyle = '#93c5fd';
         ctx.lineWidth = 3;
         ctx.strokeRect(40, 560, 320, 300);
-
         ctx.fillStyle = '#dc2626';
         ctx.font = 'bold 36px sans-serif';
         ctx.fillText('3M', 60, 610);
         ctx.fillStyle = '#0f172a';
         ctx.font = 'bold 20px sans-serif';
         ctx.fillText('Comply™', 120, 608);
-
         ctx.font = '14px sans-serif';
         ctx.fillText('Type 2: Meets ISO 11140-5:2014', 60, 650);
         ctx.font = 'bold 16px monospace';
@@ -1051,7 +1017,6 @@
         ctx.fillText('EXP: 2028-03-17', 60, 720);
         ctx.fillText('REF: 1233LF  (Lead Free)', 60, 750);
 
-        // 3. Type 5 Strip
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(380, 630, 340, 90);
         ctx.strokeStyle = '#cbd5e1';
@@ -1068,12 +1033,10 @@
         ctx.font = 'bold 11px sans-serif';
         ctx.fillText('3M Type 5 Integrator (Passed)', 390, 710);
 
-        // 4. Thermal Printer Receipt
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(750, 40, 410, 820);
         ctx.strokeStyle = '#e2e8f0';
         ctx.strokeRect(750, 40, 410, 820);
-
         ctx.fillStyle = '#0f172a';
         ctx.font = '13px monospace';
         const billLines = [
@@ -1115,8 +1078,7 @@
           ctx.fillText(txt, 765, 120 + i * 22);
         });
 
-        const demoDataUrl = demoCanvas.toDataURL('image/jpeg', 0.95);
-        updateImageDisplay(demoDataUrl);
+        updateImageDisplay(demoCanvas.toDataURL('image/jpeg', 0.95));
 
         inputHospital.value = "BỆNH VIỆN PHƯƠNG CHÂU SG";
         inputSterilizerId.value = "NỒI HẤP I (6-6-6 VS2)";
@@ -1125,8 +1087,8 @@
         inputTestTime.value = "07:55";
         inputLotNo.value = "202803CV";
         inputExpDate.value = "2028-03-17";
-        inputOpName.value = "";
-        inputSupName.value = "";
+        inputOpName.value = "Phạm Thanh Hùng";
+        inputSupName.value = "M. Thuận";
         syncFormToCert();
 
         const sigOpCanvas = document.getElementById('canvas-sig-op');
@@ -1137,8 +1099,8 @@
         sctx.moveTo(30, 40);
         sctx.bezierCurveTo(70, 10, 90, 80, 140, 30);
         sctx.stroke();
-        certSigOpImg.src = sigOpCanvas.toDataURL();
-        certSigOpImg.classList.remove('hidden');
+        document.getElementById('cert-sig-op-img').src = sigOpCanvas.toDataURL();
+        document.getElementById('cert-sig-op-img').classList.remove('hidden');
 
         const sigSupCanvas = document.getElementById('canvas-sig-sup');
         const supctx = sigSupCanvas.getContext('2d');
@@ -1148,13 +1110,12 @@
         supctx.moveTo(30, 50);
         supctx.bezierCurveTo(60, 20, 100, 30, 150, 45);
         supctx.stroke();
-        certSigSupImg.src = sigSupCanvas.toDataURL();
-        certSigSupImg.classList.remove('hidden');
+        document.getElementById('cert-sig-sup-img').src = sigSupCanvas.toDataURL();
+        document.getElementById('cert-sig-sup-img').classList.remove('hidden');
       });
 
       btnExportPdf.addEventListener('click', async () => {
         const certElement = document.getElementById('certificate-container');
-
         const originalText = btnExportPdf.innerHTML;
         btnExportPdf.innerHTML = `
           <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -1166,13 +1127,7 @@
         btnExportPdf.disabled = true;
 
         try {
-          const canvas = await html2canvas(certElement, {
-            scale: 2,
-            useCORS: true,
-            allowTaint: true,
-            backgroundColor: '#ffffff'
-          });
-
+          const canvas = await html2canvas(certElement, { scale: 2, useCORS: true, allowTaint: true, backgroundColor: '#ffffff' });
           const imgData = canvas.toDataURL('image/jpeg', 0.98);
           const { jsPDF } = window.jspdf;
           const pdf = new jsPDF('p', 'mm', 'a4');
@@ -1184,11 +1139,8 @@
           const cycleStr = inputCycleNo.value.trim() || 'Cycle';
           const dateStr = inputTestDate.value.replace(/-/g, '') || 'Date';
           const sterilizerStr = (inputSterilizerId.value.trim() || 'NoiHap').replace(/\s+/g, '_');
-          const fileName = `BowieDick_${sterilizerStr}_Me${cycleStr}_${dateStr}.pdf`;
-
-          pdf.save(fileName);
+          pdf.save(`BowieDick_${sterilizerStr}_Me${cycleStr}_${dateStr}.pdf`);
         } catch (error) {
-          console.error('PDF Export Error:', error);
           alert('Có lỗi xảy ra khi tạo PDF. Bạn có thể dùng tính năng Print (Ctrl+P / In) trên trình duyệt.');
         } finally {
           btnExportPdf.innerHTML = originalText;
