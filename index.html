@@ -287,7 +287,7 @@
       <!-- SCROLLABLE CONTAINER FOR A4 CERTIFICATE -->
       <div class="w-full overflow-x-auto pb-4 flex justify-center">
         <!-- ACTUAL PRINTABLE SHEET (210mm x 297mm) -->
-        <div id="certificate-container" class="p-8 sm:p-10 flex flex-col justify-between text-slate-900 relative">
+        <div id="certificate-container" class="p-8 sm:p-10 flex flex-col justify-between text-slate-900 relative bg-white">
           
           <!-- TOP HEADER SECTION -->
           <div>
@@ -370,9 +370,8 @@
               <div>
                 <p class="font-bold text-slate-800 uppercase tracking-wide">KỸ THUẬT VIÊN VẬN HÀNH</p>
                 <p class="text-[10px] text-slate-500 italic mt-0.5">(Ký và ghi rõ họ tên)</p>
-                <div class="h-20 flex items-center justify-center my-1">
-                  <!-- Dùng CSS thuần thay vì Tailwind để html2canvas dễ chụp -->
-                  <img id="cert-sig-op-img" src="" alt="Chữ ký KTV" style="max-height: 64px; max-width: 100%; display: none;">
+                <div class="h-20 flex items-center justify-center my-1 relative">
+                  <canvas id="cert-sig-op-canvas" class="max-h-16 max-w-full" style="display: none;"></canvas>
                 </div>
                 <p id="cert-op-name" class="font-bold text-slate-900 border-t border-dotted border-slate-300 pt-1 mx-4">....................................</p>
               </div>
@@ -380,9 +379,8 @@
               <div>
                 <p class="font-bold text-slate-800 uppercase tracking-wide">ĐIỀU DƯỠNG TRƯỞNG / KSNK DUYỆT</p>
                 <p class="text-[10px] text-slate-500 italic mt-0.5">(Ký và xác nhận chất lượng)</p>
-                <div class="h-20 flex items-center justify-center my-1">
-                  <!-- Dùng CSS thuần thay vì Tailwind để html2canvas dễ chụp -->
-                  <img id="cert-sig-sup-img" src="" alt="Chữ ký Phụ Trách" style="max-height: 64px; max-width: 100%; display: none;">
+                <div class="h-20 flex items-center justify-center my-1 relative">
+                  <canvas id="cert-sig-sup-canvas" class="max-h-16 max-w-full" style="display: none;"></canvas>
                 </div>
                 <p id="cert-sup-name" class="font-bold text-slate-900 border-t border-dotted border-slate-300 pt-1 mx-4">....................................</p>
               </div>
@@ -400,7 +398,7 @@
 
   </main>
 
-  <!-- POPUP BẮT BUỘC NHẬP EMAIL (Gỡ nút Bỏ qua) -->
+  <!-- POPUP BẮT BUỘC NHẬP EMAIL -->
   <div id="email-modal" class="fixed inset-0 z-50 bg-black/80 hidden flex items-center justify-center p-4 no-print">
     <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
       <div class="flex items-center gap-3">
@@ -668,8 +666,7 @@
 
         fetch(WEBHOOK_URL, {
           method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
           body: JSON.stringify(payload)
         }).catch(err => console.warn('Webhook log error:', err));
       }
@@ -796,7 +793,7 @@
       }
 
       // ==========================================
-      // THUẬT TOÁN 3: TỰ ĐỘNG ĐỊNH VỊ TEM 3M & TRÍCH XUẤT LOT/EXP
+      // THUẬT TOÁN 3: TỰ ĐỘNG ĐỊNH VỊ TEM 3M & TRÍCH XUẤT LOT/EXP (HYBRID BARCODE + OCR)
       // ==========================================
       async function decode3MLotLabel(sourceImage) {
         const imgW = sourceImage.naturalWidth || sourceImage.width;
@@ -871,6 +868,7 @@
             console.warn('OCR error:', ocrErr);
           }
         }
+
         return (lot || exp) ? { lot, exp } : null;
       }
 
@@ -996,14 +994,13 @@
         fileInput.value = '';
       });
 
-      // CẬP NHẬT: Đảm bảo canvas không bị reset khi chụp ảnh PDF
-      function initSigPad(canvasId, clearBtnId, previewImgId) {
+      // KHẮC PHỤC TRIỆT ĐỂ LỖI CHỮ KÝ BẰNG CANVAS TRỰC TIẾP TRÊN BẢN IN
+      function initSigPad(canvasId, clearBtnId, previewCanvasId) {
         const canvas = document.getElementById(canvasId);
         const clearBtn = document.getElementById(clearBtnId);
-        const previewImg = document.getElementById(previewImgId);
+        const previewCanvas = document.getElementById(previewCanvasId);
         const ctx = canvas.getContext('2d');
 
-        // Bỏ sự kiện tự động thay đổi kích thước canvas, dùng kích thước cố định
         const rect = canvas.getBoundingClientRect();
         canvas.width = (rect.width || 300) * 2;
         canvas.height = (rect.height || 96) * 2;
@@ -1041,10 +1038,13 @@
         function end() {
           if (!drawing) return;
           drawing = false;
-          // Thay vì thêm/xóa class Tailwind, dùng thuộc tính style cứng
-          const dataUrl = canvas.toDataURL('image/png');
-          previewImg.src = dataUrl;
-          previewImg.style.display = 'block';
+          
+          previewCanvas.width = canvas.width;
+          previewCanvas.height = canvas.height;
+          const pCtx = previewCanvas.getContext('2d');
+          pCtx.drawImage(canvas, 0, 0);
+          previewCanvas.style.display = 'block';
+          
           syncFormToCert();
         }
 
@@ -1057,14 +1057,14 @@
 
         clearBtn.addEventListener('click', () => {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
-          previewImg.src = '';
-          previewImg.style.display = 'none';
+          previewCanvas.getContext('2d').clearRect(0, 0, previewCanvas.width, previewCanvas.height);
+          previewCanvas.style.display = 'none';
           syncFormToCert();
         });
       }
 
-      initSigPad('canvas-sig-op', 'clear-sig-op', 'cert-sig-op-img');
-      initSigPad('canvas-sig-sup', 'clear-sig-sup', 'cert-sig-sup-img');
+      initSigPad('canvas-sig-op', 'clear-sig-op', 'cert-sig-op-canvas');
+      initSigPad('canvas-sig-sup', 'clear-sig-sup', 'cert-sig-sup-canvas');
 
       // LIVE CAMERA
       const liveCamModal = document.getElementById('live-cam-modal');
@@ -1288,19 +1288,19 @@
         syncFormToCert();
 
         const sigOpCanvas = document.getElementById('canvas-sig-op');
-        const sctx = sigOpCanvas.getContext('2d');
-        sctx.clearRect(0, 0, sigOpCanvas.width, sigOpCanvas.height);
-        document.getElementById('cert-sig-op-img').src = '';
-        document.getElementById('cert-sig-op-img').style.display = 'none';
+        sigOpCanvas.getContext('2d').clearRect(0, 0, sigOpCanvas.width, sigOpCanvas.height);
+        const certSigOp = document.getElementById('cert-sig-op-canvas');
+        certSigOp.getContext('2d').clearRect(0, 0, certSigOp.width, certSigOp.height);
+        certSigOp.style.display = 'none';
 
         const sigSupCanvas = document.getElementById('canvas-sig-sup');
-        const supctx = sigSupCanvas.getContext('2d');
-        supctx.clearRect(0, 0, sigSupCanvas.width, sigSupCanvas.height);
-        document.getElementById('cert-sig-sup-img').src = '';
-        document.getElementById('cert-sig-sup-img').style.display = 'none';
+        sigSupCanvas.getContext('2d').clearRect(0, 0, sigSupCanvas.width, sigSupCanvas.height);
+        const certSigSup = document.getElementById('cert-sig-sup-canvas');
+        certSigSup.getContext('2d').clearRect(0, 0, certSigSup.width, certSigSup.height);
+        certSigSup.style.display = 'none';
       });
 
-      // 5. CẬP NHẬT: THỰC HIỆN TẢI FILE PDF (CHỜ ẢNH CHỮ KÝ ĐƯỢC LOAD)
+      // 5. THỰC HIỆN TẢI FILE PDF (CHỐNG LỖI CẮT CÚP)
       async function executePdfDownload() {
         const certElement = document.getElementById('certificate-container');
         const originalText = btnExportPdf.innerHTML;
@@ -1314,13 +1314,17 @@
         btnExportPdf.disabled = true;
 
         try {
-          // Delay nhỏ 150ms để trình duyệt kịp "vẽ" lại chữ ký màu xanh trước khi html2canvas bắt đầu chụp
-          await new Promise(resolve => setTimeout(resolve, 150));
+          // Bắt buộc cuộn lên đầu trang để html2canvas không bị cắt mất chân trang
+          window.scrollTo(0, 0);
+          
+          // Chờ một chút để giao diện và canvas chữ ký định hình
+          await new Promise(resolve => setTimeout(resolve, 300));
 
           const canvas = await html2canvas(certElement, { 
             scale: 2, 
             useCORS: true, 
             allowTaint: true, 
+            scrollY: 0,
             backgroundColor: '#ffffff' 
           });
           
@@ -1347,6 +1351,7 @@
       // XỬ LÝ SỰ KIỆN NÚT XUẤT PDF
       btnExportPdf.addEventListener('click', () => {
         const userEmail = inputUserEmail.value.trim();
+        // Kiểm tra email nếu nhập trực tiếp trên form
         if (userEmail && userEmail.includes('@')) {
           sendLogToGoogleSheet(userEmail);
           executePdfDownload();
@@ -1356,14 +1361,13 @@
         }
       });
 
-      // CẬP NHẬT BẮT BUỘC: HÀNH ĐỘNG CỦA MODAL THU EMAIL
+      // ÉP BUỘC: HÀNH ĐỘNG CỦA MODAL THU EMAIL
       modalConfirmBtn.addEventListener('click', () => {
         const emailFromModal = modalEmailInput.value.trim();
-        // Kiểm tra tính hợp lệ của email
         if (!emailFromModal || !emailFromModal.includes('@')) {
-          alert('Vui lòng nhập địa chỉ Email hợp lệ để tiếp tục tải PDF!');
+          alert('Vui lòng nhập địa chỉ Email hợp lệ để xuất file PDF!');
           modalEmailInput.focus();
-          return; // Chặn không cho tải
+          return; // Chặn quá trình xuất
         }
         
         inputUserEmail.value = emailFromModal;
@@ -1372,7 +1376,7 @@
         executePdfDownload();
       });
 
-      // Nút Hủy (Đóng Modal, chặn tải)
+      // Nút Hủy đóng Modal và hủy lệnh xuất
       modalCancelBtn.addEventListener('click', () => {
         emailModal.classList.add('hidden');
       });
