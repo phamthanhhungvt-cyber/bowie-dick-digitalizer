@@ -35,6 +35,16 @@ export default function App() {
     // State cho tính năng Quét QR mô phỏng
     const [isScanning, setIsScanning] = useState(false);
 
+    // --- STATE MỚI CHO TAB & BOWIE-DICK ---
+    const [activeTab, setActiveTab] = useState('environment'); // 'environment' | 'bowiedick'
+    
+    // State form Bowie-Dick
+    const [bdAutoclave, setBdAutoclave] = useState('Máy Steam 01 (Cửa trước)');
+    const [bdCycle, setBdCycle] = useState('1');
+    const [bdResult, setBdResult] = useState('Đạt');
+    const [bdNote, setBdNote] = useState('');
+    const [bdLogs, setBdLogs] = useState([]);
+
     // Xác thực người dùng (Anonymous hoặc Token ngầm, không cần form login phức tạp)
     useEffect(() => {
         const initAuth = async () => {
@@ -71,6 +81,18 @@ export default function App() {
             console.error("Lỗi khi tải dữ liệu:", error);
         });
 
+        return () => unsubscribe();
+    }, [authReady]);
+
+    // Listener dữ liệu Bowie-Dick
+    useEffect(() => {
+        if (!authReady) return;
+        const collectionRef = collection(db, 'artifacts', appId, 'public', 'data', 'bowiedick_logs');
+        const unsubscribe = onSnapshot(collectionRef, (snapshot) => {
+            const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            setBdLogs(data);
+        }, (error) => console.error("Lỗi khi tải dữ liệu BD:", error));
         return () => unsubscribe();
     }, [authReady]);
 
@@ -175,6 +197,56 @@ export default function App() {
         }
     };
 
+    // --- CÁC HÀM XỬ LÝ BOWIE-DICK ---
+    const handleBdSubmit = async (e) => {
+        e.preventDefault();
+        if (!authReady) return;
+        setIsSubmitting(true);
+        const now = new Date();
+        try { localStorage.setItem('cssd_tech_name', technician); } catch (_) {}
+
+        const newRecord = {
+            autoclave: bdAutoclave,
+            cycle: bdCycle,
+            result: bdResult,
+            note: bdNote,
+            timestamp: now.toISOString(),
+            displayDate: now.toLocaleDateString('vi-VN'),
+            displayTime: now.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }),
+            recordedBy: technician,
+            verified: false,
+            verifiedBy: null,
+            verifiedAt: null
+        };
+        try {
+            await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'bowiedick_logs'), newRecord);
+            setBdCycle((prev) => (parseInt(prev) || 0) + 1 + ""); // Tự động tăng số mẻ cho lần nhập sau
+            setBdNote('');
+            setBdResult('Đạt');
+        } catch (error) {
+            console.error("Lỗi lưu BD:", error);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    const handleBdVerify = async (id) => {
+        if (!authReady) return;
+        try {
+            await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'bowiedick_logs', id), {
+                verified: true,
+                verifiedBy: verifierName,
+                verifiedAt: new Date().toLocaleDateString('vi-VN')
+            });
+        } catch (error) { console.error("Lỗi duyệt BD:", error); }
+    };
+
+    const handleBdDelete = async (id) => {
+        if (!authReady) return;
+        try { await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'bowiedick_logs', id)); } 
+        catch (error) { console.error("Lỗi xóa BD:", error); }
+    };
+
     // --- TÍNH NĂNG MỚI: Xuất file Excel (CSV) ---
     const handleExportCSV = () => {
         if (filteredLogs.length === 0) return;
@@ -251,8 +323,30 @@ export default function App() {
                     </div>
                 </header>
 
-                {/* Main Content Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                {/* --- MENU ĐIỀU HƯỚNG TABS --- */}
+                <div className="flex gap-3 border-b border-slate-800 pb-px overflow-x-auto no-scrollbar">
+                    <button 
+                        onClick={() => setActiveTab('environment')}
+                        className={`px-5 py-3 text-sm font-semibold rounded-t-xl transition-all whitespace-nowrap flex items-center gap-2 ${activeTab === 'environment' ? 'bg-slate-900 text-teal-400 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}
+                    >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                        </svg>
+                        Theo dõi Nhiệt Ẩm
+                    </button>
+                    <button 
+                        onClick={() => setActiveTab('bowiedick')}
+                        className={`px-5 py-3 text-sm font-semibold rounded-t-xl transition-all whitespace-nowrap flex items-center gap-2 ${activeTab === 'bowiedick' ? 'bg-slate-900 text-amber-400 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}
+                    >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                        Kiểm tra Bowie-Dick
+                    </button>
+                </div>
+
+                {/* Main Content Grid - NHIỆT ẨM */}
+                <div className={`${activeTab === 'environment' ? 'grid' : 'hidden'} grid-cols-1 lg:grid-cols-3 gap-6 animate-in fade-in duration-500`}>
                     
                     {/* Form Cột trái */}
                     <div className="lg:col-span-1">
@@ -645,6 +739,199 @@ export default function App() {
 
                     </div>
                 </div>
+
+                {/* Main Content Grid - BOWIE-DICK */}
+                <div className={`${activeTab === 'bowiedick' ? 'grid' : 'hidden'} grid-cols-1 lg:grid-cols-3 gap-6 animate-in fade-in duration-500`}>
+                    
+                    {/* Form BD Cột trái */}
+                    <div className="lg:col-span-1">
+                        <div className="bg-slate-900 rounded-2xl p-6 border border-slate-800 shadow-xl relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-amber-600/10 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+
+                            <div className="flex justify-between items-center mb-5 relative z-10">
+                                <h2 className="text-lg font-semibold text-white flex items-center gap-2">
+                                    <svg className="w-5 h-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                    </svg>
+                                    Chạy Test Bowie-Dick
+                                </h2>
+                            </div>
+
+                            <form onSubmit={handleBdSubmit} className="space-y-4 relative z-10">
+                                <div className="space-y-1">
+                                    <label className="text-sm font-medium text-slate-400">NV thực hiện</label>
+                                    <input 
+                                        type="text" required
+                                        value={technician} onChange={(e) => setTechnician(e.target.value)}
+                                        className="w-full bg-slate-950 border border-slate-700 text-slate-200 rounded-xl px-4 py-2.5 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all text-sm"
+                                    />
+                                </div>
+
+                                <div className="space-y-1">
+                                    <label className="text-sm font-medium text-slate-400">Máy Tiệt Khuẩn (Autoclave)</label>
+                                    <select 
+                                        value={bdAutoclave} onChange={(e) => setBdAutoclave(e.target.value)}
+                                        className="w-full bg-slate-950 border border-slate-700 text-slate-200 rounded-xl px-4 py-2.5 focus:outline-none focus:border-amber-500 transition-all text-sm"
+                                    >
+                                        <option value="Máy Steam 01 (Cửa trước)">Máy Steam 01 (Cửa trước)</option>
+                                        <option value="Máy Steam 02 (Cửa sau)">Máy Steam 02 (Cửa sau)</option>
+                                        <option value="Máy Steam 03 (Dự phòng)">Máy Steam 03 (Dự phòng)</option>
+                                    </select>
+                                </div>
+
+                                <div className="space-y-1">
+                                    <label className="text-sm font-medium text-slate-400">Mẻ test số</label>
+                                    <input 
+                                        type="number" required min="1"
+                                        value={bdCycle} onChange={(e) => setBdCycle(e.target.value)}
+                                        className="w-full bg-slate-950 border border-slate-700 text-slate-200 rounded-xl px-4 py-2.5 focus:outline-none focus:border-amber-500 transition-all text-sm"
+                                    />
+                                </div>
+
+                                <div className="space-y-2 pt-2">
+                                    <label className="text-sm font-medium text-slate-400">Kết quả kiểm tra (Tờ test)</label>
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <label className={`flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl border cursor-pointer transition-all ${bdResult === 'Đạt' ? 'bg-emerald-950/50 border-emerald-500 text-emerald-400 shadow-md shadow-emerald-900/20' : 'bg-slate-950 border-slate-700 text-slate-400 hover:border-slate-500'}`}>
+                                            <input type="radio" name="bdResult" value="Đạt" checked={bdResult === 'Đạt'} onChange={() => setBdResult('Đạt')} className="hidden" />
+                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                                            <span className="text-sm font-semibold">ĐẠT (Đổi màu đều)</span>
+                                        </label>
+                                        <label className={`flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl border cursor-pointer transition-all ${bdResult === 'Không đạt' ? 'bg-rose-950/50 border-rose-500 text-rose-400 shadow-md shadow-rose-900/20' : 'bg-slate-950 border-slate-700 text-slate-400 hover:border-slate-500'}`}>
+                                            <input type="radio" name="bdResult" value="Không đạt" checked={bdResult === 'Không đạt'} onChange={() => setBdResult('Không đạt')} className="hidden" />
+                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                                            <span className="text-sm font-semibold">KHÔNG ĐẠT</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div className="space-y-1">
+                                    <label className="text-sm font-medium text-slate-400">Ghi chú (Bắt buộc nếu lỗi)</label>
+                                    <textarea 
+                                        placeholder="Ví dụ: Còn bọt khí trung tâm..."
+                                        value={bdNote} onChange={(e) => setBdNote(e.target.value)}
+                                        className="w-full bg-slate-950 border border-slate-700 text-slate-200 rounded-xl px-4 py-2.5 focus:outline-none focus:border-amber-500 transition-all text-sm h-20 resize-none"
+                                    />
+                                </div>
+
+                                <button 
+                                    type="submit" disabled={!authReady || isSubmitting}
+                                    className="w-full mt-4 bg-amber-600 hover:bg-amber-500 text-white font-medium py-3 px-4 rounded-xl shadow-lg shadow-amber-900/30 transition-all active:scale-[0.98] disabled:opacity-50 flex justify-center items-center gap-2"
+                                >
+                                    {isSubmitting ? 'Đang lưu...' : 'Lưu Kết Quả Bowie-Dick'}
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    {/* Table BD Cột phải */}
+                    <div className="lg:col-span-2 flex flex-col gap-6">
+                        
+                        {/* Thống kê BD */}
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-lg">
+                                <div className="p-3 bg-blue-950/50 text-blue-400 rounded-xl border border-blue-900/50">
+                                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                                </div>
+                                <div>
+                                    <div className="text-slate-400 text-xs font-medium uppercase tracking-wider">Tổng số mẻ test</div>
+                                    <div className="text-2xl font-bold text-slate-200">{bdLogs.length}</div>
+                                </div>
+                            </div>
+                            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-lg">
+                                <div className="p-3 bg-emerald-950/50 text-emerald-400 rounded-xl border border-emerald-900/50">
+                                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                </div>
+                                <div>
+                                    <div className="text-slate-400 text-xs font-medium uppercase tracking-wider">Mẻ test ĐẠT</div>
+                                    <div className="text-2xl font-bold text-emerald-400">{bdLogs.filter(l => l.result === 'Đạt').length}</div>
+                                </div>
+                            </div>
+                            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex items-center gap-4 shadow-lg">
+                                <div className="p-3 bg-rose-950/50 text-rose-400 rounded-xl border border-rose-900/50">
+                                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                </div>
+                                <div>
+                                    <div className="text-slate-400 text-xs font-medium uppercase tracking-wider">Mẻ test LỖI</div>
+                                    <div className="text-2xl font-bold text-rose-400">{bdLogs.filter(l => l.result === 'Không đạt').length}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Bảng Nhật ký BD */}
+                        <div className="bg-slate-900 rounded-2xl border border-slate-800 shadow-xl overflow-hidden flex flex-col flex-1">
+                            <div className="p-4 border-b border-slate-800 flex justify-between items-center flex-wrap gap-2">
+                                <h2 className="text-base font-semibold text-white flex items-center gap-2">
+                                    <svg className="w-5 h-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
+                                    Sổ Nhật Ký Test Bowie-Dick (Máy Tiệt Khuẩn Steam)
+                                </h2>
+                                <div className="flex items-center gap-2 text-xs text-slate-400">
+                                    <span>Người duyệt:</span>
+                                    <input 
+                                        type="text" value={verifierName} onChange={(e) => setVerifierName(e.target.value)}
+                                        className="bg-slate-950 border border-slate-700 px-2 py-0.5 rounded text-amber-300 w-24 text-xs focus:outline-none focus:border-amber-500"
+                                        title="Nhập tên NV duyệt"
+                                    />
+                                </div>
+                            </div>
+                            <div className="overflow-x-auto p-4 pt-0 mt-2">
+                                <table className="w-full text-xs text-left">
+                                    <thead className="text-[11px] text-slate-400 uppercase bg-slate-950/70 sticky top-0">
+                                        <tr>
+                                            <th className="px-3 py-2.5 rounded-l-lg">Thời gian</th>
+                                            <th className="px-3 py-2.5">Máy Tiệt Khuẩn</th>
+                                            <th className="px-3 py-2.5 text-center">Mẻ test</th>
+                                            <th className="px-3 py-2.5 text-center">Kết quả</th>
+                                            <th className="px-3 py-2.5">Thực hiện</th>
+                                            <th className="px-3 py-2.5 text-center">Kiểm tra</th>
+                                            <th className="px-3 py-2.5 rounded-r-lg text-right">Xóa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-slate-800/40">
+                                        {bdLogs.map(log => (
+                                            <tr key={log.id} className={`hover:bg-slate-800/40 transition-colors ${log.result === 'Không đạt' ? 'bg-rose-950/20' : ''}`}>
+                                                <td className="px-3 py-2.5">
+                                                    <div className="font-semibold text-slate-200">{log.displayTime}</div>
+                                                    <div className="text-[10px] text-slate-400">{log.displayDate}</div>
+                                                </td>
+                                                <td className="px-3 py-2.5">
+                                                    <div className="text-amber-300 font-medium">{log.autoclave}</div>
+                                                </td>
+                                                <td className="px-3 py-2.5 text-center">
+                                                    <span className="inline-block px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-bold border border-slate-700">Mẻ {log.cycle}</span>
+                                                </td>
+                                                <td className="px-3 py-2.5 text-center">
+                                                    {log.result === 'Đạt' ? (
+                                                        <span className="inline-flex items-center gap-1 text-[11px] text-emerald-400 bg-emerald-950/40 border border-emerald-800 px-2 py-0.5 rounded font-bold">✓ ĐẠT</span>
+                                                    ) : (
+                                                        <span className="inline-flex items-center gap-1 text-[11px] text-rose-400 bg-rose-950/40 border border-rose-800 px-2 py-0.5 rounded font-bold">✗ KHÔNG ĐẠT</span>
+                                                    )}
+                                                </td>
+                                                <td className="px-3 py-2.5">
+                                                    <div className="text-slate-300 font-medium">{log.recordedBy}</div>
+                                                    {log.note && <div className="text-[10px] text-slate-400 italic mt-0.5 w-32 truncate" title={log.note}>{log.note}</div>}
+                                                </td>
+                                                <td className="px-3 py-2.5 text-center">
+                                                    {log.verified ? (
+                                                        <span className="inline-flex items-center gap-1 text-[11px] text-emerald-400 bg-emerald-950/40 border border-emerald-800 px-2 py-0.5 rounded">✓ {log.verifiedBy}</span>
+                                                    ) : (
+                                                        <button onClick={() => handleBdVerify(log.id)} className="text-[11px] text-amber-400 hover:text-amber-300 bg-amber-950/40 hover:bg-amber-900/50 border border-amber-800/60 px-2 py-0.5 rounded transition-all">Ký duyệt</button>
+                                                    )}
+                                                </td>
+                                                <td className="px-3 py-2.5 text-right">
+                                                    <button onClick={() => handleBdDelete(log.id)} className="p-1.5 text-slate-500 hover:text-rose-400 hover:bg-rose-400/10 rounded transition-colors"><svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg></button>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                        {bdLogs.length === 0 && (
+                                            <tr><td colSpan="7" className="px-4 py-8 text-center text-slate-500 italic">Chưa có dữ liệu test Bowie-Dick nào</td></tr>
+                                        )}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     );
